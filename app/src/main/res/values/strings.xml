@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">MedCare</string>
+
+    <!-- General Strings -->
+    <string name="doctor">Docteur</string>
+    <string name="patient">Patient</string>
+
+    <!-- OnBoardingScreen Strings -->
+    <string name="lets_get_started">Commencez Maintenant</string>
+    <string name="skip">Ignorer</string>
+    <string name="next">Suivant</string>
+    <string name="gagner_temps_title">Gagner du Temps</string>
+    <string name="gagner_temps_desc">prenez un rendez vous n-importe où en un clic prenez un rendez vous facilement</string>
+    *
+    <string name="trouver_med_title">Trouver un Medecin</string>
+    <string name="trouver_med_desc">cherchez un medecin dans la ville de Sidi Bel Abbès prenez un rendez vous facilement</string>
+    <string name="prendre_med_title">Prendre Medecaments</string>
+    <string name="prendre_med_desc">Nous sommes là pour vous rappeler de prendre une drogue à l-heure exacte prenez un rendez vous facilement</string>
+    <!-- Login/SignUp Strings -->
+
+    <string name="inscrivez_vous">Inscrivez-vous</string>
+    <string name="connexion">Connexion</string>
+    <string name="creer_compte">Créer un Compte</string>
+    <string name="mot_de_pass_oublié">Mot de passe Oublié ?</string>
+
+    <!-- Dialog Strings -->
+    <string name="new_user_check">Voulez-Vous Vous Inscrire Comme ?</string>
+
+    <!-- Strings Array -->
+    <string-array name="specialities">
+        <item>Cardiologie</item>
+        <item>Ophtalmologie</item>
+        <item>Imagerie médicale</item>
+        <item>Endocrinologie</item>
+        <item>Hépatogastroentérologie</item>
+        <item>Dermatologie</item>
+        <item>ORL</item>
+        <item>Gynéco-obstétrique</item>
+    </string-array>
+
+
+</resources>

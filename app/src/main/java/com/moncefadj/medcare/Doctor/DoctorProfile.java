@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.google.android.flexbox.FlexboxLayout;
 import com.moncefadj.medcare.R;

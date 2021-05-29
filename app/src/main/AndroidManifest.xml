@@ -9,9 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MedCare">
-        <activity android:name=".Underbar.underbar"></activity>
-        <activity android:name=".PatientSearch.Search" />
+        <activity android:name=".PatientHome.Home"></activity>
+        <activity android:name=".PatientHome.Dentist" />
+        <activity android:name=".PatientHome.Pneumologie" />
+        <activity android:name=".PatientHome.Cardiologie" />
         <activity android:name=".PatientHome.Ophtalmon" />
+        <activity android:name=".Underbar.underbar" />
+        <activity android:name=".PatientSearch.Search" />
         <activity android:name=".medicaments.ajouterMed" />
         <activity android:name=".medicaments.liste_medicaments" />
         <activity android:name=".AccueilMedecin" />

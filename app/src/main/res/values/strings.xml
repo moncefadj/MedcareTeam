@@ -37,6 +37,13 @@
         <item>ORL</item>
         <item>Gynéco-obstétrique</item>
     </string-array>
+    <!--spinner items-->
+    <string-array name="instructions">
+        <item>avant le repas</item>
+        <item>au melieu du repas </item>
+        <item>aprés le repas</item>
+    </string-array>
+
 
 
 </resources>

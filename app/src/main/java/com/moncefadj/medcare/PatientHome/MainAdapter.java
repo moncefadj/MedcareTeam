@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.moncefadj.medcare.R;
+
 import java.util.ArrayList;
 
 public class MainAdapter  extends RecyclerView.Adapter<MainAdapter.viewHolder> {
@@ -58,12 +60,12 @@ public class MainAdapter  extends RecyclerView.Adapter<MainAdapter.viewHolder> {
 
                     int pos = getAdapterPosition();
                     if(pos==0) {
-                        Intent intent = new Intent(context, Ophtalmon1.class);
+                        Intent intent = new Intent(context, Ophtalmon.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         context.startActivity(intent);
                     }
                     if(pos==1){
-                        Intent intent = new Intent(context, Cardioligie.class);
+                        Intent intent = new Intent(context, Cardiologie.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         context.startActivity(intent);
                     }
@@ -75,7 +77,7 @@ public class MainAdapter  extends RecyclerView.Adapter<MainAdapter.viewHolder> {
                     }
 
                     if(pos==3) {
-                        Intent intent = new Intent(context, Dentiste.class);
+                        Intent intent = new Intent(context, Dentist.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         context.startActivity(intent);
                     }

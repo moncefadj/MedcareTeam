@@ -12,6 +12,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.moncefadj.medcare.R;
+
 public class Cardiologie extends AppCompatActivity {
 
     //vertical view
@@ -26,13 +29,13 @@ public class Cardiologie extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
-        setContentView(R.layout.activity_cardioligie);
+        setContentView(R.layout.activity_cardiologie);
         //vertical view
         Resources res=getResources();
         titles =res.getStringArray(R.array.titles);
         description=res.getStringArray(R.array.description);
         list=(ListView) findViewById(R.id.list1);
-        Cardioligie.Myadapter adapter=new Cardioligie.Myadapter(this,titles,imgs,description);
+        Myadapter adapter=new Myadapter(this,titles,imgs,description);
         list.setAdapter(adapter);
 
 

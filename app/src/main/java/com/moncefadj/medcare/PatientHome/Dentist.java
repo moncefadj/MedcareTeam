@@ -13,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.moncefadj.medcare.R;
+
 public class Dentist extends AppCompatActivity {
     //vertical view
     ListView list;
@@ -26,13 +28,13 @@ public class Dentist extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
-        setContentView(R.layout.activity_dentiste);
+        setContentView(R.layout.activity_dentist);
         //vertical view
         Resources res=getResources();
         titles =res.getStringArray(R.array.titles);
         description=res.getStringArray(R.array.description);
         list=(ListView) findViewById(R.id.list1);
-        Dentiste.Myadapter adapter=new Dentiste.Myadapter(this,titles,imgs,description);
+        Myadapter adapter=new Myadapter(this,titles,imgs,description);
         list.setAdapter(adapter);
 
 

@@ -9,4 +9,7 @@
     <color name="white">#FFF</color>
     <color name="blue_app">#000b76</color>
     <color name="transparent">#00000000</color>
+    <color name="purple_500">#3676F2</color>
+    <color name="purple_700">#3676F2</color>
+    <color name="rose">#3676F2</color>
 </resources>

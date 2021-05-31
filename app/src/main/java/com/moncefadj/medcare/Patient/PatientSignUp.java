@@ -9,20 +9,33 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.moncefadj.medcare.Common.LoginActivity;
-import com.moncefadj.medcare.Doctor.DoctorSignUp;
+import com.moncefadj.medcare.Doctor.DoctorProfile;
 import com.moncefadj.medcare.R;
+
+import java.util.HashMap;
 
 public class PatientSignUp extends AppCompatActivity {
 
+    FirebaseUser uPatient;
+    String uidPatient;
+    FirebaseAuth fAuth;
+    FirebaseDatabase db;
+    DatabaseReference patientsRef;
+    DatabaseReference patientRef;
+
     TextInputLayout nameInput,emailInput,passInput,confPassInput,phoneInput,dayInput,monthInput,yearInput;
     String nameTxt,emailTxt,passTxt,confPassTxt,phoneTxt,dayTxt,monthTxt,yearTxt;
-    FirebaseAuth fAuth;
     Button signUpBtn;
 
     @Override
@@ -45,9 +58,6 @@ public class PatientSignUp extends AppCompatActivity {
 
             }
         });
-
-
-
 
 
     }
@@ -104,7 +114,44 @@ public class PatientSignUp extends AppCompatActivity {
         fAuth.createUserWithEmailAndPassword(emailTxt, passTxt).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
             @Override
             public void onSuccess(AuthResult authResult) {
-                Toast.makeText(PatientSignUp.this, "Le compte du Docteur est créé",Toast.LENGTH_SHORT).show();
+                addPatientToDB();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(PatientSignUp.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void addPatientToDB() {
+        uPatient = FirebaseAuth.getInstance().getCurrentUser();
+        uidPatient = uPatient.getUid();
+
+        db = FirebaseDatabase.getInstance();
+        patientsRef = db.getReference().child("Users").child("Patients");
+        patientRef = patientsRef.child(uidPatient);
+
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("id", uidPatient);
+        map.put("name", nameTxt);
+        map.put("email", emailTxt);
+        map.put("phone", phoneTxt);
+        map.put("profile", "soon...");
+
+        HashMap<String, Object> birthMap = new HashMap<>();
+        birthMap.put("day", dayTxt);
+        birthMap.put("month", monthTxt);
+        birthMap.put("year", yearTxt);
+
+
+        patientRef.child("BirthDay").updateChildren(birthMap);
+        patientRef.updateChildren(map).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Intent intent = new Intent(PatientSignUp.this, DoctorProfile.class);
+                startActivity(intent);
+                finish();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override

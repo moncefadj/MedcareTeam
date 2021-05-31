@@ -51,7 +51,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginTop="40dp"/>
+            android:layout_marginTop="45dp"/>
         <TextView
             android:id="@+id/profile_doctor_specialty"
             android:layout_width="wrap_content"
@@ -64,6 +64,14 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             android:layout_marginTop="5dp"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_location"
+            app:layout_constraintTop_toTopOf="@+id/profile_doctor_address"
+            app:layout_constraintBottom_toBottomOf="@id/profile_doctor_address"
+            app:layout_constraintRight_toLeftOf="@id/profile_doctor_address"
+            android:layout_marginRight="5dp"/>
         <TextView
             android:id="@+id/profile_doctor_address"
             android:layout_width="wrap_content"
@@ -90,25 +98,129 @@
             app:civ_border_width="3dp"
             app:civ_border_color="@color/colorPrimaryDark"/>
 
+
+        <RelativeLayout
+            android:id="@+id/rate_btn_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/profile_doc_image"
+            app:layout_constraintBottom_toBottomOf="@id/profile_doc_image"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/profile_doc_image"
+            android:background="@drawable/rounded_review_button"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingEnd="15dp"
+            android:paddingStart="15dp"
+            android:layout_marginTop="30dp">
+
+            <TextView
+                android:id="@+id/rate_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4.6"
+                android:textColor="@color/white"
+                android:fontFamily="@font/allerta"
+                android:layout_centerVertical="true"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_star"
+                android:layout_toRightOf="@id/rate_txt"
+                android:layout_centerVertical="true"/>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/profile_doc_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/doctor_default_desc"
+            app:layout_constraintTop_toBottomOf="@id/profile_doc_image"
+            app:layout_constraintBottom_toTopOf="@id/profile_phone_layout"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:fontFamily="@font/allerta"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:padding="9dp"/>
+        <RelativeLayout
+            android:id="@+id/profile_phone_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/profile_doc_desc"
+            app:layout_constraintBottom_toTopOf="@+id/days_input"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/rounded_corner_second"
+            android:padding="8dp">
+
+            <ImageView
+                android:id="@+id/profile_phone_icon"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_phone"
+                app:tint="@color/colorPrimary"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"/>
+            <TextView
+                android:id="@+id/profile_phone_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="077877558021"
+                android:layout_toRightOf="@+id/profile_phone_icon"
+                android:layout_centerVertical="true"
+                android:textSize="20sp"
+                android:fontFamily="@font/allerta"
+                android:layout_marginLeft="15dp"/>
+
+        </RelativeLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/days_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Selectionner le jour"
+            app:startIconDrawable="@drawable/ic_calendar"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            app:startIconTint="@color/colorPrimary"
+            app:boxStrokeWidthFocused="2dp"
+            app:boxStrokeColor="@color/colorPrimary"
+            app:layout_constraintTop_toBottomOf="@id/profile_phone_layout"
+            app:layout_constraintBottom_toTopOf="@+id/flex_box"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp">
+            <AutoCompleteTextView
+                android:id="@+id/autoCompleteText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/allerta"
+                android:inputType="none"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+
         <com.google.android.flexbox.FlexboxLayout
             android:id="@+id/flex_box"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:flexWrap="wrap"
-            app:layout_constraintTop_toBottomOf="@id/profile_doc_image"
+            app:layout_constraintTop_toBottomOf="@id/days_input"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginTop="18dp"
             android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp">
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="10dp">
 
             <ImageButton
                 android:id="@+id/add_rdv_btn"
                 android:layout_width="50dp"
                 android:layout_height="45dp"
                 android:src="@drawable/ic_add"
-                android:background="@drawable/circle_button_grey"/>
-
+                android:background="@drawable/circle_button_grey"
+                android:layout_marginLeft="8dp"/>
 
 
         </com.google.android.flexbox.FlexboxLayout>

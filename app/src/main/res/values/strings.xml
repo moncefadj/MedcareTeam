@@ -26,6 +26,9 @@
     <!-- Dialog Strings -->
     <string name="new_user_check">Voulez-Vous Vous Inscrire Comme ?</string>
 
+
+    <string name="doctor_default_desc">Dr XXXX yyyy de labita ESI-Sba je suis un docteur , cette descrition va etre ecrire par le docteur donc cette desc est juste un test merci cette descrition va etre ecrire par le docteur donc cette desc est juste un test merci .</string>
+
     <!-- Strings Array -->
     <string-array name="specialities">
         <item>Cardiologie</item>
@@ -37,6 +40,16 @@
         <item>ORL</item>
         <item>Gynéco-obstétrique</item>
     </string-array>
+    <string-array name="days">
+        <item>Samedi</item>
+        <item>Dimanche</item>
+        <item>Lundi</item>
+        <item>Mardi</item>
+        <item>Mercredi</item>
+        <item>Jeudi</item>
+        <item>Vendredi</item>
+    </string-array>
+
 
 
 </resources>

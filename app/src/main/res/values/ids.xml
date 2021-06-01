@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="ajouterAuliste" type="id">ajouterAulist</item>
+    <item name="heure3" type="id">heure3</item>
+</resources>

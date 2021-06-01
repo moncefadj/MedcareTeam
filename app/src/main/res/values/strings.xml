@@ -37,44 +37,6 @@
         <item>ORL</item>
         <item>Gynéco-obstétrique</item>
     </string-array>
-    <!--spinner items-->
-    <string-array name="instructions">
-        <item>avant le repas</item>
-        <item>au melieu du repas </item>
-        <item>aprés le repas</item>
-    </string-array>
 
-    <!--rofaida-->
-    <string-array name="titles">
-        <item>MS.doctor</item>
-        <item>MS.doctor</item>
-        <item>MS.doctor</item>
-        <item>MS.doctor</item>
-        <item>MS.doctor</item>
-        <item>MS.doctor</item>
-        <item>MS.doctor</item>
-        <item>MS.doctor</item>
-        <item>MS.doctor</item>
-        <item>MS.doctor</item>
-        <item>MS.doctor</item>
-        <item>MS.doctor</item>
-
-    </string-array>
-    <string-array name="description">
-        <item> doctor description</item>
-        <item> doctor description</item>
-        <item> doctor description</item>
-        <item> doctor description</item>
-        <item> doctor description</item>
-        <item> doctor description</item>
-        <item> doctor description</item>
-        <item> doctor description</item>
-        <item> doctor description</item>
-        <item> doctor description</item>
-        <item> doctor description</item>
-        <item> doctor description</item>
-
-
-    </string-array>
 
 </resources>

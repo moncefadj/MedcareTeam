@@ -17,10 +17,20 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.moncefadj.medcare.Common.LoginActivity;
+import com.moncefadj.medcare.Patient.PatientSignUp;
 import com.moncefadj.medcare.R;
 
+import java.util.HashMap;
+
 public class DoctorSignUp extends AppCompatActivity {
+
+
+    String uidDoctor;
+    DatabaseReference doctorRef;
 
     String[] specialities;
     ArrayAdapter arrayAdapter;
@@ -100,8 +110,7 @@ public class DoctorSignUp extends AppCompatActivity {
         fAuth.createUserWithEmailAndPassword(email,password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
             @Override
             public void onSuccess(AuthResult authResult) {
-
-                Toast.makeText(DoctorSignUp.this, "Le compte du Docteur est créé",Toast.LENGTH_SHORT).show();
+                addDoctorToDB();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -111,6 +120,40 @@ public class DoctorSignUp extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void addDoctorToDB() {
+        uidDoctor = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        doctorRef = FirebaseDatabase.getInstance().getReference().child("Users").child("Doctors").child(uidDoctor);
+
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("id", uidDoctor);
+        map.put("name", name);
+        map.put("email", email);
+        map.put("password", password);
+        map.put("key", key);
+        map.put("specialty", speciality);
+        map.put("fullSpecialty", speciality);
+        map.put("address", "Labita Esi Sba bloc A");
+        map.put("rate", "4.6");
+        map.put("desc", "description du docteur");
+        map.put("phone", "");
+        map.put("profileImg", "");
+
+
+        doctorRef.updateChildren(map).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Intent intent = new Intent(DoctorSignUp.this, DoctorProfile.class);
+                startActivity(intent);
+                finish();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(DoctorSignUp.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void clearErrors() {

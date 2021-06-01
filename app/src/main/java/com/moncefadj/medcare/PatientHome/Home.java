@@ -18,6 +18,8 @@ import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.moncefadj.medcare.R;
+
 import java.util.ArrayList;
 
 public class Home extends AppCompatActivity {
@@ -80,13 +82,13 @@ public class Home extends AppCompatActivity {
 
         //Design Horizontal lyout
         LinearLayoutManager layoutManager=new LinearLayoutManager(
-                MainActivity.this,LinearLayoutManager.HORIZONTAL, false
+                Home.this,LinearLayoutManager.HORIZONTAL, false
 
         );
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         //initialize mainAdapter
-        mainAdapter=new MainAdapter(MainActivity.this,mainModels);
+        mainAdapter=new MainAdapter(Home.this,mainModels);
         //set mainAdapter to recyclerview
         recyclerView.setAdapter(mainAdapter);
     }

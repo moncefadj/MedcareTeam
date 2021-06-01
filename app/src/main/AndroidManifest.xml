@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MedCare">
-        <activity android:name=".PatientHome.Home"></activity>
+        <activity android:name=".docc.DoctorDashboard"></activity>
+        <activity android:name=".PatientHome.Home" />
         <activity android:name=".PatientHome.Dentist" />
         <activity android:name=".PatientHome.Pneumologie" />
         <activity android:name=".PatientHome.Cardiologie" />

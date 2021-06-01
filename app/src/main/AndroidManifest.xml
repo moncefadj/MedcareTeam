@@ -18,7 +18,6 @@
         <activity android:name=".PatientSearch.Search" />
         <activity android:name=".medicaments.ajouterMed" />
         <activity android:name=".medicaments.liste_medicaments" />
-        <activity android:name=".AccueilMedecin" />
         <activity android:name=".Doctor.DoctorProfile" />
         <activity
             android:name=".Doctor.DoctorSignUp"

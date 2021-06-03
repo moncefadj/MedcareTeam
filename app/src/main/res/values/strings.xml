@@ -26,6 +26,9 @@
     <!-- Dialog Strings -->
     <string name="new_user_check">Voulez-Vous Vous Inscrire Comme ?</string>
 
+
+    <string name="doctor_default_desc">Default desc</string>
+
     <!-- Strings Array -->
     <string-array name="specialities">
         <item>Cardiologie</item>
@@ -38,6 +41,12 @@
         <item>Gynéco-obstétrique</item>
     </string-array>
 
+    <string-array name="instructions">
+        <item>Avant repas</item>
+        <item>Au milieu</item>
+        <item>Aprés repas</item>
+    </string-array>
+
     <string-array name="days">
         <item>Samedi</item>
         <item>Dimanche</item>
@@ -46,6 +55,18 @@
         <item>Mercredi</item>
         <item>Jeudi</item>
         <item>Vendredi</item>
+    </string-array>
+
+    <string-array name="titles">
+        <item>Avant repas</item>
+        <item>Au milieu</item>
+        <item>Aprés repas</item>
+    </string-array>
+
+    <string-array name="description">
+        <item>Avant repas</item>
+        <item>Au milieu</item>
+        <item>Aprés repas</item>
     </string-array>
 
 

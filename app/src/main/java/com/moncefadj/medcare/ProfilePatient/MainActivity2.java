@@ -1,4 +1,4 @@
-package com.moncefadj.medcare.profile_patient;
+package com.moncefadj.medcare.ProfilePatient;
 
 import android.content.Intent;
 import android.os.Bundle;

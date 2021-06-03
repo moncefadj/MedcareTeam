@@ -1,4 +1,4 @@
-package com.moncefadj.medcare.medicaments;
+package com.moncefadj.medcare.Medicaments;
 
 public class medData {
     private String nomMed ;

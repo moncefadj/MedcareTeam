@@ -1,5 +1,6 @@
 package com.moncefadj.medcare.Common;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -13,7 +14,14 @@ import android.widget.TextView;
 import com.airbnb.lottie.LottieAnimationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.moncefadj.medcare.Doctor.DoctorDashboard;
 import com.moncefadj.medcare.Doctor.DoctorProfile;
+import com.moncefadj.medcare.Patient.PatientHome;
 import com.moncefadj.medcare.R;
 
 public class SplashScreen extends AppCompatActivity {
@@ -63,9 +71,36 @@ public class SplashScreen extends AppCompatActivity {
                 } else {
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                     if (user != null) {
-                        Intent intent = new Intent(SplashScreen.this, DoctorProfile.class);
-                        startActivity(intent);
-                        finish();
+                        // search if current user is patient or doctor
+                        String currentUid = user.getUid();
+                        DatabaseReference patientsRef = FirebaseDatabase.getInstance().getReference().child("Users").child("Patients");
+                        patientsRef.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                Boolean isPatient = false;
+                                if (snapshot.exists()) {
+                                    for (DataSnapshot patient : snapshot.getChildren()) {
+                                        String patientUid = patient.getValue().toString();
+                                        if (patientUid == currentUid) { // current user is a Patient
+                                            isPatient = true;
+                                            Intent intent = new Intent(SplashScreen.this, PatientHome.class);
+                                            startActivity(intent);
+                                            finish();
+                                        }
+                                    }
+                                    if (!isPatient) { // current user is a Doctor
+                                        Intent intent = new Intent(SplashScreen.this, DoctorDashboard.class);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
                     } else {
                         Intent intent = new Intent(SplashScreen.this, LoginActivity.class);
                         startActivity(intent);

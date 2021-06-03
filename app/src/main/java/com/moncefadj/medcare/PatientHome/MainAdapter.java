@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.moncefadj.medcare.Patient.OneSpecialtyDoctors;
 import com.moncefadj.medcare.R;
 
 import java.util.ArrayList;
@@ -58,30 +59,9 @@ public class MainAdapter  extends RecyclerView.Adapter<MainAdapter.viewHolder> {
                 @Override
                 public void onClick(View v) {
 
-                    int pos = getAdapterPosition();
-                    if(pos==0) {
-                        Intent intent = new Intent(context, Ophtalmon.class);
+                        Intent intent = new Intent(context, OneSpecialtyDoctors.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         context.startActivity(intent);
-                    }
-                    if(pos==1){
-                        Intent intent = new Intent(context, Cardiologie.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        context.startActivity(intent);
-                    }
-
-                    if(pos==2) {
-                        Intent intent = new Intent(context, Pneumologie.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        context.startActivity(intent);
-                    }
-
-                    if(pos==3) {
-                        Intent intent = new Intent(context, Dentist.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        context.startActivity(intent);
-                    }
-
 
                 }
             });

@@ -1,4 +1,4 @@
-package com.moncefadj.medcare.medicaments;
+package com.moncefadj.medcare.Medicaments;
 
 
 import android.content.Intent;
@@ -7,13 +7,10 @@ import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.moncefadj.medcare.R;
-import com.moncefadj.medcare.medicaments.medAdapter;
-import com.moncefadj.medcare.medicaments.medData;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class liste_medicaments extends AppCompatActivity {

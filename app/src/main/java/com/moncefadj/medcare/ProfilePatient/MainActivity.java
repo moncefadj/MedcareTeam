@@ -1,4 +1,4 @@
-package com.moncefadj.medcare.profile_patient;
+package com.moncefadj.medcare.ProfilePatient;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.moncefadj.medcare.R;
 
 public class MainActivity extends AppCompatActivity {
+
     private Button play;
 
     ImageView back;

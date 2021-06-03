@@ -1,4 +1,4 @@
-package com.moncefadj.medcare.medicaments;
+package com.moncefadj.medcare.Medicaments;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,9 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.moncefadj.medcare.medicaments.MainViewModel;
 import com.moncefadj.medcare.R;
-import com.moncefadj.medcare.medicaments.medData;
 
 public class medAdapter extends RecyclerView.Adapter<medAdapter.viewHolder> {
     public static class viewHolder extends RecyclerView.ViewHolder {

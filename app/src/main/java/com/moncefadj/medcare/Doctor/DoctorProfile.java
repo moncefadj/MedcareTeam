@@ -2,10 +2,8 @@ package com.moncefadj.medcare.Doctor;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
 
 import android.app.Dialog;
-import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -14,7 +12,6 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -23,8 +20,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.TimePicker;
-import android.widget.Toast;
 
 import com.google.android.flexbox.FlexboxLayout;
 import com.google.android.material.textfield.TextInputLayout;
@@ -36,7 +31,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.moncefadj.medcare.Common.LoginActivity;
 import com.moncefadj.medcare.DataClasses.DoctorData;
-import com.moncefadj.medcare.HelperClasses.TimerPickerDoctorProfile;
 import com.moncefadj.medcare.R;
 
 import java.util.Calendar;
@@ -55,6 +49,7 @@ public class DoctorProfile extends AppCompatActivity {
     DatabaseReference doctorDayRef;
 
     String currentDay;
+    int currentDayIndex;
     String selectedDay;
 
     // Doctor profile Data
@@ -102,22 +97,21 @@ public class DoctorProfile extends AppCompatActivity {
         });
 
         daysAutoCompleteTxt();
-
+        
         autoCompleteTextView.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
             }
-
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
                 String d = daysInput.getEditText().getText().toString();
-                
+                daysInput.setError(null);
+                removeFlexBoxViews();
                 showAllDayButtons(d);
 
             }
-
             @Override
             public void afterTextChanged(Editable s) {
 
@@ -175,6 +169,7 @@ public class DoctorProfile extends AppCompatActivity {
 
                 if ((hour != "") && (minute != "")) {
                     addButtonToDB(selectedDay, hour + ":" + minute);
+                    removeFlexBoxViews();
                     showAllDayButtons(selectedDay);
                     dialog.dismiss();
                 }
@@ -186,13 +181,14 @@ public class DoctorProfile extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
+    protected void onStart() {
+        super.onStart();
 
         setProfileData();
 
         currentDay = getCurrentDay();
-        showAllDayButtons(currentDay);
+        Log.i("Current Day", currentDay);
+
     }
 
     private void showAllDayButtons(String day) {
@@ -210,7 +206,6 @@ public class DoctorProfile extends AppCompatActivity {
                         showButton(time, available);
                     }
                 }
-
             }
 
             @Override
@@ -224,6 +219,7 @@ public class DoctorProfile extends AppCompatActivity {
     private String getCurrentDay() {
         Calendar calendar = Calendar.getInstance();
         int day = calendar.get(Calendar.DAY_OF_WEEK);
+        String currentDay = "Samedi";
 
         switch (day) {
             case Calendar.SATURDAY:
@@ -281,7 +277,9 @@ public class DoctorProfile extends AppCompatActivity {
 
         button.setLayoutParams(params);
         flexboxLayout.addView(button);
+
     }
+
 
     private void setProfileData() {
 
@@ -297,7 +295,6 @@ public class DoctorProfile extends AppCompatActivity {
                 desc.setText(doctorData.getDesc());
                 rate.setText(doctorData.getRate());
                 phone.setText(doctorData.getPhone());
-
             }
 
             @Override
@@ -323,6 +320,11 @@ public class DoctorProfile extends AppCompatActivity {
 
     public void showTimePicker() {
         dialog.show();
+    }
+
+    public void removeFlexBoxViews() {
+        FlexboxLayout flexboxLayout = findViewById(R.id.flex_box);
+        flexboxLayout.removeAllViews();
     }
 
 

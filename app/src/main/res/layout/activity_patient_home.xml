@@ -10,7 +10,7 @@
     android:paddingRight="0dp"
     android:paddingLeft="0dp"
     android:background="@color/white"
-    tools:context=".PatientHome.Home">
+    tools:context=".Patient.PatientHome">
 
     <LinearLayout
         android:layout_width="wrap_content"

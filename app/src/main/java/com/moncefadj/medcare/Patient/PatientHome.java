@@ -1,6 +1,9 @@
-package com.moncefadj.medcare.PatientHome;
+package com.moncefadj.medcare.Patient;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -13,7 +16,19 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class Ophtalmon extends AppCompatActivity {
+import com.moncefadj.medcare.PatientHome.MainAdapter;
+import com.moncefadj.medcare.PatientHome.MainModel;
+import com.moncefadj.medcare.R;
+
+import java.util.ArrayList;
+
+public class PatientHome extends AppCompatActivity {
+    RecyclerView recyclerView;
+    ArrayList<MainModel> mainModels;
+    MainAdapter mainAdapter;
+
+
+
     //vertical view
     ListView list;
     String[] titles;
@@ -22,20 +37,60 @@ public class Ophtalmon extends AppCompatActivity {
             ,R.drawable.doc12,R.drawable.doc12,R.drawable.doc12
             ,R.drawable.doc12,R.drawable.doc12,R.drawable.doc12};
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
-        setContentView(R.layout.activity_ophtalmon1);
+        setContentView(R.layout.activity_patient_home);
         //vertical view
         Resources res=getResources();
         titles =res.getStringArray(R.array.titles);
         description=res.getStringArray(R.array.description);
         list=(ListView) findViewById(R.id.list1);
-        Ophtalmon1.Myadapter adapter=new Ophtalmon1.Myadapter(this,titles,imgs,description);
+        Myadapter adapter=new Myadapter(this,titles,imgs,description);
         list.setAdapter(adapter);
 
 
+
+
+
+
+
+
+
+
+
+        //assign varible
+        recyclerView=findViewById(R.id.recycler_view);
+
+        //creat integer array
+        Integer[] categorieLogo={R.drawable.eye1,R.drawable.heart3
+                ,R.drawable.lung2,R.drawable.tooth};
+
+        //creat string array
+        String[] categorieName={"Ophtalmomogie","Cardiologie"
+                ,"Pneumoligie","Dentiste"};
+
+        //initilize arraylist
+        mainModels =new ArrayList<>();
+        for (int i=0;i<categorieLogo.length;i++){
+            MainModel model=new MainModel(categorieLogo[i],categorieName[i]);
+            mainModels.add(model);
+
+        }
+
+        //Design Horizontal lyout
+        LinearLayoutManager layoutManager=new LinearLayoutManager(
+                PatientHome.this,LinearLayoutManager.HORIZONTAL, false
+
+        );
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        //initialize mainAdapter
+        mainAdapter=new MainAdapter(PatientHome.this,mainModels);
+        //set mainAdapter to recyclerview
+        recyclerView.setAdapter(mainAdapter);
     }
     class Myadapter extends ArrayAdapter<String> {
         Context context;
@@ -50,26 +105,28 @@ public class Ophtalmon extends AppCompatActivity {
             this.mydescription = description;
             this.mytitles = titles;
         }
-
         @Override
-        public int getCount(){
+        public int getCount() {
             return imgs.length;
         }
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent){
             LayoutInflater layoutInflater=(LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View verow=layoutInflater.inflate(R.layout.verow,parent,false);
+            View verow = layoutInflater.inflate(R.layout.verow,parent,false);
             ImageView images;
-            images= verow.findViewById(R.id.icon);
+            images =  verow.findViewById(R.id.icon);
             TextView mytitle;
-            mytitle=verow.findViewById(R.id.text1);
+            mytitle= verow.findViewById(R.id.text1);
             TextView mydescription;
-            mydescription=verow.findViewById(R.id.text2);
+            mydescription=  verow.findViewById(R.id.text2);
             images.setImageResource(imgs[position]);
             mytitle.setText(titles[position]);
             mydescription.setText(description[position]);
             return verow;
         }
     }
+
+
+
 }

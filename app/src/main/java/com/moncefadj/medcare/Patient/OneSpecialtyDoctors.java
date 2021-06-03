@@ -1,9 +1,6 @@
-package com.moncefadj.medcare.PatientHome;
+package com.moncefadj.medcare.Patient;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -13,21 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.moncefadj.medcare.R;
 
-import java.util.ArrayList;
-
-public class Home extends AppCompatActivity {
-    RecyclerView recyclerView;
-    ArrayList<MainModel> mainModels;
-    MainAdapter mainAdapter;
-
-
+public class OneSpecialtyDoctors extends AppCompatActivity {
 
     //vertical view
     ListView list;
@@ -37,12 +25,11 @@ public class Home extends AppCompatActivity {
             ,R.drawable.doc12,R.drawable.doc12,R.drawable.doc12
             ,R.drawable.doc12,R.drawable.doc12,R.drawable.doc12};
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_one_specialty_doctors);
         //vertical view
         Resources res=getResources();
         titles =res.getStringArray(R.array.titles);
@@ -52,45 +39,6 @@ public class Home extends AppCompatActivity {
         list.setAdapter(adapter);
 
 
-
-
-
-
-
-
-
-
-
-        //assign varible
-        recyclerView=findViewById(R.id.recycler_view);
-
-        //creat integer array
-        Integer[] categorieLogo={R.drawable.eye1,R.drawable.heart3
-                ,R.drawable.lung2,R.drawable.tooth};
-
-        //creat string array
-        String[] categorieName={"Ophtalmomogie","Cardiologie"
-                ,"Pneumoligie","Dentiste"};
-
-        //initilize arraylist
-        mainModels =new ArrayList<>();
-        for (int i=0;i<categorieLogo.length;i++){
-            MainModel model=new MainModel(categorieLogo[i],categorieName[i]);
-            mainModels.add(model);
-
-        }
-
-        //Design Horizontal lyout
-        LinearLayoutManager layoutManager=new LinearLayoutManager(
-                Home.this,LinearLayoutManager.HORIZONTAL, false
-
-        );
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        //initialize mainAdapter
-        mainAdapter=new MainAdapter(Home.this,mainModels);
-        //set mainAdapter to recyclerview
-        recyclerView.setAdapter(mainAdapter);
     }
     class Myadapter extends ArrayAdapter<String> {
         Context context;
@@ -105,28 +53,26 @@ public class Home extends AppCompatActivity {
             this.mydescription = description;
             this.mytitles = titles;
         }
+
         @Override
-        public int getCount() {
+        public int getCount(){
             return imgs.length;
         }
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent){
             LayoutInflater layoutInflater=(LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View verow = layoutInflater.inflate(R.layout.verow,parent,false);
+            View verow=layoutInflater.inflate(R.layout.verow,parent,false);
             ImageView images;
-            images =  verow.findViewById(R.id.icon);
+            images= verow.findViewById(R.id.icon);
             TextView mytitle;
-            mytitle= verow.findViewById(R.id.text1);
+            mytitle=verow.findViewById(R.id.text1);
             TextView mydescription;
-            mydescription=  verow.findViewById(R.id.text2);
+            mydescription=verow.findViewById(R.id.text2);
             images.setImageResource(imgs[position]);
             mytitle.setText(titles[position]);
             mydescription.setText(description[position]);
             return verow;
         }
     }
-
-
-
 }

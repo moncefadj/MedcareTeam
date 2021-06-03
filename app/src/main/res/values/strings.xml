@@ -40,12 +40,7 @@
         <item>ORL</item>
         <item>Gynéco-obstétrique</item>
     </string-array>
-
-    <string-array name="instructions">
-        <item>Avant repas</item>
-        <item>Au milieu</item>
-        <item>Aprés repas</item>
-    </string-array>
+    
 
     <string-array name="days">
         <item>Samedi</item>

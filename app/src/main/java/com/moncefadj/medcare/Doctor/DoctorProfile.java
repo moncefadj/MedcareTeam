@@ -61,6 +61,7 @@ public class DoctorProfile extends AppCompatActivity {
     Button confirmBtn;
     ImageView cancelBtn;
     String hour,minute;
+    ImageButton backImgBtn;
 
     FlexboxLayout flexboxLayout;
 
@@ -176,6 +177,15 @@ public class DoctorProfile extends AppCompatActivity {
             }
         });
 
+        backImgBtn = (ImageButton) findViewById(R.id.profile_doc_back_btn);
+        backImgBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentLoadNewActivity = new Intent(DoctorProfile.this, DoctorDashboard.class);
+                startActivity(intentLoadNewActivity);
+            }
+        });
+
 
 
     }
@@ -287,14 +297,17 @@ public class DoctorProfile extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                DoctorData doctorData = snapshot.getValue(DoctorData.class);
+                if (snapshot.exists()) {
 
-                name.setText(doctorData.getName());
-                fullSpecialty.setText(doctorData.getFullSpecialty());
-                address.setText(doctorData.getAddress());
-                desc.setText(doctorData.getDesc());
-                rate.setText(doctorData.getRate());
-                phone.setText(doctorData.getPhone());
+                    DoctorData doctorData = snapshot.getValue(DoctorData.class);
+
+                    name.setText(doctorData.getName());
+                    fullSpecialty.setText(doctorData.getFullSpecialty());
+                    address.setText(doctorData.getAddress());
+                    desc.setText(doctorData.getDesc());
+                    rate.setText(doctorData.getRate());
+                    phone.setText(doctorData.getPhone());
+                }
             }
 
             @Override

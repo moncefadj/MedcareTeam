@@ -165,7 +165,7 @@ public class LoginActivity extends AppCompatActivity {
                             Boolean isPatient = false;
                             for (DataSnapshot user : snapshot.getChildren()) {
                                 String email = user.child("email").getValue(String.class);
-                                if (email == emailTxt) {  // the user exist in Patient
+                                if (email.equals(emailTxt)) {  // the user exist in Patient
                                     isPatient = true;
                                     Intent intent = new Intent(LoginActivity.this, PatientHome.class);
                                     startActivity(intent);

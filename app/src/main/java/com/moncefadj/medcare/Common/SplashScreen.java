@@ -80,8 +80,8 @@ public class SplashScreen extends AppCompatActivity {
                                 Boolean isPatient = false;
                                 if (snapshot.exists()) {
                                     for (DataSnapshot patient : snapshot.getChildren()) {
-                                        String patientUid = patient.getValue().toString();
-                                        if (patientUid == currentUid) { // current user is a Patient
+                                        String patientUid = patient.child("id").getValue().toString();
+                                        if (patientUid.equals(currentUid)) { // current user is a Patient
                                             isPatient = true;
                                             Intent intent = new Intent(SplashScreen.this, PatientHome.class);
                                             startActivity(intent);

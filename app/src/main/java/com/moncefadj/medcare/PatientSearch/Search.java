@@ -11,6 +11,9 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
+import com.moncefadj.medcare.Medicaments.liste_medicaments;
+import com.moncefadj.medcare.Patient.PatientHome;
+import com.moncefadj.medcare.ProfilePatient.PatientProfile;
 import com.moncefadj.medcare.R;
 
 public class Search extends AppCompatActivity {
@@ -57,20 +60,18 @@ public class Search extends AppCompatActivity {
             public void onShowItem(MeowBottomNavigation.Model item) {
                 Intent intent = null;
                 switch (item.getId()) {
-                    /*case 1:
-                        intent = new Intent(getApplicationContext(),Home.class);
+                    case 1:
+                        intent = new Intent(getApplicationContext(), PatientHome.class);
                         startActivity(intent);
                         break;
-                    case 2: intent = new Intent(getApplicationContext(),Medimaner.class);
+                    case 2: intent = new Intent(getApplicationContext(), liste_medicaments.class);
                         startActivity(intent);
                         break;
-                    case 4: intent = new Intent(getApplicationContext(),Profil.class);
+                    case 4: intent = new Intent(getApplicationContext(), PatientProfile.class);
                         startActivity(intent);
-                        break;*/
+                        break;
 
 
-                    //  case 4: fragment=new ProfilFragment();
-                    //  break;
                 }
 
             }

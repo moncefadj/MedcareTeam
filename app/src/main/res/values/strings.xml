@@ -29,7 +29,6 @@
     <string name="new_user_check">Voulez-Vous Vous Inscrire Comme ?</string>
 
 
-
     <!-- Strings Array -->
     <string-array name="specialities">
         <item>Cardiologie</item>
@@ -75,20 +74,19 @@
     </string-array>
 
     <string-array name="description">
-    <item> doctor description</item>
-    <item> doctor description</item>
-    <item> doctor description</item>
-    <item> doctor description</item>
-    <item> doctor description</item>
-    <item> doctor description</item>
-    <item> doctor description</item>
-    <item> doctor description</item>
-    <item> doctor description</item>
-    <item> doctor description</item>
-    <item> doctor description</item>
-    <item> doctor description</item>
+        <item> doctor description</item>
+        <item> doctor description</item>
+        <item> doctor description</item>
+        <item> doctor description</item>
+        <item> doctor description</item>
+        <item> doctor description</item>
+        <item> doctor description</item>
+        <item> doctor description</item>
+        <item> doctor description</item>
+        <item> doctor description</item>
+        <item> doctor description</item>
+        <item> doctor description</item>
     </string-array>
-
 
 
 </resources>

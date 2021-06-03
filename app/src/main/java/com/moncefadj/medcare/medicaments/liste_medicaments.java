@@ -68,7 +68,7 @@ public class liste_medicaments extends AppCompatActivity {
                 String time2 = data.getStringExtra(TIME2);
                 String time3 = data.getStringExtra(TIME3);
 
-                viewModel.addMed(new medData(name, desc, time, time2, time3, R.drawable.medecine));
+                viewModel.addMed(new medData(name, desc, time, time2, time3));
                 adapter.notifyDataSetChanged();
             }
         }

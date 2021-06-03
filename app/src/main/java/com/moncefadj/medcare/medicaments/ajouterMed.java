@@ -20,6 +20,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
 import com.moncefadj.medcare.R;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
 
@@ -34,6 +36,7 @@ public class ajouterMed extends AppCompatActivity implements TimePickerDialog.On
     private  int index =0;
     private Spinner instructions ;
     DatePickerDialog datePickerDialog;
+    DatabaseReference reff;
 
 
     @Override
@@ -54,6 +57,7 @@ public class ajouterMed extends AppCompatActivity implements TimePickerDialog.On
         instructions.getOnItemSelectedListener();
         datedebut = (EditText) findViewById(R.id.dateDebut);
         datefin = (EditText)  findViewById(R.id.dateFin);
+
         ajouter_med.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -99,6 +103,7 @@ public class ajouterMed extends AppCompatActivity implements TimePickerDialog.On
         intent.putExtra(liste_medicaments.TIME2 , time2);
         intent.putExtra(liste_medicaments.TIME3 , time3);
         setResult(RESULT_OK, intent);
+
         finish();
     }
 

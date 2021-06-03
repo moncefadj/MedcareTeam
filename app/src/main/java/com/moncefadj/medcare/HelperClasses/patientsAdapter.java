@@ -1,4 +1,4 @@
-package com.moncefadj.medcare.docc;
+package com.moncefadj.medcare.HelperClasses;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,17 +11,18 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.moncefadj.medcare.R;
+import com.moncefadj.medcare.DataClasses.PatientData;
 
 import java.util.List;
 
-public class patientsAdapter extends RecyclerView.Adapter<com.moncefadj.medcare.docc.patientsAdapter.patientsViewHolder> {
+public class patientsAdapter extends RecyclerView.Adapter<patientsAdapter.patientsViewHolder> {
 
     Context context;
-    List<patientsData> patientsDataList;
+    List<PatientData> patientDataList;
 
-    public patientsAdapter(Context context, List<patientsData> patientsDataList) {
+    public patientsAdapter(Context context, List<PatientData> patientDataList) {
         this.context = context;
-        this.patientsDataList = patientsDataList;
+        this.patientDataList = patientDataList;
     }
 
     @NonNull
@@ -36,15 +37,15 @@ public class patientsAdapter extends RecyclerView.Adapter<com.moncefadj.medcare.
     @Override
     public void onBindViewHolder(@NonNull patientsViewHolder holder, int position) {
 
-        holder.NomPatient.setText(patientsDataList.get(position).getNomPatient());
-        holder.deb.setText(patientsDataList.get(position).getdeb());
-        holder.fin.setText(patientsDataList.get(position).getfin());
-        holder.imgPatient.setImageResource(patientsDataList.get(position).getimgPatient());
+        holder.NomPatient.setText(patientDataList.get(position).getNomPatient());
+        holder.deb.setText(patientDataList.get(position).getdeb());
+        holder.fin.setText(patientDataList.get(position).getfin());
+        holder.imgPatient.setImageResource(patientDataList.get(position).getimgPatient());
     }
 
     @Override
     public int getItemCount() {
-        return patientsDataList.size();
+        return patientDataList.size();
     }
 
     public static final class patientsViewHolder extends RecyclerView.ViewHolder{

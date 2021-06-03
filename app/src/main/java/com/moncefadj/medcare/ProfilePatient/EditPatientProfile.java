@@ -1,4 +1,4 @@
-package com.moncefadj.medcare.profile_patient;
+package com.moncefadj.medcare.ProfilePatient;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.moncefadj.medcare.R;
 
-public class MainActivity2 extends AppCompatActivity {
+public class EditPatientProfile extends AppCompatActivity {
     public static final String EXTRA_MESSAGE ="com.example.test.MESSAGE";
 
 
@@ -75,7 +75,7 @@ public class MainActivity2 extends AppCompatActivity {
 
     public void envoyer (View view){
 
-        Intent intent=new Intent(this,MainActivity.class);
+        Intent intent=new Intent(this, PatientProfile.class);
         EditText editText=(EditText) findViewById(R.id.inumero);
         String message = editText.getText().toString();
         intent.putExtra(EXTRA_MESSAGE,message);

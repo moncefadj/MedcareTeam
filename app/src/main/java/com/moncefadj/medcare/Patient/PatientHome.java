@@ -1,4 +1,4 @@
-package com.moncefadj.medcare.PatientHome;
+package com.moncefadj.medcare.Patient;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -13,19 +13,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.moncefadj.medcare.PatientHome.SpecialitiesAdapter;
+import com.moncefadj.medcare.DataClasses.SpecialtiesData;
 import com.moncefadj.medcare.R;
 
 import java.util.ArrayList;
 
-public class Home extends AppCompatActivity {
+public class PatientHome extends AppCompatActivity {
     RecyclerView recyclerView;
-    ArrayList<MainModel> mainModels;
-    MainAdapter mainAdapter;
+    ArrayList<SpecialtiesData> specialtiesData;
+    SpecialitiesAdapter specialitiesAdapter;
 
 
 
@@ -42,7 +42,7 @@ public class Home extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_patient_home);
         //vertical view
         Resources res=getResources();
         titles =res.getStringArray(R.array.titles);
@@ -73,24 +73,24 @@ public class Home extends AppCompatActivity {
                 ,"Pneumoligie","Dentiste"};
 
         //initilize arraylist
-        mainModels =new ArrayList<>();
+        specialtiesData =new ArrayList<>();
         for (int i=0;i<categorieLogo.length;i++){
-            MainModel model=new MainModel(categorieLogo[i],categorieName[i]);
-            mainModels.add(model);
+            SpecialtiesData model=new SpecialtiesData(categorieLogo[i],categorieName[i]);
+            specialtiesData.add(model);
 
         }
 
         //Design Horizontal lyout
         LinearLayoutManager layoutManager=new LinearLayoutManager(
-                Home.this,LinearLayoutManager.HORIZONTAL, false
+                PatientHome.this,LinearLayoutManager.HORIZONTAL, false
 
         );
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         //initialize mainAdapter
-        mainAdapter=new MainAdapter(Home.this,mainModels);
+        specialitiesAdapter =new SpecialitiesAdapter(PatientHome.this, specialtiesData);
         //set mainAdapter to recyclerview
-        recyclerView.setAdapter(mainAdapter);
+        recyclerView.setAdapter(specialitiesAdapter);
     }
     class Myadapter extends ArrayAdapter<String> {
         Context context;

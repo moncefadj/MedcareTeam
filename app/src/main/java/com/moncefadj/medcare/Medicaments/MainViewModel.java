@@ -1,8 +1,6 @@
-package com.moncefadj.medcare.medicaments;
+package com.moncefadj.medcare.Medicaments;
 
 import androidx.lifecycle.ViewModel;
-
-import com.moncefadj.medcare.medicaments.medData;
 
 import java.util.ArrayList;
 

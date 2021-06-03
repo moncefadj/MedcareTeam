@@ -1,4 +1,4 @@
-package com.moncefadj.medcare.PatientHome;
+package com.moncefadj.medcare.Patient;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,7 +13,10 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class Ophtalmon extends AppCompatActivity {
+import com.moncefadj.medcare.R;
+
+public class OneSpecialtyDoctors extends AppCompatActivity {
+
     //vertical view
     ListView list;
     String[] titles;
@@ -26,13 +29,13 @@ public class Ophtalmon extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
-        setContentView(R.layout.activity_ophtalmon1);
+        setContentView(R.layout.activity_one_specialty_doctors);
         //vertical view
         Resources res=getResources();
         titles =res.getStringArray(R.array.titles);
         description=res.getStringArray(R.array.description);
         list=(ListView) findViewById(R.id.list1);
-        Ophtalmon1.Myadapter adapter=new Ophtalmon1.Myadapter(this,titles,imgs,description);
+        Myadapter adapter=new Myadapter(this,titles,imgs,description);
         list.setAdapter(adapter);
 
 

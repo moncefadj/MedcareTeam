@@ -1,4 +1,4 @@
-package com.moncefadj.medcare.medicaments;
+package com.moncefadj.medcare.Medicaments;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;

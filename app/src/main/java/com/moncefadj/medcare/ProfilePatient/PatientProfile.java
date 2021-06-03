@@ -1,4 +1,4 @@
-package com.moncefadj.medcare.profile_patient;
+package com.moncefadj.medcare.ProfilePatient;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,7 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.moncefadj.medcare.R;
 
-public class MainActivity extends AppCompatActivity {
+public class PatientProfile extends AppCompatActivity {
+
     private Button play;
 
     ImageView back;
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent otherAct =new Intent(getApplicationContext(),MainActivity2.class);
+                Intent otherAct =new Intent(getApplicationContext(), EditPatientProfile.class);
                 startActivity(otherAct);
 
             }
@@ -43,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         Intent intent= getIntent();
-        String message =intent.getStringExtra(MainActivity2.EXTRA_MESSAGE);
+        String message =intent.getStringExtra(EditPatientProfile.EXTRA_MESSAGE);
         EditText editText=findViewById(R.id.n);
         editText.setText(message);
 

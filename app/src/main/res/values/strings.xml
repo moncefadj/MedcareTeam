@@ -23,8 +23,12 @@
     <string name="creer_compte">Créer un Compte</string>
     <string name="mot_de_pass_oublié">Mot de passe Oublié ?</string>
 
+    <string name="doctor_default_desc">Doctor description</string>
+
     <!-- Dialog Strings -->
     <string name="new_user_check">Voulez-Vous Vous Inscrire Comme ?</string>
+
+
 
     <!-- Strings Array -->
     <string-array name="specialities">
@@ -37,11 +41,54 @@
         <item>ORL</item>
         <item>Gynéco-obstétrique</item>
     </string-array>
+
     <string-array name="instructions">
-        <item>avant le repas</item>
-        <item>au melieu du repas </item>
-        <item>aprés le repas</item>
+        <item>Avant repas</item>
+        <item>Au milieu repas</item>
+        <item>Apres repas</item>
     </string-array>
+
+    <string-array name="days">
+        <item>Samedi</item>
+        <item>Dimanche</item>
+        <item>Lundi</item>
+        <item>Mardi</item>
+        <item>Mercredi</item>
+        <item>Jeudi</item>
+        <item>Vendredi</item>
+    </string-array>
+
+    <string-array name="titles">
+        <item>Mr.doctor</item>
+        <item>Mr.doctor</item>
+        <item>Mr.doctor</item>
+        <item>Mr.doctor</item>
+        <item>Mr.doctor</item>
+        <item>Mr.doctor</item>
+        <item>Mr.doctor</item>
+        <item>Mr.doctor</item>
+        <item>Mr.doctor</item>
+        <item>Mr.doctor</item>
+        <item>Mr.doctor</item>
+        <item>Mr.doctor</item>
+
+    </string-array>
+
+    <string-array name="description">
+    <item> doctor description</item>
+    <item> doctor description</item>
+    <item> doctor description</item>
+    <item> doctor description</item>
+    <item> doctor description</item>
+    <item> doctor description</item>
+    <item> doctor description</item>
+    <item> doctor description</item>
+    <item> doctor description</item>
+    <item> doctor description</item>
+    <item> doctor description</item>
+    <item> doctor description</item>
+    </string-array>
+
 
 
 </resources>

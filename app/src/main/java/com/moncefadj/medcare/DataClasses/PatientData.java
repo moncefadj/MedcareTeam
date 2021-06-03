@@ -1,6 +1,6 @@
-package com.moncefadj.medcare.docc;
+package com.moncefadj.medcare.DataClasses;
 
-public class patientsData {
+public class PatientData {
 
         String NomPatient, deb, fin;
         int imgPatient;
@@ -13,7 +13,7 @@ public class patientsData {
             this.imgPatient = imgPatient;
         }
 
-        public patientsData(String NomPatient, String deb, String fin, int imgPatient) {
+        public PatientData(String NomPatient, String deb, String fin, int imgPatient) {
             this.NomPatient = NomPatient;
             this.deb = deb;
             this.fin = fin;

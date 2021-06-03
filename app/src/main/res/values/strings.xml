@@ -23,6 +23,8 @@
     <string name="creer_compte">Créer un Compte</string>
     <string name="mot_de_pass_oublié">Mot de passe Oublié ?</string>
 
+    <string name="doctor_default_desc">Doctor description</string>
+
     <!-- Dialog Strings -->
     <string name="new_user_check">Voulez-Vous Vous Inscrire Comme ?</string>
 

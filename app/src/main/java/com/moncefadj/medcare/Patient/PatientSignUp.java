@@ -137,6 +137,7 @@ public class PatientSignUp extends AppCompatActivity {
         map.put("name", nameTxt);
         map.put("email", emailTxt);
         map.put("phone", phoneTxt);
+        map.put("password",passTxt);
         map.put("profile", "soon...");
 
         HashMap<String, Object> birthMap = new HashMap<>();

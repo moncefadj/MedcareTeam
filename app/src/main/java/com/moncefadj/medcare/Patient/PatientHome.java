@@ -41,7 +41,6 @@ public class PatientHome extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().hide();
         setContentView(R.layout.activity_patient_home);
         //vertical view
         Resources res=getResources();

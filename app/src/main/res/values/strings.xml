@@ -28,6 +28,8 @@
     <!-- Dialog Strings -->
     <string name="new_user_check">Voulez-Vous Vous Inscrire Comme ?</string>
 
+
+
     <!-- Strings Array -->
     <string-array name="specialities">
         <item>Cardiologie</item>
@@ -55,6 +57,38 @@
         <item>Jeudi</item>
         <item>Vendredi</item>
     </string-array>
+
+    <string-array name="titles">
+        <item>Mr.doctor</item>
+        <item>Mr.doctor</item>
+        <item>Mr.doctor</item>
+        <item>Mr.doctor</item>
+        <item>Mr.doctor</item>
+        <item>Mr.doctor</item>
+        <item>Mr.doctor</item>
+        <item>Mr.doctor</item>
+        <item>Mr.doctor</item>
+        <item>Mr.doctor</item>
+        <item>Mr.doctor</item>
+        <item>Mr.doctor</item>
+
+    </string-array>
+
+    <string-array name="description">
+    <item> doctor description</item>
+    <item> doctor description</item>
+    <item> doctor description</item>
+    <item> doctor description</item>
+    <item> doctor description</item>
+    <item> doctor description</item>
+    <item> doctor description</item>
+    <item> doctor description</item>
+    <item> doctor description</item>
+    <item> doctor description</item>
+    <item> doctor description</item>
+    <item> doctor description</item>
+    </string-array>
+
 
 
 </resources>

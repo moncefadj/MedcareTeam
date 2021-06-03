@@ -10,17 +10,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.moncefadj.medcare.DataClasses.SpecialtiesData;
 import com.moncefadj.medcare.Patient.OneSpecialtyDoctors;
 import com.moncefadj.medcare.R;
 
 import java.util.ArrayList;
 
-public class MainAdapter  extends RecyclerView.Adapter<MainAdapter.viewHolder> {
-    ArrayList<MainModel> mainModels;
+public class SpecialitiesAdapter extends RecyclerView.Adapter<SpecialitiesAdapter.viewHolder> {
+    ArrayList<SpecialtiesData> specialtiesData;
     Context context;
-    public MainAdapter(Context context,ArrayList<MainModel> mainModels){
+    public SpecialitiesAdapter(Context context, ArrayList<SpecialtiesData> specialtiesData){
         this.context=context;
-        this.mainModels=mainModels;
+        this.specialtiesData = specialtiesData;
     }
 
     @NonNull
@@ -35,14 +36,14 @@ public class MainAdapter  extends RecyclerView.Adapter<MainAdapter.viewHolder> {
     @Override
     public void onBindViewHolder(@NonNull viewHolder holder, int position) {
         //set logo to imageView
-        holder.imageView.setImageResource(mainModels.get(position).getCategorieLogo());
+        holder.imageView.setImageResource(specialtiesData.get(position).getCategorieLogo());
         //set name to text view
-        holder.textView.setText(mainModels.get(position).getCategorieName());
+        holder.textView.setText(specialtiesData.get(position).getCategorieName());
     }
 
     @Override
     public int getItemCount() {
-        return mainModels.size();
+        return specialtiesData.size();
     }
 
     public class viewHolder extends RecyclerView.ViewHolder {

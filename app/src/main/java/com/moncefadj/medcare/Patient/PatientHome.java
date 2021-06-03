@@ -16,16 +16,16 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.moncefadj.medcare.PatientHome.MainAdapter;
-import com.moncefadj.medcare.PatientHome.MainModel;
+import com.moncefadj.medcare.PatientHome.SpecialitiesAdapter;
+import com.moncefadj.medcare.DataClasses.SpecialtiesData;
 import com.moncefadj.medcare.R;
 
 import java.util.ArrayList;
 
 public class PatientHome extends AppCompatActivity {
     RecyclerView recyclerView;
-    ArrayList<MainModel> mainModels;
-    MainAdapter mainAdapter;
+    ArrayList<SpecialtiesData> specialtiesData;
+    SpecialitiesAdapter specialitiesAdapter;
 
 
 
@@ -73,10 +73,10 @@ public class PatientHome extends AppCompatActivity {
                 ,"Pneumoligie","Dentiste"};
 
         //initilize arraylist
-        mainModels =new ArrayList<>();
+        specialtiesData =new ArrayList<>();
         for (int i=0;i<categorieLogo.length;i++){
-            MainModel model=new MainModel(categorieLogo[i],categorieName[i]);
-            mainModels.add(model);
+            SpecialtiesData model=new SpecialtiesData(categorieLogo[i],categorieName[i]);
+            specialtiesData.add(model);
 
         }
 
@@ -88,9 +88,9 @@ public class PatientHome extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         //initialize mainAdapter
-        mainAdapter=new MainAdapter(PatientHome.this,mainModels);
+        specialitiesAdapter =new SpecialitiesAdapter(PatientHome.this, specialtiesData);
         //set mainAdapter to recyclerview
-        recyclerView.setAdapter(mainAdapter);
+        recyclerView.setAdapter(specialitiesAdapter);
     }
     class Myadapter extends ArrayAdapter<String> {
         Context context;

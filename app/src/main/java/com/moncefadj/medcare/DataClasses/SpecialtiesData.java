@@ -1,10 +1,10 @@
-package com.moncefadj.medcare.PatientHome;
+package com.moncefadj.medcare.DataClasses;
 
-public class MainModel {
+public class SpecialtiesData {
     Integer categoryLogo;
     String  categoryName;
 
-    public MainModel(Integer categoryLogo,String categoryName) {
+    public SpecialtiesData(Integer categoryLogo, String categoryName) {
         this.categoryLogo = categoryLogo;
         this.categoryName = categoryName;
     }

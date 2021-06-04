@@ -19,6 +19,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.moncefadj.medcare.R;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -36,7 +38,11 @@ public class ajouterMed extends AppCompatActivity implements TimePickerDialog.On
     private  int index =0;
     private Spinner instructions ;
     DatePickerDialog datePickerDialog;
-    DatabaseReference reff;
+    FirebaseDatabase data_base;
+    DatabaseReference medsReference;
+    DatabaseReference medReference;
+    FirebaseUser uPatient;
+    String uidPatient;
 
 
     @Override
@@ -95,7 +101,6 @@ public class ajouterMed extends AppCompatActivity implements TimePickerDialog.On
         String time = heure.getText().toString();
         String time2 = heure2.getText().toString();
         String time3 = heure3.getText().toString();
-
         Intent intent = new Intent();
         intent.putExtra(liste_medicaments.NAME, name);
         intent.putExtra(liste_medicaments.DESCR, descrip);
@@ -103,6 +108,13 @@ public class ajouterMed extends AppCompatActivity implements TimePickerDialog.On
         intent.putExtra(liste_medicaments.TIME2 , time2);
         intent.putExtra(liste_medicaments.TIME3 , time3);
         setResult(RESULT_OK, intent);
+        uPatient = FirebaseAuth.getInstance().getCurrentUser();
+        uidPatient = uPatient.getUid();
+        data_base = FirebaseDatabase.getInstance();
+        medsReference = data_base.getReference().child("Users").child("Patients").child(uidPatient).child("Medicaments");
+        medReference = medsReference.child(name);
+        medReference.setValue( new medData(name,descrip,time,time2,time3));
+
 
         finish();
     }

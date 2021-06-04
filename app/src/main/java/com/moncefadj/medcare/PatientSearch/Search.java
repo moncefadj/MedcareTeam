@@ -4,13 +4,18 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
+import com.moncefadj.medcare.Medicaments.liste_medicaments;
+import com.moncefadj.medcare.Patient.PatientHome;
+import com.moncefadj.medcare.ProfilePatient.PatientProfile;
 import com.moncefadj.medcare.R;
 
 public class Search extends AppCompatActivity {
@@ -35,7 +40,14 @@ public class Search extends AppCompatActivity {
         spinner1.setAdapter(arrayAdapter1);
         spinner2.setAdapter(arrayAdapter2);
         spinner3.setAdapter(arrayAdapter3);
-
+        Button button=findViewById(R.id.jbutton);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getApplicationContext(),liste.class);
+                startActivity(intent);
+            }
+        });
 
         ListView mListeView = findViewById(R.id.Listeview);
         SearchView msearch = findViewById(R.id.searchview);
@@ -57,16 +69,16 @@ public class Search extends AppCompatActivity {
             public void onShowItem(MeowBottomNavigation.Model item) {
                 Intent intent = null;
                 switch (item.getId()) {
-                    /*case 1:
-                        intent = new Intent(getApplicationContext(),Home.class);
+                    case 1:
+                        intent = new Intent(getApplicationContext(), PatientHome.class);
                         startActivity(intent);
                         break;
-                    case 2: intent = new Intent(getApplicationContext(),Medimaner.class);
+                    case 2: intent = new Intent(getApplicationContext(), liste_medicaments.class);
                         startActivity(intent);
                         break;
-                    case 4: intent = new Intent(getApplicationContext(),Profil.class);
+                    case 4: intent = new Intent(getApplicationContext(), PatientProfile.class);
                         startActivity(intent);
-                        break;*/
+                        break;
 
 
                     //  case 4: fragment=new ProfilFragment();

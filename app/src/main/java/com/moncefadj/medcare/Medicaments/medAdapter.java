@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModel;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.moncefadj.medcare.R;
@@ -52,6 +53,6 @@ public class medAdapter extends RecyclerView.Adapter<medAdapter.viewHolder> {
 
     @Override
     public int getItemCount() {
-        return viewModel.getData().size();
+        return viewModel == null ? 0 : viewModel.getData().size();
     }
 }

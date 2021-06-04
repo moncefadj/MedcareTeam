@@ -1,65 +1,55 @@
 package com.moncefadj.medcare.HelperClasses;
 
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.moncefadj.medcare.R;
 import com.moncefadj.medcare.DataClasses.PatientData;
+import com.moncefadj.medcare.R;
 
-import java.util.List;
+import java.util.ArrayList;
 
-public class patientsAdapter extends RecyclerView.Adapter<patientsAdapter.patientsViewHolder> {
+public class patientsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    Context context;
-    List<PatientData> patientDataList;
+    private Context context;
 
-    public patientsAdapter(Context context, List<PatientData> patientDataList) {
+    ArrayList<PatientData> PatientsList = new ArrayList<>();
+
+    public patientsAdapter(Context context) {
         this.context = context;
-        this.patientDataList = patientDataList;
+    }
+
+    public void setItems (ArrayList <PatientData> patients){
+        PatientsList.addAll(patients);
     }
 
     @NonNull
     @Override
-    public patientsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(context).inflate(R.layout.activity_patients_adapter, parent, false);
-
-        return new patientsViewHolder(view);
+        View view = LayoutInflater.from(context).inflate(R.layout.activity_patients_adapter, parent,false);
+        return new com.moncefadj.medcare.HelperClasses.patientsViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull patientsViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
-        holder.NomPatient.setText(patientDataList.get(position).getNomPatient());
-        holder.deb.setText(patientDataList.get(position).getdeb());
-        holder.fin.setText(patientDataList.get(position).getfin());
-        holder.imgPatient.setImageResource(patientDataList.get(position).getimgPatient());
+        com.moncefadj.medcare.HelperClasses.patientsViewHolder viewHolder = (com.moncefadj.medcare.HelperClasses.patientsViewHolder) holder;
+        PatientData patients = PatientsList.get(position);
+        viewHolder.name.setText(patients.getName());
+        viewHolder.email.setText(patients.getEmail());
+
+
     }
 
     @Override
     public int getItemCount() {
-        return patientDataList.size();
+        return PatientsList.size();
     }
 
-    public static final class patientsViewHolder extends RecyclerView.ViewHolder{
-
-        ImageView imgPatient;
-        TextView NomPatient, deb, fin;
-
-        public patientsViewHolder(@NonNull View itemView) {
-            super(itemView);
-
-            imgPatient = itemView.findViewById(R.id.imgPatient);
-            NomPatient = itemView.findViewById(R.id.NomPatient);
-            deb = itemView.findViewById(R.id.deb);
-            fin = itemView.findViewById(R.id.fin);
-        }
-    }
 }

@@ -19,7 +19,7 @@
 
 
         <TextView
-            android:id="@+id/text1"
+            android:id="@+id/AccueilMedecin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="110dp"
@@ -32,7 +32,7 @@
         </TextView>
 
         <TextView
-            android:id="@+id/text2"
+            android:id="@+id/Description1AccueilMedecin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
@@ -40,12 +40,12 @@
             android:text="Patients à recevoir aujourd'hui"
             android:textColor="#ffff"
             android:textSize="18sp"
-            app:layout_constraintTop_toBottomOf="@id/text1"
+            app:layout_constraintTop_toBottomOf="@id/AccueilMedecin"
             app:layout_constraintLeft_toLeftOf="parent">
         </TextView>
 
         <TextView
-            android:id="@+id/text3"
+            android:id="@+id/Description2AccueilMedecin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
@@ -54,13 +54,13 @@
             android:text="Vous trouvez ci-dessous la liste des patients que vous allez recevoir aujourd'hui à l'heure choisie."
             android:textColor="#ffff"
             android:textSize="16sp"
-            app:layout_constraintTop_toBottomOf="@id/text2">
+            app:layout_constraintTop_toBottomOf="@id/Description1AccueilMedecin">
         </TextView>
 
 
 
         <ImageButton
-            android:id="@+id/ib1"
+            android:id="@+id/CompteMedecin"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginTop="24dp"

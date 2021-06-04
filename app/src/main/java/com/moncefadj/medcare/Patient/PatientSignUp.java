@@ -137,6 +137,7 @@ public class PatientSignUp extends AppCompatActivity {
         map.put("name", nameTxt);
         map.put("email", emailTxt);
         map.put("phone", phoneTxt);
+        map.put("password", passTxt);
         map.put("profile", "soon...");
 
         HashMap<String, Object> birthMap = new HashMap<>();
@@ -149,7 +150,7 @@ public class PatientSignUp extends AppCompatActivity {
         patientRef.updateChildren(map).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-                Intent intent = new Intent(PatientSignUp.this, DoctorProfile.class);
+                Intent intent = new Intent(PatientSignUp.this, PatientHome.class);
                 startActivity(intent);
                 finish();
             }

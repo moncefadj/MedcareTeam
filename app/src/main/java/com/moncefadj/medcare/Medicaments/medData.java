@@ -4,15 +4,13 @@ public class medData {
     private String nomMed ;
     private String descriptionMed ;
     private String tempsMed ,tempsMed2 , tempsMed3;
-    private int img;
 
-    public medData(String nomMed,String descriptionMed,String tempsMed,String tempsMed2,String tempsMed3,int img) {
+    public medData(String nomMed,String descriptionMed,String tempsMed,String tempsMed2,String tempsMed3) {
         this.nomMed = nomMed;
         this.descriptionMed = descriptionMed;
         this.tempsMed = tempsMed;
         this.tempsMed2 = tempsMed2;
         this.tempsMed3 = tempsMed3;
-        this.img = img;
 
     }
 
@@ -32,13 +30,6 @@ public class medData {
         this.descriptionMed = descriptionMed;
     }
 
-    public int getImg() {
-        return img;
-    }
-
-    public void setImg(int img) {
-        this.img = img;
-    }
 
     public String getTempsMed() {
         return tempsMed;

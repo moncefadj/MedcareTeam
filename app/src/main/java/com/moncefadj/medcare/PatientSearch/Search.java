@@ -48,7 +48,14 @@ button.setOnClickListener(new View.OnClickListener() {
         spinner1.setAdapter(arrayAdapter1);
         spinner2.setAdapter(arrayAdapter2);
         spinner3.setAdapter(arrayAdapter3);
-
+        Button button=findViewById(R.id.jbutton);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getApplicationContext(),liste.class);
+                startActivity(intent);
+            }
+        });
 
         ListView mListeView = findViewById(R.id.Listeview);
         SearchView msearch = findViewById(R.id.searchview);

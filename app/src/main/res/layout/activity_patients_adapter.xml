@@ -27,13 +27,14 @@
         app:cardElevation="10dp">
 
         <RelativeLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginStart="30dp">
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp">
 
             <ImageView
-                android:id="@+id/imgPatient"
+                android:id="@+id/ImagePatient"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:background="@drawable/img_patient"
@@ -45,8 +46,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="5dp"
-                android:layout_toRightOf="@id/imgPatient"
-                android:text="Patient 1"
+                android:layout_toRightOf="@id/ImagePatient"
+                android:text="Nom du Patient"
                 android:textColor="#1C1C1C"
                 android:textSize="20dp"
                 android:textStyle="bold" />
@@ -56,23 +57,16 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/NomPatient"
                 android:layout_marginLeft="20dp"
-                android:layout_toRightOf="@id/imgPatient"
-                android:text="De 08h00"
+                android:layout_toRightOf="@id/ImagePatient"
+                android:text="Heure de consultation"
                 android:textColor="#707070"
-                android:id="@+id/deb" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/NomPatient"
-                android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@id/deb"
-                android:text="à 08h15"
-                android:textColor="#707070"
-                android:id="@+id/fin" />
-            <ImageButton
+                android:id="@+id/HeureRDV" />
+
+            <ImageView
+                android:id="@+id/deleteImgBtn"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_marginStart="265dp"
+                android:layout_marginStart="285dp"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/close_sign"
                 android:backgroundTint="#000000" />

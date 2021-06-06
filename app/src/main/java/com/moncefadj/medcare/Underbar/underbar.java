@@ -37,18 +37,21 @@ public class underbar extends AppCompatActivity {
                         intent = new Intent(getApplicationContext(), PatientHome.class);
                         startActivity(intent);
                         break;
-                    case 2: intent = new Intent(getApplicationContext(), liste_medicaments.class);
-                        startActivity(intent);
-                        break;
-                    case 3: intent = new Intent(getApplicationContext(), Search.class);
+                   case 2: intent = new Intent(getApplicationContext(), liste_medicaments.class);
+                       startActivity(intent);
+                      break;
+                   case 3: intent = new Intent(getApplicationContext(), Search.class);
                         startActivity(intent);
                         break;
                     case 4: intent = new Intent(getApplicationContext(), PatientProfile.class);
                         startActivity(intent);
                         break;
 
-                }
 
+                    //  case 4: fragment=new ProfilFragment();
+                    //  break;*/
+
+                }
             }
 
         });

@@ -55,8 +55,7 @@ public class PatientProfile extends AppCompatActivity {
         editText.setText(message);
 
 
-        //under bar
-
+        //underbar
         bottomNavigation = (MeowBottomNavigation) findViewById(R.id.bottom_navigation);
         bottomNavigation.add(new MeowBottomNavigation.Model(1, R.drawable.ic_home));
         bottomNavigation.add(new MeowBottomNavigation.Model(2, R.drawable.ic_med));
@@ -80,8 +79,10 @@ public class PatientProfile extends AppCompatActivity {
                         break;
 
 
-                }
+                    //  case 4: fragment=new ProfilFragment();
+                    //  break;*/
 
+                }
             }
 
         });

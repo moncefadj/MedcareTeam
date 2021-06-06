@@ -4,12 +4,14 @@
 
     <application
         android:allowBackup="true"
+        android:hardwareAccelerated="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
         android:theme="@style/Theme.MedCare">
-        <activity android:name=".PatientSearch.Liste"></activity>
+        <activity android:name=".Doctor.EditDoctorProfile"></activity>
+        <activity android:name=".PatientSearch.liste" />
         <activity android:name=".Doctor.DoctorDashboard" />
         <activity android:name=".Patient.PatientHome" />
         <activity android:name=".Patient.OneSpecialtyDoctors" />
@@ -18,6 +20,8 @@
         <activity android:name=".Medicaments.ajouterMed" />
         <activity android:name=".Medicaments.liste_medicaments" />
         <activity android:name=".Doctor.DoctorProfile" />
+        <activity android:name=".ProfilePatient.PatientProfile" />
+        <activity android:name=".ProfilePatient.EditPatientProfile" />
         <activity
             android:name=".Doctor.DoctorSignUp"
             android:windowSoftInputMode="stateVisible|adjustPan" />

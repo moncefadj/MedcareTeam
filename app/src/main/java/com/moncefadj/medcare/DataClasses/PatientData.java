@@ -2,48 +2,34 @@ package com.moncefadj.medcare.DataClasses;
 
 public class PatientData {
 
-        String NomPatient, deb, fin;
-        int imgPatient;
+    private String name, email, id;
 
-        public int getimgPatient() {
-            return imgPatient;
-        }
-
-        public void setimgPatient(Integer imgPatient) {
-            this.imgPatient = imgPatient;
-        }
-
-        public PatientData(String NomPatient, String deb, String fin, int imgPatient) {
-            this.NomPatient = NomPatient;
-            this.deb = deb;
-            this.fin = fin;
-            this.imgPatient = imgPatient;
-        }
-
-        public String geNomPatient() {
-            return NomPatient;
-        }
-
-        public void setNomPatient(String NomPatient) {
-            this.NomPatient = NomPatient;
-        }
-
-        public String getdeb() {
-            return deb;
-        }
-
-        public void setdeb(String deb) {
-            this.deb = deb;
-        }
-
-        public String getfin() {
-            return fin;
-        }
-
-        public void setimgPatient(int imgPatient) {
-            this.imgPatient = imgPatient;
-        }
-
-    public String getNomPatient() { return NomPatient;
+    public PatientData(){
     }
+
+    public PatientData(String vNomPatient, String vHeure) {
+        this.name = vNomPatient;
+        this.email = vHeure;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String vNomPatient) {
+        this.name = vNomPatient;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String vHeure) {
+        this.email = vHeure;
+    }
+
+    public String getId() {return id;}
+
+    public void setId(String id) {this.id = id;}
+
 }

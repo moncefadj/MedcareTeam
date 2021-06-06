@@ -31,14 +31,20 @@ public class liste_medicaments extends AppCompatActivity {
     private FloatingActionButton ajouter_med;
     private TextView nom, description, temps;
     private RecyclerView malist;
-    private MainViewModel viewModel ;
+    MainViewModel viewModel ;
     private medAdapter adapter;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_liste_medicaments);
+
+
+
+
+
+
 
 
 
@@ -112,9 +118,9 @@ public class liste_medicaments extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
         if (requestCode == ADD_MED_ACTIVITY) {
+
+            super.onActivityResult(requestCode, resultCode, data);
             if (resultCode == RESULT_OK) {
                 String name = data.getStringExtra(NAME);
                 String desc = data.getStringExtra(DESCR);
@@ -122,7 +128,7 @@ public class liste_medicaments extends AppCompatActivity {
                 String time2 = data.getStringExtra(TIME2);
                 String time3 = data.getStringExtra(TIME3);
 
-                viewModel.addMed(new medData(name, desc, time, time2, time3, R.drawable.medecine));
+                viewModel.addMed(new medData(name, desc, time, time2, time3));
                 adapter.notifyDataSetChanged();
             }
         }

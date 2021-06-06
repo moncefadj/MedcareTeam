@@ -2,7 +2,7 @@ package com.moncefadj.medcare.DataClasses;
 
 public class PatientData {
 
-    private String name, email;
+    private String name, email, id;
 
     public PatientData(){
     }
@@ -27,5 +27,9 @@ public class PatientData {
     public void setEmail(String vHeure) {
         this.email = vHeure;
     }
+
+    public String getId() {return id;}
+
+    public void setId(String id) {this.id = id;}
 
 }

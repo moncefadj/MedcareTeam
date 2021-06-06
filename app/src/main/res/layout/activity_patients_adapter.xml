@@ -62,7 +62,7 @@
                 android:textColor="#707070"
                 android:id="@+id/HeureRDV" />
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/deleteImgBtn"
                 android:layout_width="30dp"
                 android:layout_height="30dp"

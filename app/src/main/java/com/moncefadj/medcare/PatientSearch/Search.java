@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Spinner;
@@ -19,12 +21,20 @@ import com.moncefadj.medcare.R;
 public class Search extends AppCompatActivity {
     MeowBottomNavigation bottomNavigation;
     Toast toast;
+    Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
-
+button=findViewById(R.id.jbutton);
+button.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+        Intent intent=new Intent(getApplicationContext(),Liste.class);
+        startActivity(intent);
+    }
+});
         Spinner spinner1 = findViewById(R.id.spinner1);
         Spinner spinner2 = findViewById(R.id.spinner2);
         Spinner spinner3 = findViewById(R.id.spinner3);

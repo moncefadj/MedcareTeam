@@ -1,5 +1,6 @@
 package com.moncefadj.medcare.Patient;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,6 +20,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
+import com.moncefadj.medcare.DataClasses.DoctorDataForHomePatient;
+import com.moncefadj.medcare.DataClasses.DoctorsDatabase;
+import com.moncefadj.medcare.Doctor.EditDoctorProfile;
+import com.moncefadj.medcare.HelperClasses.doctorsAdapter;
 import com.moncefadj.medcare.Medicaments.liste_medicaments;
 import com.moncefadj.medcare.PatientHome.SpecialitiesAdapter;
 import com.moncefadj.medcare.DataClasses.SpecialtiesData;
@@ -37,26 +45,28 @@ public class PatientHome extends AppCompatActivity {
 
 
     //vertical view
-    ListView list;
-    String[] titles;
-    String[] description;
-    int[] imgs={R.drawable.doc12,R.drawable.doc12,R.drawable.doc12,R.drawable.doc12
-            ,R.drawable.doc12,R.drawable.doc12,R.drawable.doc12
-            ,R.drawable.doc12,R.drawable.doc12,R.drawable.doc12};
+    RecyclerView doctorsRecycler;
+    doctorsAdapter docAdapter;
+    DoctorsDatabase docdata;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_home);
-        //vertical view
-        Resources res=getResources();
-        titles =res.getStringArray(R.array.titles);
-        description=res.getStringArray(R.array.description);
-        list=(ListView) findViewById(R.id.list1);
-        Myadapter adapter=new Myadapter(this,titles,imgs,description);
-        list.setAdapter(adapter);
 
+
+        //show doctors
+
+        doctorsRecycler = findViewById(R.id.doctors_recycler);
+        doctorsRecycler.setHasFixedSize(true);
+        LinearLayoutManager manager = new LinearLayoutManager(this);
+        doctorsRecycler.setLayoutManager(manager);
+        docAdapter = new doctorsAdapter(this);
+        doctorsRecycler.setAdapter(docAdapter);
+        docdata = new DoctorsDatabase();
+
+        loadDocData();
 
 
 
@@ -72,7 +82,7 @@ public class PatientHome extends AppCompatActivity {
             public void onShowItem(MeowBottomNavigation.Model item) {
                 Intent intent = null;
                 switch (item.getId()) {
-                 case 2: intent = new Intent(getApplicationContext(), liste_medicaments.class);
+                    case 2: intent = new Intent(getApplicationContext(), liste_medicaments.class);
                         startActivity(intent);
                         break;
                     case 3: intent = new Intent(getApplicationContext(), Search.class);
@@ -178,12 +188,35 @@ public class PatientHome extends AppCompatActivity {
             TextView mydescription;
             mydescription=  verow.findViewById(R.id.text2);
             images.setImageResource(imgs[position]);
-            mytitle.setText(titles[position]);
-            mydescription.setText(description[position]);
             return verow;
         }
     }
 
 
+    //showing doctors
 
+    private void loadDocData() {
+        docdata.get().addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                ArrayList<DoctorDataForHomePatient> othDoctors = new ArrayList<>();
+
+                for (DataSnapshot data : snapshot.getChildren()){
+
+                    DoctorDataForHomePatient doctors = data.getValue(DoctorDataForHomePatient.class);
+                    othDoctors.add(doctors);
+
+                }
+
+                docAdapter.setItems(othDoctors);
+                docAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
 }

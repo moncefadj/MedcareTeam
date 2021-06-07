@@ -1,16 +1,18 @@
 package com.moncefadj.medcare.DataClasses;
 
-public class PatientData {
+public class DoctorDataForHomePatient {
 
     private String name, email, id;
 
-    public PatientData(){
+    public DoctorDataForHomePatient(){
     }
 
-    public PatientData(String vNomPatient, String vEmail) {
-        this.name = vNomPatient;
+    public DoctorDataForHomePatient(String vNomMedecin, String vEmail) {
+        this.name = vNomMedecin;
         this.email = vEmail;
     }
+
+
 
     public String getName() {
         return name;

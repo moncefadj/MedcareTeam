@@ -10,7 +10,7 @@
         android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:theme="@style/Theme.MedCare">
-        <activity android:name=".Doctor.EditDoctorProfile"></activity>
+        <activity android:name=".Doctor.EditDoctorProfile" />
         <activity android:name=".PatientSearch.liste" />
         <activity android:name=".Doctor.DoctorDashboard" />
         <activity android:name=".Patient.PatientHome" />

@@ -9,23 +9,37 @@
     android:orientation="vertical"
     android:background="@drawable/background">
 
-<LinearLayout
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="400dp"
     android:id="@+id/linear1">
+
+    <ImageView
+        android:id="@+id/iback"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="10dp"
+        android:src="@drawable/ic_baseline_arrow_back_ios" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profile_doc_image"
         android:layout_width="180dp"
         android:layout_height="180dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
         android:src="@drawable/doctor_vector_profile"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="80dp"
-        android:layout_marginStart="105dp"
+        app:civ_border_color="@color/colorPrimaryDark"
         app:civ_border_width="3dp"
-        app:civ_border_color="@color/colorPrimaryDark"/>
-</LinearLayout>
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+</RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linear1"
+        android:orientation="vertical">
 
     <EditText
         android:id="@+id/edit_name"
@@ -39,38 +53,9 @@
         android:textColor="@color/white"
         app:counterEnabled="true"
         app:counterMaxLength="20"
-        android:layout_below="@+id/linear1"
         app:endIconMode="clear_text"
         app:endIconTint="@color/white" />
 
-    <EditText
-        android:id="@+id/edit_mdp"
-        android:layout_width="300dp"
-        android:layout_height="60dp"
-        android:layout_below="@id/edit_name"
-        android:layout_gravity="center"
-        android:layout_marginTop="5dp"
-        android:drawableLeft="@drawable/ic_baseline_lock_24"
-        android:drawablePadding="10dp"
-        android:hint="Mot de passe"
-        android:inputType="textPassword"
-        android:maxLength="12"
-        app:counterEnabled="true"
-        app:counterMaxLength="12"
-        app:counterTextColor="@color/white"
-        app:endIconMode="password_toggle" />
-
-    <EditText
-        android:id="@+id/edit_adress"
-        android:layout_width="300dp"
-        android:layout_height="60dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="5dp"
-        android:drawableLeft="@drawable/ic_baseline_place_24"
-        android:drawablePadding="10dp"
-        android:hint="Adresse"
-        app:endIconMode="clear_text"
-        app:errorEnabled="true" />
 
     <EditText
         android:id="@+id/edit_email"
@@ -84,8 +69,26 @@
         android:inputType="textEmailAddress"
         app:endIconMode="clear_text" />
 
+     <EditText
+         android:layout_width="300dp"
+         android:layout_height="60dp"
+         android:layout_marginTop="5dp"
+         android:layout_gravity="center"
+         android:paddingHorizontal="10dp"
+         app:counterEnabled="true"
+         app:counterMaxLength="9"
+         app:endIconMode="clear_text"
+         app:prefixText="+213"
+         android:hint="Numéro de téléphone"
+         app:prefixTextColor="@color/purple_700"
+         android:id="@+id/edit_number"
+         android:drawableLeft="@drawable/ic_baseline_phone_24"
+         android:drawablePadding="10dp"
+         android:inputType="number"
+         android:maxLength="9" />
+
     <android.widget.Button
-        android:id="@+id/button_confirm"
+        android:id="@+id/save_button"
         android:layout_width="200dp"
         android:layout_marginTop="30dp"
         android:layout_height="wrap_content"
@@ -95,5 +98,6 @@
         android:text="Modifier"
         android:textColor="@color/rose"
         tools:ignore="OnClick" />
+    </LinearLayout>
 
 </LinearLayout>

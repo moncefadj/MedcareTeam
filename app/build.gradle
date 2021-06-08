@@ -53,7 +53,8 @@ dependencies {
     // Dependency for circular ImageView
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     implementation 'com.etebarian:meow-bottom-navigation-java:1.2.0'
-
+    //new
     implementation 'com.android.support:multidex:1.0.3'
+    implementation 'com.orhanobut:dialogplus:1.11@aar'
 
 }

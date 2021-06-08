@@ -150,7 +150,7 @@ public class PatientSignUp extends AppCompatActivity {
         patientRef.updateChildren(map).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-                Intent intent = new Intent(PatientSignUp.this, PatientHome.class);
+                Intent intent = new Intent(PatientSignUp.this, underbar.class);
                 startActivity(intent);
                 finish();
             }

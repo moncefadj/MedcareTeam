@@ -15,12 +15,11 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.flexbox.FlexboxLayout;
 import com.google.android.material.textfield.TextInputLayout;
@@ -58,11 +57,10 @@ public class DoctorProfile extends AppCompatActivity {
     ImageView profileImg;
 
     Dialog dialog;
-    Switch aSwitch;
-    TextInputLayout hourInput, minuteLayout;
+    EditText hourEditTxt,minuteEditTxt;
     Button confirmBtn;
     ImageView cancelBtn;
-    String hour,minute,available;
+    String hour,minute;
     ImageButton backImgBtn;
 
     FlexboxLayout flexboxLayout;
@@ -99,8 +97,6 @@ public class DoctorProfile extends AppCompatActivity {
             }
         });
 
-        setProfileData();
-
         daysAutoCompleteTxt();
         
         autoCompleteTextView.addTextChangedListener(new TextWatcher() {
@@ -123,6 +119,7 @@ public class DoctorProfile extends AppCompatActivity {
             }
         });
 
+
         ImageButton addBtn = findViewById(R.id.add_rdv_btn);
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,7 +133,7 @@ public class DoctorProfile extends AppCompatActivity {
                     daysInput.setError("Choisissez d'abord le jour");
                 } else {
 
-                    dialog.show();
+                    showTimePicker();
 
                 }
             }
@@ -150,12 +147,11 @@ public class DoctorProfile extends AppCompatActivity {
             dialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.rounded_corner_white));
         }
         dialog.setCancelable(false);
+        // we can make animation for Dialog by mentioned it in Style
+        dialog.getWindow().getAttributes().windowAnimations = R.style.animation;
 
         confirmBtn = dialog.findViewById(R.id.confirm_time_btn);
         cancelBtn = dialog.findViewById(R.id.cancel_dialog);
-        hourInput = dialog.findViewById(R.id.dialog_hour);
-        minuteLayout = dialog.findViewById(R.id.dialog_minute);
-        aSwitch = dialog.findViewById(R.id.available_switch);
 
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -167,18 +163,15 @@ public class DoctorProfile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                hour = hourInput.getEditText().getText().toString();
-                minute = minuteLayout.getEditText().getText().toString();
+                hourEditTxt = dialog.findViewById(R.id.dialog_hour);
+                minuteEditTxt = dialog.findViewById(R.id.dialog_minute);
+                hour = hourEditTxt.getText().toString();
+                minute = minuteEditTxt.getText().toString();
 
-                if (aSwitch.isChecked()) {
-                    available = "yes";
-                } else available = "no";
-
-                if ((!hour.equals("")) && (!minute.equals(""))) {
-
-                    addButtonToDB(selectedDay, hour + ":" + minute, available);
-                    // like that it will appear the buttons without using showAllDayButtons and duplicate circles(buttons)
+                if ((hour != "") && (minute != "")) {
+                    addButtonToDB(selectedDay, hour + ":" + minute);
                     removeFlexBoxViews();
+                    showAllDayButtons(selectedDay);
                     dialog.dismiss();
                 }
             }
@@ -197,6 +190,16 @@ public class DoctorProfile extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        setProfileData();
+
+        currentDay = getCurrentDay();
+        Log.i("Current Day", currentDay);
+
+    }
 
     private void showAllDayButtons(String day) {
 
@@ -220,6 +223,8 @@ public class DoctorProfile extends AppCompatActivity {
         });
 
     }
+
+
 
     private String getCurrentDay() {
         Calendar calendar = Calendar.getInstance();
@@ -252,23 +257,23 @@ public class DoctorProfile extends AppCompatActivity {
         return currentDay;
     }
 
-    private void addButtonToDB(String day, String time, String isAvailable) {
+    private void addButtonToDB(String day, String time) {
         // add time to DB
         doctorTimeRef = doctorRef.child("rdvTimes").child(day).child(time);
         HashMap<String, Object> map = new HashMap<>();
         map.put("time", time);
-        map.put("available", isAvailable);
+        map.put("available", "yes");
 
         doctorTimeRef.updateChildren(map);
     }
 
-    private void showButton(String time, String isAvailable) {
+    private void showButton(String time, String available) {
         Button button = new Button(DoctorProfile.this);
         FlexboxLayout flexboxLayout = findViewById(R.id.flex_box);
 
         button.setText(time);
         button.setTextColor(getResources().getColor(R.color.white));
-        if (isAvailable.equals("yes")) {
+        if (available.equals("yes")) {
             button.setBackground(getResources().getDrawable(R.drawable.circle_button));
         } else button.setBackground(getResources().getDrawable(R.drawable.circle_button_grey));
 
@@ -279,27 +284,6 @@ public class DoctorProfile extends AppCompatActivity {
 
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(widthPixel,heightPixel);
         params.setMargins(15,0,0,15);
-
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.show();
-                // get hour and minute from time
-                int indexOfPoints = time.indexOf(":");
-                String hour = time.substring(0, indexOfPoints);
-                String minute = time.substring(indexOfPoints + 1, time.length());
-
-                hourInput.getEditText().setText(hour);
-                minuteLayout.getEditText().setText(minute);
-                if (isAvailable.equals("yes")) {
-                    aSwitch.setChecked(true);
-                    aSwitch.setTextOn("Oui");
-                } else {
-                    aSwitch.setChecked(false);
-                    aSwitch.setTextOn("Non");
-                }
-            }
-        });
 
         button.setLayoutParams(params);
         flexboxLayout.addView(button);
@@ -345,6 +329,10 @@ public class DoctorProfile extends AppCompatActivity {
         // search index of current day in days(array) cause autoCompleteTextView.setText(take only char or index)
 
 
+    }
+
+    public void showTimePicker() {
+        dialog.show();
     }
 
     public void removeFlexBoxViews() {

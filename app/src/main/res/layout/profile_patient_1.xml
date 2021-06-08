@@ -37,11 +37,11 @@
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/a"
             android:layout_width="104dp"
-            android:layout_height="wrap_content"
+            android:layout_height="104dp"
             android:layout_below="@id/c"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="26dp"
-            android:src="@drawable/ic_baseline_person"
+            android:src="@drawable/ic_baseline_personw"
             app:shapeAppearanceOverlay="@style/cicular" />
 
         <TextView
@@ -52,18 +52,10 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
             android:fontFamily="sans-serif-medium"
-            android:text="chaouch hanane"
             android:textColor="@color/white"
             android:textSize="25dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/b"
-            android:layout_centerHorizontal="true"
-            android:text="algerie sba"
-            android:textColor="@color/white"
-            android:textSize="20dp" />
+
 
     </RelativeLayout>
 
@@ -78,7 +70,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:text="votre date de naissance"
             android:textColor="@color/rose" />
 
@@ -92,28 +84,17 @@
 
             />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="votre addresse"
-            android:textColor="@color/rose" />
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_baseline_person_24"
-            android:drawablePadding="10dp"
-            android:hint="l'adresse" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:text="votre email"
             android:textColor="@color/rose" />
 
         <EditText
+            android:id="@+id/pemail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/ic_baseline_email_24"
@@ -121,9 +102,10 @@
             android:hint="e-mail" />
 
         <TextView
+            android:id="@+id/pnumero"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:text="votre numero"
             android:textColor="@color/rose" />
 
@@ -140,7 +122,7 @@
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="30dp"
             android:background="@drawable/backgraoudbuttob"
             android:text="modifier"
             android:textColor="@color/rose" />

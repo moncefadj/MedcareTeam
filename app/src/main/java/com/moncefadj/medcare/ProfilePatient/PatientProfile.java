@@ -6,11 +6,21 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.moncefadj.medcare.DataClasses.PatientData;
 import com.moncefadj.medcare.Medicaments.liste_medicaments;
 import com.moncefadj.medcare.Patient.PatientHome;
 import com.moncefadj.medcare.PatientSearch.Search;
@@ -20,6 +30,10 @@ public class PatientProfile extends AppCompatActivity {
     MeowBottomNavigation bottomNavigation;
     Toast toast;
     private Button play;
+
+    private FirebaseUser user;
+    private DatabaseReference reference,referencee;
+    private String userID;
 
     ImageView back;
 
@@ -107,5 +121,61 @@ public class PatientProfile extends AppCompatActivity {
             }
         });
 
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        reference = FirebaseDatabase.getInstance().getReference().child("Users").child("Patients");
+        reference = FirebaseDatabase.getInstance().getReference().child("Users").child("Patients");
+        userID =user.getUid();
+        referencee = FirebaseDatabase.getInstance().getReference().child("Users").child("Patients").child(userID).child("BirthDay");
+
+
+
+        final TextView fullnametextview =(TextView) findViewById(R.id.b);
+        final TextView emailtextview =(TextView) findViewById(R.id.pemail);
+        final TextView numerotextview =(TextView) findViewById(R.id.n);
+        final TextView datetextview =(TextView) findViewById(R.id.e);
+
+
+        reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                PatientData userprofile = snapshot.getValue(PatientData.class);
+                if (userprofile !=null) {
+                    String fullname = userprofile.getName();
+                    String email= userprofile.getEmail();
+                    String numero=String.valueOf(userprofile.getNum());
+
+
+                    fullnametextview.setText(fullname);
+                    emailtextview.setText(email);
+                    numerotextview.setText(numero);
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        referencee.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                PatientData userprofile = snapshot.getValue(PatientData.class);
+                if (userprofile !=null) {
+                    String date=userprofile.getDay();
+                    String month=userprofile.getMonth();
+                    String year=userprofile.getYear();
+
+                    datetextview.setText(date+" / "+month+" / "+year);
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }

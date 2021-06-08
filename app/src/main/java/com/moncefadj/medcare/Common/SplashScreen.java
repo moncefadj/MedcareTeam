@@ -78,13 +78,13 @@ public class SplashScreen extends AppCompatActivity {
                         patientsRef.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                Boolean isPatient = false;
+                                boolean isPatient = false;
                                 if (snapshot.exists()) {
                                     for (DataSnapshot patient : snapshot.getChildren()) {
                                         String patientUid = patient.child("id").getValue().toString();
                                         if (patientUid.equals(currentUid)) { // current user is a Patient
                                             isPatient = true;
-                                            Intent intent = new Intent(SplashScreen.this, PatientHome.class);
+                                            Intent intent = new Intent(SplashScreen.this,underbar.class);
                                             startActivity(intent);
                                             finish();
                                         }

@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -19,6 +20,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupMenu;
+import android.widget.PopupMenu.OnMenuItemClickListener;
 import android.widget.TextView;
 
 import com.google.android.flexbox.FlexboxLayout;
@@ -65,7 +68,6 @@ public class DoctorProfile extends AppCompatActivity {
 
     FlexboxLayout flexboxLayout;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,10 +92,28 @@ public class DoctorProfile extends AppCompatActivity {
         settingsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(DoctorProfile.this, LoginActivity.class);
-                startActivity(intent);
-                finish();
+                PopupMenu popupMenu = new PopupMenu(DoctorProfile.this, v);
+                popupMenu.getMenuInflater().inflate(R.menu.doctor_menu, popupMenu.getMenu());
+                popupMenu.setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem) {
+                        switch (menuItem.getItemId()){
+                            case R.id.edit_item:
+                                Intent intentLoadNewActivity = new Intent(DoctorProfile.this, EditDoctorProfile.class);
+                                startActivity(intentLoadNewActivity);
+                                return true;
+                            case R.id.logout_item:
+                                FirebaseAuth.getInstance().signOut();
+                                Intent intent = new Intent(DoctorProfile.this, LoginActivity.class);
+                                startActivity(intent);
+                                finish();
+                                return true;
+                            default:
+                                return false;
+                        }
+                    }
+                });
+                popupMenu.show();
             }
         });
 
@@ -189,6 +209,9 @@ public class DoctorProfile extends AppCompatActivity {
 
 
     }
+
+
+
 
     @Override
     protected void onStart() {

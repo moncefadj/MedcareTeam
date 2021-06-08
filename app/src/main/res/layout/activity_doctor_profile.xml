@@ -149,7 +149,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/profile_doc_desc"
-            app:layout_constraintBottom_toTopOf="@+id/days_input"
+            app:layout_constraintBottom_toTopOf="@+id/autoCompleteTxt_addBtn_layout"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             android:layout_marginLeft="15dp"
@@ -178,42 +178,44 @@
 
         </RelativeLayout>
 
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/days_input"
-            android:layout_width="300dp"
+        <RelativeLayout
+            android:id="@+id/autoCompleteTxt_addBtn_layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Selectionner le jour"
-            app:startIconDrawable="@drawable/ic_calendar"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-            app:startIconTint="@color/colorPrimary"
-            app:boxStrokeWidthFocused="2dp"
-            app:boxStrokeColor="@color/colorPrimary"
-            app:layout_constraintTop_toBottomOf="@id/profile_phone_layout"
-            app:layout_constraintBottom_toTopOf="@+id/flex_box"
-            app:layout_constraintRight_toLeftOf="@id/add_rdv_btn"
-            app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_marginTop="8dp"
-            android:layout_marginLeft="10dp">
-            <AutoCompleteTextView
-                android:id="@+id/autoCompleteText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/allerta"
-                android:inputType="none"/>
-        </com.google.android.material.textfield.TextInputLayout>
+            app:layout_constraintTop_toBottomOf="@+id/profile_phone_layout"
+            app:layout_constraintBottom_toTopOf="@+id/flex_box">
 
-        <ImageButton
-            android:id="@+id/add_rdv_btn"
-            android:layout_width="50dp"
-            android:layout_height="45dp"
-            android:src="@drawable/ic_add"
-            android:background="@drawable/circle_button_grey"
-            app:layout_constraintTop_toTopOf="@id/days_input"
-            app:layout_constraintBottom_toBottomOf="@id/days_input"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toRightOf="@id/days_input"
-            android:layout_marginRight="10dp"/>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/days_input"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:hint="Selectionner le jour"
+                app:startIconDrawable="@drawable/ic_calendar"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                app:startIconTint="@color/colorPrimary"
+                app:boxStrokeWidthFocused="2dp"
+                app:boxStrokeColor="@color/colorPrimary"
+                app:layout_constraintRight_toLeftOf="@id/add_rdv_btn"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_centerVertical="true">
+                <AutoCompleteTextView
+                    android:id="@+id/autoCompleteText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/allerta"
+                    android:inputType="none"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <ImageButton
+                android:id="@+id/add_rdv_btn"
+                android:layout_width="50dp"
+                android:layout_height="45dp"
+                android:src="@drawable/ic_add"
+                android:background="@drawable/circle_button_grey"
+                android:layout_toRightOf="@id/days_input"
+                android:layout_centerVertical="true"/>
+
+        </RelativeLayout>
 
 
         <com.google.android.flexbox.FlexboxLayout
@@ -221,7 +223,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:flexWrap="wrap"
-            app:layout_constraintTop_toBottomOf="@id/days_input"
+            app:layout_constraintTop_toBottomOf="@id/autoCompleteTxt_addBtn_layout"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_marginTop="10dp">

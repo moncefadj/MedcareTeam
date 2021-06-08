@@ -2,6 +2,9 @@ package com.moncefadj.medcare.Medicaments;
 
 public class medDataDb extends medData{
     String datedebut , datefin, instruction ;
+    public medDataDb(){
+
+    }
     public medDataDb(String nomMed, String descriptionMed, String tempsMed, String tempsMed2, String tempsMed3, String datedebut , String datefin , String instruction) {
         super(nomMed, descriptionMed, tempsMed, tempsMed2, tempsMed3);
         this.datedebut = datedebut ;

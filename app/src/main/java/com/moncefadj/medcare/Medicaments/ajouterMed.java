@@ -107,13 +107,16 @@ public class ajouterMed extends AppCompatActivity implements TimePickerDialog.On
         String datefin = dateFin.getText().toString();
 
 
-        Intent intent = new Intent(this,liste_medicaments.class);
+        Intent intent = new Intent(this , liste_medicaments.class);
         intent.putExtra(liste_medicaments.NAME, name);
         intent.putExtra(liste_medicaments.DESCR, descrip);
         intent.putExtra(liste_medicaments.TIME, time);
         intent.putExtra(liste_medicaments.TIME2 , time2);
         intent.putExtra(liste_medicaments.TIME3 , time3);
         setResult(RESULT_OK, intent);
+
+        Toast.makeText(this,"data passes in the second activity ",Toast.LENGTH_LONG).show();
+
         uPatient = FirebaseAuth.getInstance().getCurrentUser();
         uidPatient = uPatient.getUid();
         data_base = FirebaseDatabase.getInstance();

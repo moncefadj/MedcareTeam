@@ -1,72 +1,95 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/entreNom"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
-    android:background="@drawable/list_item_back"
-    android:orientation="horizontal">
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="83dp"
-        android:layout_height="81dp"
-        android:layout_margin="10dp"
-        app:srcCompat="@drawable/medecine" />
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="8dp">
 
     <LinearLayout
+        android:id="@+id/entreNom"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="100dp"
+        android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/nameitem"
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:layout_weight="1"
-            android:text="nom de medicament"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/descriptionitem"
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:layout_weight="1"
-            android:text="description" />
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="76dp"
+            android:layout_height="87dp"
+            android:layout_margin="10dp"
+            app:srcCompat="@drawable/medecine" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="23dp"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/nameitem"
+                    android:layout_width="270dp"
+                    android:layout_height="match_parent"
+                    android:text="nom de medicament"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/deleteImgBtn"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/close_sign"
+                    android:backgroundTint="#000000" />
+
+
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/timeitem"
-                android:layout_width="50dp"
-                android:layout_height="match_parent"
+                android:id="@+id/descriptionitem"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
                 android:layout_weight="1"
-                android:text="temps" />
+                android:text="description" />
 
-            <TextView
-                android:id="@+id/timeitem2"
-                android:layout_width="50dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="temps2" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="23dp"
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/timeitm3"
-                android:layout_width="50dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="temps3" />
+                <TextView
+                    android:id="@+id/timeitem"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="temps" />
+
+                <TextView
+                    android:id="@+id/timeitem2"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="temps2" />
+
+                <TextView
+                    android:id="@+id/timeitm3"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="temps3" />
+
+
+            </LinearLayout>
 
 
         </LinearLayout>
 
 
-
     </LinearLayout>
-
-
-</LinearLayout>
+</androidx.cardview.widget.CardView>

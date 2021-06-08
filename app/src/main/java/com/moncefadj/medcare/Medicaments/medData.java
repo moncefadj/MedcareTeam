@@ -5,6 +5,10 @@ public class medData {
     private String descriptionMed ;
     private String tempsMed ,tempsMed2 , tempsMed3;
 
+    public medData(){
+
+    }
+
     public medData(String nomMed,String descriptionMed,String tempsMed,String tempsMed2,String tempsMed3) {
         this.nomMed = nomMed;
         this.descriptionMed = descriptionMed;
@@ -54,4 +58,5 @@ public class medData {
     public String getTempsMed3() {
         return tempsMed3;
     }
+
 }

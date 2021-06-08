@@ -13,8 +13,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,8 +38,10 @@ import com.moncefadj.medcare.ProfilePatient.PatientProfile;
 import com.moncefadj.medcare.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PatientHome extends AppCompatActivity {
+
     RecyclerView recyclerView;
     ArrayList<SpecialtiesData> specialtiesData;
     SpecialitiesAdapter specialitiesAdapter;
@@ -48,6 +53,7 @@ public class PatientHome extends AppCompatActivity {
     RecyclerView doctorsRecycler;
     doctorsAdapter docAdapter;
     DoctorsDatabase docdata;
+    LinearLayout linearDoctor;
 
 
     @Override
@@ -57,7 +63,6 @@ public class PatientHome extends AppCompatActivity {
 
 
         //show doctors
-
         doctorsRecycler = findViewById(R.id.doctors_recycler);
         doctorsRecycler.setHasFixedSize(true);
         LinearLayoutManager manager = new LinearLayoutManager(this);
@@ -65,6 +70,8 @@ public class PatientHome extends AppCompatActivity {
         docAdapter = new doctorsAdapter(this);
         doctorsRecycler.setAdapter(docAdapter);
         docdata = new DoctorsDatabase();
+
+        linearDoctor = findViewById(R.id.linear_doctors);
 
         loadDocData();
 
@@ -210,6 +217,7 @@ public class PatientHome extends AppCompatActivity {
                 }
 
                 docAdapter.setItems(othDoctors);
+                doctorsRecycler.removeAllViews();
                 docAdapter.notifyDataSetChanged();
             }
 
@@ -219,4 +227,5 @@ public class PatientHome extends AppCompatActivity {
             }
         });
     }
+
 }

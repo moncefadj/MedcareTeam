@@ -59,11 +59,30 @@ public class SpecialitiesAdapter extends RecyclerView.Adapter<SpecialitiesAdapte
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    int pos=getAdapterPosition();
+                    if (pos==0) {
                         Intent intent = new Intent(context, OneSpecialtyDoctors.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         context.startActivity(intent);
+                    }
 
+                    if (pos==1) {
+                        Intent intent = new Intent(context, OneSpecialtyDoctors.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        context.startActivity(intent);
+                    }
+
+                   if (pos==2) {
+                        Intent intent = new Intent(context, OneSpecialtyDoctors.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        context.startActivity(intent);
+                    }
+
+                    if (pos==3) {
+                        Intent intent = new Intent(context, OneSpecialtyDoctors.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        context.startActivity(intent);
+                    }
                 }
             });
         }

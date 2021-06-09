@@ -168,7 +168,7 @@ public class LoginActivity extends AppCompatActivity {
                                 String email = user.child("email").getValue(String.class);
                                 if (email.equals(emailTxt)) {  // the user exist in Patient
                                     isPatient = true;
-                                    Intent intent = new Intent(LoginActivity.this, PatientHome.class);
+                                    Intent intent = new Intent(LoginActivity.this,PatientHome.class);
                                     startActivity(intent);
                                     finish();
                                 }

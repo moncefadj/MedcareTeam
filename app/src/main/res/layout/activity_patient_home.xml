@@ -83,26 +83,31 @@
     </androidx.cardview.widget.CardView>
 
 
-    <TextView
-        android:layout_width="334dp"
-        android:layout_height="28dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
-        android:text="Généralistes"
-        android:textColor="#F50C83E3"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-
     <LinearLayout
-
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <ListView
-            android:id="@+id/list1"
+        <TextView
+            android:layout_width="334dp"
+            android:layout_height="28dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:text="Généralistes"
+            android:textColor="#F50C83E3"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:id="@+id/generaliste_title"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/doctors_recycler"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:layout_marginTop="5dp" />
+            android:layout_marginTop="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/generaliste_title" />
 
     </LinearLayout>
 

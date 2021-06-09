@@ -42,7 +42,7 @@ public class ajouterMed extends AppCompatActivity implements TimePickerDialog.On
     DatabaseReference medsReference;
     DatabaseReference medReference;
     FirebaseUser uPatient;
-    String uidPatient;
+    String uidPatient ;
 
 
     @Override
@@ -95,7 +95,6 @@ public class ajouterMed extends AppCompatActivity implements TimePickerDialog.On
 
     }
 
-
     private void sendData() {
         String name = EnomMed.getText().toString();
         String descrip = Description.getText().toString();
@@ -105,6 +104,32 @@ public class ajouterMed extends AppCompatActivity implements TimePickerDialog.On
         String instruction = instructions.getSelectedItem().toString();
         String datedebut = dateDebut.getText().toString();
         String datefin = dateFin.getText().toString();
+        if (name.isEmpty()){
+            EnomMed.setError("le nom de medicament est obligatoire !");
+
+        }
+        if (descrip.isEmpty()){
+            Description.setError("veuillez donner une petit description ! ");
+
+        }
+        if (datedebut.isEmpty()){
+            dateDebut.setError("la date de debut de prise est obligatoire  !");
+
+        }
+        if (datefin.isEmpty()){
+            dateFin.setError("la fin de prise est obligatoire ! ");
+
+        }
+        if (time.isEmpty()){
+            heure.setError("veuillez donner au moins une heure  !");
+            return;
+        }
+
+
+
+
+
+
 
 
         Intent intent = new Intent(this , liste_medicaments.class);
@@ -127,6 +152,8 @@ public class ajouterMed extends AppCompatActivity implements TimePickerDialog.On
 
         finish();
     }
+
+
 
     private void opentimepicker() {
         DialogFragment timePickerDialog = new TimePickerFragment();

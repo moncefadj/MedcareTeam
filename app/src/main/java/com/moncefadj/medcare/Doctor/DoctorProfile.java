@@ -167,7 +167,7 @@ public class DoctorProfile extends AppCompatActivity {
             dialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.rounded_corner_white));
         }
         dialog.setCancelable(false);
-        // we can make animation for Dialog by mentioned it in Style
+        // we can mnake animation for Dialog by mentioned it in Style
         dialog.getWindow().getAttributes().windowAnimations = R.style.animation;
 
         confirmBtn = dialog.findViewById(R.id.confirm_time_btn);

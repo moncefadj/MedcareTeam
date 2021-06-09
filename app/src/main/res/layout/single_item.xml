@@ -36,7 +36,7 @@
 
                 <TextView
                     android:id="@+id/nameitem"
-                    android:layout_width="241dp"
+                    android:layout_width="222dp"
                     android:layout_height="match_parent"
                     android:text="nom de medicament
 "
@@ -44,14 +44,13 @@
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
-                <ImageView
-                    android:id="@+id/meddelete"
-                    android:layout_width="47dp"
+                <ImageButton
+                    android:id="@+id/imageButton"
+                    android:layout_width="60dp"
                     android:layout_height="match_parent"
-                    android:backgroundTint="@color/black"
-                    android:src="@drawable/close_sign" />
-
-
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/close_sign"
+                    tools:ignore="VectorDrawableCompat" />
 
 
             </LinearLayout>

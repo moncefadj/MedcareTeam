@@ -42,33 +42,17 @@ public class PatientHome extends AppCompatActivity {
     SpecialitiesAdapter specialitiesAdapter;
     MeowBottomNavigation bottomNavigation;
     Toast toast;
-
-
     //vertical view
     RecyclerView doctorsRecycler;
     doctorsAdapter docAdapter;
     DoctorsDatabase docdata;
+    boolean enableaniimation;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_home);
-
-
-        //show doctors
-
-        doctorsRecycler = findViewById(R.id.doctors_recycler);
-        doctorsRecycler.setHasFixedSize(true);
-        LinearLayoutManager manager = new LinearLayoutManager(this);
-        doctorsRecycler.setLayoutManager(manager);
-        docAdapter = new doctorsAdapter(this);
-        doctorsRecycler.setAdapter(docAdapter);
-        docdata = new DoctorsDatabase();
-
-        loadDocData();
-
-
 
 //underbar
         bottomNavigation = (MeowBottomNavigation) findViewById(R.id.bottom_navigation);
@@ -88,16 +72,12 @@ public class PatientHome extends AppCompatActivity {
                     case 3: intent = new Intent(getApplicationContext(), Search.class);
                         startActivity(intent);
                         break;
-
                     case 4: intent = new Intent(getApplicationContext(), PatientProfile.class);
                         startActivity(intent);
                         break;
 
-
-                    //  case 4: fragment=new ProfilFragment();
-                    //  break;*/
-
                 }
+
             }
 
         });
@@ -122,8 +102,17 @@ public class PatientHome extends AppCompatActivity {
             }
         });
 
+        //show doctors
 
+        doctorsRecycler = findViewById(R.id.doctors_recycler);
+        doctorsRecycler.setHasFixedSize(true);
+        LinearLayoutManager manager = new LinearLayoutManager(this);
+        doctorsRecycler.setLayoutManager(manager);
+        docAdapter = new doctorsAdapter(this);
+        doctorsRecycler.setAdapter(docAdapter);
+        docdata = new DoctorsDatabase();
 
+        loadDocData();
 
 
 

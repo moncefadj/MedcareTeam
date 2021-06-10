@@ -7,13 +7,17 @@ import java.util.ArrayList;
 // save data in viewModel instead of Activity
 public class MainViewModel extends ViewModel {
 
-    final ArrayList<medData> data = new ArrayList<medData>();
+    final ArrayList<medDataDb> data ;
 
-    void addMed(medData med){
+    public MainViewModel() {
+        data = new ArrayList<medDataDb>();
+    }
+
+    void addMed(medDataDb med){
         data.add(med);
     }
 
-    public ArrayList<medData> getData() {
+    public ArrayList<medDataDb> getData() {
         return data;
     }
 }

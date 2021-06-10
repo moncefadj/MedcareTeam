@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.moncefadj.medcare.R;
 
+import java.util.ArrayList;
+
 public class medAdapter extends RecyclerView.Adapter<medAdapter.viewHolder> {
     public static class viewHolder extends RecyclerView.ViewHolder {
         TextView nameitm,descriptionitm, timeitm , timeitm2, timeitm3;
@@ -26,10 +28,10 @@ public class medAdapter extends RecyclerView.Adapter<medAdapter.viewHolder> {
     }
 
     private final Context context;
-    private final MainViewModel viewModel;
-    public medAdapter(Context c, MainViewModel viewModel) {
+    private final ArrayList<medDataDb> list ;
+    public medAdapter(Context c, ArrayList<medDataDb> list) {
         this.context = c;
-        this.viewModel = viewModel ;
+        this.list = list ;
     }
 
     @NonNull
@@ -42,7 +44,7 @@ public class medAdapter extends RecyclerView.Adapter<medAdapter.viewHolder> {
 
     @Override
     public void onBindViewHolder(medAdapter.viewHolder holder, int position) {
-        medData medicament = viewModel.getData().get(position);
+        medData medicament = list.get(position);
         holder.nameitm.setText(medicament.getNomMed());
         holder.descriptionitm.setText(medicament.getDescriptionMed());
         holder.timeitm.setText(medicament.getTempsMed());
@@ -53,6 +55,6 @@ public class medAdapter extends RecyclerView.Adapter<medAdapter.viewHolder> {
 
     @Override
     public int getItemCount() {
-        return viewModel == null ? 0 : viewModel.getData().size();
+        return list.size();
     }
 }

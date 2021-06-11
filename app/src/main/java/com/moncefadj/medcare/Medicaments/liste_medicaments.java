@@ -93,15 +93,31 @@ public class liste_medicaments extends AppCompatActivity {
     }
 
     // get data from database ------------------------------------------
-    private void retreiveData() {
+    public boolean medexist(medDataDb medicament){
+        boolean exist = false;
+        int i = 0;
+        while ( ( i< list.size() )&& (!exist)){
+            if(list.get(i).getNomMed() == medicament.getNomMed()){
+                exist = true;
+            }
+            else {
+                i++;
+            }
+        }
+       return exist;
+
+    }
+    public void retreiveData() {
         dbreference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
                     for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                         medDataDb med = dataSnapshot.getValue(medDataDb.class);
-                        list.add(med);
-                        Log.i("test ",med.getNomMed());
+                        if (!medexist(med)) {
+                            list.add(med);
+                            Log.i("test ", med.getNomMed());
+                        }
 
                     }
 

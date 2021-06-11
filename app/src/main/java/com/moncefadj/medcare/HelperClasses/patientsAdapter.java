@@ -20,17 +20,17 @@ import java.util.ArrayList;
 
 public class patientsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private Context context;
+    private  final  Context context;
+    private ArrayList<PatientData> PatientsList ;
 
-    ArrayList<PatientData> PatientsList = new ArrayList<>();
 
-    public patientsAdapter(Context context) {
+
+    public patientsAdapter(Context context , ArrayList<PatientData> PatientsList) {
         this.context = context;
+        this.PatientsList = PatientsList;
     }
 
-    public void setItems (ArrayList <PatientData> patients){
-        PatientsList.addAll(patients);
-    }
+
 
     @NonNull
     @Override

@@ -2,13 +2,13 @@ package com.moncefadj.medcare.DataClasses;
 
 public class PatientData {
 
-    private String name, email,phone,day,month,year;
+    private String name, email,phone,day,month,year,password;
     private String id;
 
     public PatientData(){
     }
 
-    public PatientData(String vNomPatient, String vHeure,String phone,String id,String day,String month,String year) {
+    public PatientData(String vNomPatient, String vHeure,String phone,String id,String day,String month,String year,String password) {
         this.name = vNomPatient;
         this.email = vHeure;
         this.phone=phone;
@@ -16,6 +16,7 @@ public class PatientData {
         this.day=day;
         this.month=month;
         this.year=year;
+        this.password=password;
     }
 
     public String getId() {
@@ -61,6 +62,11 @@ public class PatientData {
 
     public void setYear(String year) { this.year =year; }
 
+    public String getPassword() {
+        return password;
+    }
 
-
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }

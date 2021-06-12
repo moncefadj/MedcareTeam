@@ -20,7 +20,7 @@ public class liste extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       // setContentView(R.layout.activity_liste);
+        setContentView(R.layout.activity_liste);
 
         Resources res=getResources();
         titles =res.getStringArray(R.array.titles);

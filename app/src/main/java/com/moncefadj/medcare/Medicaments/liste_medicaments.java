@@ -49,7 +49,7 @@ public class liste_medicaments extends AppCompatActivity {
 
 
 
-        adapter = new medAdapter(this, viewModel);
+      //  adapter = new medAdapter(this, viewModel);
         malist = (RecyclerView) findViewById(R.id.malist);
         malist.setLayoutManager(new LinearLayoutManager(this));
         malist.setAdapter(adapter);
@@ -128,7 +128,7 @@ public class liste_medicaments extends AppCompatActivity {
                 String time2 = data.getStringExtra(TIME2);
                 String time3 = data.getStringExtra(TIME3);
 
-                viewModel.addMed(new medData(name, desc, time, time2, time3));
+              //  viewModel.addMed(new medData(name, desc, time, time2, time3));
                 adapter.notifyDataSetChanged();
             }
         }

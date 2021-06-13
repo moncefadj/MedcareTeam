@@ -11,25 +11,20 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
-import com.moncefadj.medcare.Common.LoginActivity;
 import com.moncefadj.medcare.DataClasses.DoctorDataForHomePatient;
 import com.moncefadj.medcare.DataClasses.DoctorsDatabase;
-import com.moncefadj.medcare.Doctor.DoctorProfile;
 import com.moncefadj.medcare.Doctor.EditDoctorProfile;
 import com.moncefadj.medcare.HelperClasses.doctorsAdapter;
 import com.moncefadj.medcare.Medicaments.liste_medicaments;
@@ -58,20 +53,6 @@ public class PatientHome extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_home);
-
-
-        ImageView settingsBtn = findViewById(R.id.deconnexion); // just for testing signOut
-        settingsBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(PatientHome.this, LoginActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
-
 
 //underbar
         bottomNavigation = (MeowBottomNavigation) findViewById(R.id.bottom_navigation);
@@ -212,8 +193,7 @@ public class PatientHome extends AppCompatActivity {
 
                 for (DataSnapshot data : snapshot.getChildren()){
 
-                    DoctorDataForHomePatient doctors;
-                    doctors = data.getValue(DoctorDataForHomePatient.class);
+                    DoctorDataForHomePatient doctors = data.getValue(DoctorDataForHomePatient.class);
                     othDoctors.add(doctors);
 
                 }

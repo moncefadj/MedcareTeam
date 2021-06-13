@@ -36,7 +36,7 @@ public class Search extends AppCompatActivity {
     DoctorsDatabase docdata;
 RecyclerView recyclerView;
     doctorsAdapter docAdapter;
-    ArrayList<DoctorDataForHomePatient> list;
+    ArrayList<DoctorDataForHomePatient> list ,doclist ;
     ArrayList<SpecialtiesData> specialtiesData;
     SpecialitiesAdapter specialitiesAdapter;
     @Override
@@ -46,10 +46,11 @@ RecyclerView recyclerView;
         recyclerView = (RecyclerView) findViewById(R.id.doctors_recycler);
 
         //show doctors
-        docAdapter = new doctorsAdapter(this);
+        docAdapter = new doctorsAdapter(this , list);
         recyclerView.setAdapter(docAdapter);
         docdata = new DoctorsDatabase();
-list=new ArrayList<>();
+        list=new ArrayList<>();
+        doclist = new ArrayList<DoctorDataForHomePatient>();
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -150,22 +151,36 @@ filter(editable.toString());
             }
         });
     }
+    public boolean doctorexist(DoctorDataForHomePatient doctor ){
+        boolean exist = false;
+        int i = 0;
+        while ( ( i< doclist.size() )&& (!exist)){
+            if(list.get(i).getId() == doctor.getId()){
+                exist = true;
+            }
+            else {
+                i++;
+            }
+        }
+        return exist;
+
+    }
+
 
     private void loadDocData() {
         docdata.get().addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                ArrayList<DoctorDataForHomePatient> othDoctors = new ArrayList<>();
-
                 for (DataSnapshot data : snapshot.getChildren()){
 
                     DoctorDataForHomePatient doctors = data.getValue(DoctorDataForHomePatient.class);
-                    othDoctors.add(doctors);
+                    if (!doctorexist(doctors)) {
+                        doclist.add(doctors);
+                    }
 
                 }
 
-                docAdapter.setItems(othDoctors);
                 docAdapter.notifyDataSetChanged();
             }
 

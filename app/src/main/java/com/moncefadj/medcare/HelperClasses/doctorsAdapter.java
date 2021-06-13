@@ -21,15 +21,13 @@ public class doctorsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     private Context context;
 
-    ArrayList<DoctorDataForHomePatient> DoctorsList = new ArrayList<>();
+    ArrayList<DoctorDataForHomePatient> DoctorsList ;
 
-    public doctorsAdapter(Context context) {
+    public doctorsAdapter(Context context , ArrayList<DoctorDataForHomePatient> DoctorsList) {
         this.context = context;
+        this.DoctorsList = DoctorsList;
     }
 
-    public void setItems (ArrayList <DoctorDataForHomePatient> doctors){
-        DoctorsList.addAll(doctors);
-    }
 
     @NonNull
     @Override

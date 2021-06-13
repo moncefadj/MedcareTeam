@@ -118,7 +118,7 @@ public class DoctorProfile extends AppCompatActivity {
         });
 
         daysAutoCompleteTxt();
-
+        
         autoCompleteTextView.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -167,7 +167,7 @@ public class DoctorProfile extends AppCompatActivity {
             dialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.rounded_corner_white));
         }
         dialog.setCancelable(false);
-        // we can mnake animation for Dialog by mentioned it in Style
+        // we can make animation for Dialog by mentioned it in Style
         dialog.getWindow().getAttributes().windowAnimations = R.style.animation;
 
         confirmBtn = dialog.findViewById(R.id.confirm_time_btn);
@@ -257,25 +257,25 @@ public class DoctorProfile extends AppCompatActivity {
         switch (day) {
             case Calendar.SATURDAY:
                 currentDay = "Samedi";
-                break;
+            break;
             case Calendar.SUNDAY:
                 currentDay = "Dimanche";
                 break;
             case Calendar.MONDAY:
                 currentDay = "Lundi";
-                break;
+            break;
             case Calendar.TUESDAY:
                 currentDay = "Mardi";
                 break;
             case Calendar.WEDNESDAY:
                 currentDay = "Mercredie";
-                break;
+            break;
             case Calendar.THURSDAY:
                 currentDay = "Jeudi";
-                break;
+            break;
             case Calendar.FRIDAY:
                 currentDay = "Vendredi";
-                break;
+            break;
         }
         return currentDay;
     }

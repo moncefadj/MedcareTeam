@@ -19,6 +19,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.moncefadj.medcare.DataClasses.PatientData;
 import com.moncefadj.medcare.DataClasses.PatientsDatabase;
 import com.moncefadj.medcare.HelperClasses.patientsAdapter;
+import com.moncefadj.medcare.Medicaments.medDataDb;
 import com.moncefadj.medcare.R;
 
 import java.util.ArrayList;
@@ -31,6 +32,7 @@ public class DoctorDashboard extends AppCompatActivity {
     patientsAdapter adapter;
     String uidDoctor;
     PatientsDatabase pdata;
+    ArrayList<PatientData> patientslist ;
 
     DatabaseReference databaseReference;
 
@@ -46,12 +48,13 @@ public class DoctorDashboard extends AppCompatActivity {
             Intent intentLoadNewActivity = new Intent(DoctorDashboard.this, DoctorProfile.class);
             startActivity(intentLoadNewActivity);
         });
+        patientslist = new ArrayList<PatientData>();
 
         patientsRecycler = findViewById(R.id.patients_recycler);
         patientsRecycler.setHasFixedSize(true);
         LinearLayoutManager manager = new LinearLayoutManager(this);
         patientsRecycler.setLayoutManager(manager);
-        adapter = new patientsAdapter(this);
+        adapter = new patientsAdapter(this, patientslist);
         patientsRecycler.setAdapter(adapter);
 
         uidDoctor = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -61,22 +64,34 @@ public class DoctorDashboard extends AppCompatActivity {
         loadData();
 
     }
+    public boolean patientexist(PatientData patient ){
+        boolean exist = false;
+        int i = 0;
+        while ( ( i< patientslist.size() )&& (!exist)){
+            if(patientslist.get(i).getName() == patient.getName()){
+                exist = true;
+            }
+            else {
+                i++;
+            }
+        }
+        return exist;
+
+    }
 
     private void loadData() {
         pdata.get().addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                ArrayList<PatientData> othPtients = new ArrayList<>();
 
                 for (DataSnapshot data : snapshot.getChildren()){
 
                     PatientData patients = data.getValue(PatientData.class);
-                    othPtients.add(patients);
-
+                    if (!patientexist(patients )) {
+                        patientslist.add(patients);
+                    }
                 }
-
-                adapter.setItems(othPtients);
                 adapter.notifyDataSetChanged();
             }
 

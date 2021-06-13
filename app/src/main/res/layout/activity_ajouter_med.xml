@@ -8,7 +8,8 @@
     android:padding="10dp"
     android:paddingLeft="80dp"
     android:paddingTop="80dp"
-    android:theme="@style/AppCompatDialogStyle">
+    android:theme="@style/AppCompatDialogStyle"
+    tools:context=".Medicaments.ajouterMed">
 
 
     <TextView

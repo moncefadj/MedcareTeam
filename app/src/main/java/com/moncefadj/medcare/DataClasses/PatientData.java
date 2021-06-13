@@ -1,15 +1,16 @@
+
 package com.moncefadj.medcare.DataClasses;
 
 public class PatientData {
 
-    private String name, email, id;
+    private String name, heure, id;
 
     public PatientData(){
     }
 
-    public PatientData(String vNomPatient, String vEmail) {
+    public PatientData(String vNomPatient, String vHeure) {
         this.name = vNomPatient;
-        this.email = vEmail;
+        this.heure = vHeure;
     }
 
     public String getName() {
@@ -20,12 +21,12 @@ public class PatientData {
         this.name = vNomPatient;
     }
 
-    public String getEmail() {
-        return email;
+    public String getHeure() {
+        return heure;
     }
 
-    public void setEmail(String vEmail) {
-        this.email = vEmail;
+    public void setHeure(String heure) {
+        this.heure = heure;
     }
 
     public String getId() {return id;}

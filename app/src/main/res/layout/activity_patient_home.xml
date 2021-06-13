@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity=""
+    android:id="@+id/wrapper"
     android:paddingRight="0dp"
     android:paddingLeft="0dp"
     android:background="@color/white"
@@ -17,6 +18,17 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/deconnexion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/ic_baseline_settings"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/black" />
 
         <TextView
             android:layout_width="384dp"

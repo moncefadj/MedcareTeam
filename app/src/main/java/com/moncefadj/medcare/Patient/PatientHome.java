@@ -25,6 +25,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 import com.moncefadj.medcare.DataClasses.DoctorDataForHomePatient;
 import com.moncefadj.medcare.DataClasses.DoctorsDatabase;
+import com.moncefadj.medcare.DataClasses.PatientData;
 import com.moncefadj.medcare.Doctor.EditDoctorProfile;
 import com.moncefadj.medcare.HelperClasses.doctorsAdapter;
 import com.moncefadj.medcare.Medicaments.liste_medicaments;
@@ -42,12 +43,12 @@ public class PatientHome extends AppCompatActivity {
     SpecialitiesAdapter specialitiesAdapter;
     MeowBottomNavigation bottomNavigation;
     Toast toast;
-
-
     //vertical view
     RecyclerView doctorsRecycler;
+    ArrayList<DoctorDataForHomePatient> doclist;
     doctorsAdapter docAdapter;
     DoctorsDatabase docdata;
+    boolean enableaniimation;
 
 
     @Override
@@ -55,27 +56,13 @@ public class PatientHome extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_home);
 
-
-        //show doctors
-
-        doctorsRecycler = findViewById(R.id.doctors_recycler);
-        doctorsRecycler.setHasFixedSize(true);
-        LinearLayoutManager manager = new LinearLayoutManager(this);
-        doctorsRecycler.setLayoutManager(manager);
-        docAdapter = new doctorsAdapter(this);
-        doctorsRecycler.setAdapter(docAdapter);
-        docdata = new DoctorsDatabase();
-
-        loadDocData();
-
-
-
 //underbar
         bottomNavigation = (MeowBottomNavigation) findViewById(R.id.bottom_navigation);
         bottomNavigation.add(new MeowBottomNavigation.Model(1, R.drawable.ic_home));
         bottomNavigation.add(new MeowBottomNavigation.Model(2, R.drawable.ic_med));
         bottomNavigation.add(new MeowBottomNavigation.Model(3, R.drawable.ic_baseline_search_24));
         bottomNavigation.add(new MeowBottomNavigation.Model(4, R.drawable.ic_profil));
+        doclist = new ArrayList<DoctorDataForHomePatient>();
         bottomNavigation.setOnShowListener(new MeowBottomNavigation.ShowListener() {
             @Override
 
@@ -88,16 +75,12 @@ public class PatientHome extends AppCompatActivity {
                     case 3: intent = new Intent(getApplicationContext(), Search.class);
                         startActivity(intent);
                         break;
-
                     case 4: intent = new Intent(getApplicationContext(), PatientProfile.class);
                         startActivity(intent);
                         break;
 
-
-                    //  case 4: fragment=new ProfilFragment();
-                    //  break;*/
-
                 }
+
             }
 
         });
@@ -122,8 +105,17 @@ public class PatientHome extends AppCompatActivity {
             }
         });
 
+        //show doctors
 
+        doctorsRecycler = findViewById(R.id.doctors_recycler);
+        doctorsRecycler.setHasFixedSize(true);
+        LinearLayoutManager manager = new LinearLayoutManager(this);
+        doctorsRecycler.setLayoutManager(manager);
+        docAdapter = new doctorsAdapter(this, doclist);
+        doctorsRecycler.setAdapter(docAdapter);
+        docdata = new DoctorsDatabase();
 
+        loadDocData();
 
 
 
@@ -194,22 +186,36 @@ public class PatientHome extends AppCompatActivity {
 
 
     //showing doctors
+    public boolean doctorexist(DoctorDataForHomePatient doctor ){
+        boolean exist = false;
+        int i = 0;
+        while ( ( i< doclist.size() )&& (!exist)){
+            if(doclist.get(i).getId() == doctor.getId()){
+                exist = true;
+            }
+            else {
+                i++;
+            }
+        }
+        return exist;
+
+    }
+
 
     private void loadDocData() {
         docdata.get().addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                ArrayList<DoctorDataForHomePatient> othDoctors = new ArrayList<>();
-
                 for (DataSnapshot data : snapshot.getChildren()){
 
                     DoctorDataForHomePatient doctors = data.getValue(DoctorDataForHomePatient.class);
-                    othDoctors.add(doctors);
+                    if (!doctorexist(doctors)) {
+                        doclist.add(doctors);
+                    }
 
                 }
 
-                docAdapter.setItems(othDoctors);
                 docAdapter.notifyDataSetChanged();
             }
 

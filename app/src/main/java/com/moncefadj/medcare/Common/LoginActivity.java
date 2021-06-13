@@ -22,6 +22,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -155,35 +156,30 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onSuccess(AuthResult authResult) {
                 Toast.makeText(LoginActivity.this, "Connexion réussie", Toast.LENGTH_SHORT).show();
-                // search in database if this user is Patient or Doctor
-                DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("Users");
-                DatabaseReference patientsRef = userRef.child("Patients");
 
-                patientsRef.addValueEventListener(new ValueEventListener() {
+                // search if current user is patient or doctor
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                String currentUid = user.getUid();
+                DatabaseReference patients = FirebaseDatabase.getInstance().getReference().child("Users").child("Doctors");
+                patients.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if (snapshot.exists()) {
-                            Boolean isPatient = false;
-                            for (DataSnapshot user : snapshot.getChildren()) {
-                                String email = user.child("email").getValue(String.class);
-                                if (email.equals(emailTxt)) {  // the user exist in Patient
-                                    isPatient = true;
-                                    Intent intent = new Intent(LoginActivity.this, PatientHome.class);
-                                    startActivity(intent);
-                                    finish();
-                                }
-                            }
-                            if (!isPatient) {
-                                Intent intent = new Intent(LoginActivity.this, DoctorDashboard.class);
-                                startActivity(intent);
-                                finish();
-                            }
+                        if (snapshot.hasChild(currentUid)) {  // user is a patient
+                            Intent intent = new Intent(LoginActivity.this, DoctorDashboard.class);
+                            startActivity(intent);
+                            finish();
+                        } else {
+                            Intent intent = new Intent(LoginActivity.this, PatientHome.class);
+                            startActivity(intent);
+                            finish();
                         }
                     }
-
                     @Override
-                    public void onCancelled(@NonNull DatabaseError error) {    }
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
                 });
+
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override

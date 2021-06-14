@@ -8,23 +8,10 @@
     android:orientation="vertical"
     tools:context=".PatientSearch.Search">
 
-    <EditText
-        android:id="@+id/search_bar"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:hint="Search here"
-        android:imeOptions="actionSearch"
-        android:maxLines="1"
-        android:padding="8dp"
-        android:layout_margin="8dp"
-        android:drawablePadding="4dp"
-        android:drawableLeft="@drawable/ic_baseline_search_24"
-        />
-
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
         android:orientation="vertical"
         android:paddingLeft="20dp"
@@ -32,11 +19,18 @@
         android:paddingRight="20dp"
         android:paddingBottom="10dp">
 
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/doctors_recycler"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+        <SearchView
+            android:id="@+id/search_d"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:iconifiedByDefault="false">
+            <requestFocus/>
+        </SearchView>
+       <androidx.recyclerview.widget.RecyclerView
+           android:id="@+id/doctors_recycler"
+           android:layout_width="fill_parent"
+           android:layout_height="wrap_content"
+           android:layout_below="@+id/search_d"/>
 
 
     </RelativeLayout>

@@ -19,7 +19,7 @@ import com.moncefadj.medcare.R;
 public class PatientProfile extends AppCompatActivity {
     MeowBottomNavigation bottomNavigation;
     Toast toast;
-    private Button play;
+
 
     ImageView back;
 
@@ -29,16 +29,16 @@ public class PatientProfile extends AppCompatActivity {
         setContentView(R.layout.profile_patient_1);
 
 
-        play= (Button) findViewById(R.id.play);
+      //  play= (Button) findViewById(R.id.play);
 
-        play.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent otherAct =new Intent(getApplicationContext(), EditPatientProfile.class);
-                startActivity(otherAct);
-
-            }
-        });
+   //     play.setOnClickListener(new View.OnClickListener() {
+     //       @Override
+     //       public void onClick(View v) {
+      //          Intent otherAct =new Intent(getApplicationContext(), EditPatientProfile.class);
+        //        startActivity(otherAct);
+//
+    //        }
+    //    });
 
 
         back=(ImageView) findViewById(R.id.iback) ;

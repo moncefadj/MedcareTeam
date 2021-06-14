@@ -7,15 +7,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ProfilePatient.PatientProfile"
-    android:orientation="vertical"
-    android:background="@drawable/rose"
-
-    >
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="20dp">
+        android:padding="20dp"
+        android:background="@drawable/rose">
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/c"
@@ -25,7 +23,7 @@
             android:layout_marginTop="-6dp"
             android:fontFamily="sans-serif-medium"
             android:text="profile"
-            android:textColor="@color/white"
+
             android:textSize="30dp" />
 
         <ImageView
@@ -39,8 +37,10 @@
             android:layout_width="104dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/c"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="26dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="12dp"
+            android:background="@color/transparent"
             android:src="@drawable/ic_baseline_person"
             app:shapeAppearanceOverlay="@style/cicular" />
 
@@ -49,27 +49,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/a"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="-78dp"
+            android:layout_marginEnd="33dp"
             android:fontFamily="sans-serif-medium"
             android:text="chaouch hanane"
-            android:textColor="@color/white"
+
             android:textSize="25dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/b"
-            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="250dp"
             android:text="algerie sba"
-            android:textColor="@color/white"
+
             android:textSize="20dp" />
 
     </RelativeLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="340dp"
+        android:layout_width="361dp"
+        android:layout_height="421dp"
         android:layout_marginHorizontal="20dp"
         android:background="@drawable/patient_profile_bg"
         android:orientation="vertical"
@@ -140,7 +141,7 @@
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="40dp"
             android:background="@drawable/backgraoudbuttob"
             android:text="modifier"
             android:textColor="@color/rose" />
@@ -151,7 +152,7 @@
 android:background="@color/white"
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="wrap_content"
         app:mbn_backgroundBottomColor="#0099ff"
         app:mbn_circleColor="#ffff"
         app:mbn_countBackgroundColor="#ff6f00"

@@ -1,6 +1,7 @@
 package com.moncefadj.medcare.PatientHome;
 import android.content.Context;
 import android.content.Intent;
+import android.text.method.PasswordTransformationMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.moncefadj.medcare.DataClasses.SpecialtiesData;
 import com.moncefadj.medcare.Patient.OneSpecialtyDoctors;
+import com.moncefadj.medcare.ProfilePatient.PatientProfile;
 import com.moncefadj.medcare.R;
 
 import java.util.ArrayList;
@@ -61,7 +63,7 @@ public class SpecialitiesAdapter extends RecyclerView.Adapter<SpecialitiesAdapte
                 public void onClick(View v) {
                     int pos=getAdapterPosition();
                     if (pos==0) {
-                        Intent intent = new Intent(context, OneSpecialtyDoctors.class);
+                        Intent intent = new Intent(context,OneSpecialtyDoctors.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         context.startActivity(intent);
                     }

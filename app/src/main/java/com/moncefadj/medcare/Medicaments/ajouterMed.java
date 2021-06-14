@@ -25,6 +25,7 @@ import com.moncefadj.medcare.R;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 
@@ -95,6 +96,8 @@ public class ajouterMed extends AppCompatActivity implements TimePickerDialog.On
 
     }
 
+
+
     private void sendData() {
         String name = EnomMed.getText().toString();
         String descrip = Description.getText().toString();
@@ -104,41 +107,33 @@ public class ajouterMed extends AppCompatActivity implements TimePickerDialog.On
         String instruction = instructions.getSelectedItem().toString();
         String datedebut = dateDebut.getText().toString();
         String datefin = dateFin.getText().toString();
-        if (name.isEmpty()){
-            EnomMed.setError("le nom de medicament est obligatoire !");
+        try {
+            if (name.isEmpty()) {
+                EnomMed.setError("le nom de medicament est obligatoire !");
+
+            }
+            if (descrip.isEmpty()) {
+                Description.setError("veuillez donner une petit description ! ");
+
+            }
+            if (datedebut.isEmpty()) {
+                dateDebut.setError("la date de debut de prise est obligatoire  !");
+
+            }
+            if (datefin.isEmpty()) {
+                dateFin.setError("la fin de prise est obligatoire ! ");
+
+            }
+            if (time.isEmpty()) {
+                heure.setError("veuillez donner au moins une heure  !");
+                return;
+            }
+        }
+        catch (Exception e){
+            movetoliste();
 
         }
-        if (descrip.isEmpty()){
-            Description.setError("veuillez donner une petit description ! ");
 
-        }
-        if (datedebut.isEmpty()){
-            dateDebut.setError("la date de debut de prise est obligatoire  !");
-
-        }
-        if (datefin.isEmpty()){
-            dateFin.setError("la fin de prise est obligatoire ! ");
-
-        }
-        if (time.isEmpty()){
-            heure.setError("veuillez donner au moins une heure  !");
-            return;
-        }
-
-
-
-
-
-
-
-
-        Intent intent = new Intent(this , liste_medicaments.class);
-        intent.putExtra(liste_medicaments.NAME, name);
-        intent.putExtra(liste_medicaments.DESCR, descrip);
-        intent.putExtra(liste_medicaments.TIME, time);
-        intent.putExtra(liste_medicaments.TIME2 , time2);
-        intent.putExtra(liste_medicaments.TIME3 , time3);
-        setResult(RESULT_OK, intent);
 
         Toast.makeText(this,"data passes in the second activity ",Toast.LENGTH_LONG).show();
 
@@ -151,6 +146,10 @@ public class ajouterMed extends AppCompatActivity implements TimePickerDialog.On
 
 
         finish();
+    }
+    private void movetoliste() {
+        Intent intent = new Intent(this , liste_medicaments.class);
+        startActivity(intent);
     }
 
 
@@ -190,32 +189,47 @@ public class ajouterMed extends AppCompatActivity implements TimePickerDialog.On
         dateDebut.setText(dayOfMonth +","+ month +"," + year);
     }
     public void openDatePicker(){
-        Calendar calendar = Calendar.getInstance();
-        int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH);
-        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        final Calendar calendar = Calendar.getInstance();
+        int myear = calendar.get(Calendar.YEAR);
+        int mmonth = calendar.get(Calendar.MONTH);
+        int mday = calendar.get(Calendar.DAY_OF_MONTH);
         datePickerDialog = new DatePickerDialog(ajouterMed.this,R.style.AppCompatDialogStyle ,new DatePickerDialog.OnDateSetListener() {
             @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                dateDebut.setText(day+"/" + month + "/" + year);
+            public void onDateSet(DatePicker view, int year, int month, int day) {
+                calendar.set(year , month, day);
+                dateDebut.setText(new SimpleDateFormat("dd/MM/yyyy").format(calendar.getTime()));
+                int myear = calendar.get(Calendar.YEAR);
+                int mmonth = calendar.get(Calendar.MONTH);
+                int mday = calendar.get(Calendar.DAY_OF_MONTH);
+
+
+
 
             }
 
-        },year,month,day);
+        },myear,mmonth,mday);
         datePickerDialog.show();
     }
     public void openDatePicker2(){
-        Calendar calendar = Calendar.getInstance();
-        int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH);
-        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        final Calendar calendar = Calendar.getInstance();
+        int myear = calendar.get(Calendar.YEAR);
+        int mmonth = calendar.get(Calendar.MONTH);
+        int mday = calendar.get(Calendar.DAY_OF_MONTH);
         datePickerDialog = new DatePickerDialog(ajouterMed.this,R.style.AppCompatDialogStyle ,new DatePickerDialog.OnDateSetListener() {
             @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                dateFin.setText(day+"/" + month + "/" + year);
+            public void onDateSet(DatePicker view, int year, int month, int day) {
+                calendar.set(year , month, day);
+                dateFin.setText(new SimpleDateFormat("dd/MM/yyyy").format(calendar.getTime()));
+                int myear = calendar.get(Calendar.YEAR);
+                int mmonth = calendar.get(Calendar.MONTH);
+                int mday = calendar.get(Calendar.DAY_OF_MONTH);
+
+
+
 
             }
-        },year,month,day);
+
+        },myear,mmonth,mday);
         datePickerDialog.show();
     }
 }

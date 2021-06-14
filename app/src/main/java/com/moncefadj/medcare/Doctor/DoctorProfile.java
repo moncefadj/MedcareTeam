@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MenuItem;
@@ -20,6 +21,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.PopupMenu;
 import android.widget.PopupMenu.OnMenuItemClickListener;
 import android.widget.TextView;
@@ -49,21 +51,20 @@ public class DoctorProfile extends AppCompatActivity {
     String uidDoctor;
     DatabaseReference doctorRef;
     DatabaseReference doctorTimeRef;
-    DatabaseReference doctorDayRef;
 
     String currentDay;
-    int currentDayIndex;
     String selectedDay;
 
     // Doctor profile Data
-    TextView name,fullSpecialty,address,desc,rate,phone;
+    TextView name,fullSpecialty,address,rate,phone,desc;
     ImageView profileImg;
 
     Dialog dialog;
-    EditText hourEditTxt,minuteEditTxt;
-    Button confirmBtn;
+    Switch aSwitch;
+    TextInputLayout hourLayout, minuteLayout;
+    Button confirmBtn,deleteBtn;
     ImageView cancelBtn;
-    String hour,minute;
+    String hour,minute,available;
     ImageButton backImgBtn;
 
     FlexboxLayout flexboxLayout;
@@ -88,7 +89,9 @@ public class DoctorProfile extends AppCompatActivity {
         uidDoctor = FirebaseAuth.getInstance().getCurrentUser().getUid();
         doctorRef = FirebaseDatabase.getInstance().getReference().child("Users").child("Doctors").child(uidDoctor);
 
-        ImageView settingsBtn = findViewById(R.id.profile_doc_settings_btn); // just for testing signOut
+        setProfileData();
+
+        ImageView settingsBtn = findViewById(R.id.profile_doc_settings_btn);
         settingsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -117,6 +120,8 @@ public class DoctorProfile extends AppCompatActivity {
             }
         });
 
+        setProfileData();
+
         daysAutoCompleteTxt();
         
         autoCompleteTextView.addTextChangedListener(new TextWatcher() {
@@ -139,7 +144,6 @@ public class DoctorProfile extends AppCompatActivity {
             }
         });
 
-
         ImageButton addBtn = findViewById(R.id.add_rdv_btn);
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -152,8 +156,16 @@ public class DoctorProfile extends AppCompatActivity {
                 if (selectedDay.isEmpty()) {
                     daysInput.setError("Choisissez d'abord le jour");
                 } else {
+                    // activating input type when the doctor add new button
+                    //hourLayout.getEditText().setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_CLASS_DATETIME);
+                    //minuteLayout.getEditText().setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_CLASS_DATETIME);
+                    hourLayout.getEditText().setEnabled(true);
+                    minuteLayout.getEditText().setEnabled(true);
 
-                    showTimePicker();
+                    hourLayout.setEndIconMode(TextInputLayout.END_ICON_CLEAR_TEXT);
+                    minuteLayout.setEndIconMode(TextInputLayout.END_ICON_CLEAR_TEXT);
+
+                    dialog.show();
 
                 }
             }
@@ -167,11 +179,13 @@ public class DoctorProfile extends AppCompatActivity {
             dialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.rounded_corner_white));
         }
         dialog.setCancelable(false);
-        // we can make animation for Dialog by mentioned it in Style
-        dialog.getWindow().getAttributes().windowAnimations = R.style.animation;
 
         confirmBtn = dialog.findViewById(R.id.confirm_time_btn);
+        deleteBtn = dialog.findViewById(R.id.delete_time_btn);
         cancelBtn = dialog.findViewById(R.id.cancel_dialog);
+        hourLayout = dialog.findViewById(R.id.dialog_hour);
+        minuteLayout = dialog.findViewById(R.id.dialog_minute);
+        aSwitch = dialog.findViewById(R.id.available_switch);
 
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -183,19 +197,39 @@ public class DoctorProfile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                hourEditTxt = dialog.findViewById(R.id.dialog_hour);
-                minuteEditTxt = dialog.findViewById(R.id.dialog_minute);
-                hour = hourEditTxt.getText().toString();
-                minute = minuteEditTxt.getText().toString();
+                hour = hourLayout.getEditText().getText().toString();
+                minute = minuteLayout.getEditText().getText().toString();
 
-                if ((hour != "") && (minute != "")) {
-                    addButtonToDB(selectedDay, hour + ":" + minute);
+                if (aSwitch.isChecked()) {
+                    available = "yes";
+                } else available = "no";
+
+                if ((!hour.equals("")) && (!minute.equals(""))) {
+
+                    String selectedDay = daysInput.getEditText().getText().toString();
+
+                    addButtonToDB(selectedDay, hour + ":" + minute, available);
+                    // like that it will appear the buttons without using showAllDayButtons and duplicate circles(buttons)
                     removeFlexBoxViews();
-                    showAllDayButtons(selectedDay);
                     dialog.dismiss();
                 }
             }
         });
+
+        deleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String selectedDay = daysInput.getEditText().getText().toString();
+                String hour = hourLayout.getEditText().getText().toString();
+                String minute = minuteLayout.getEditText().getText().toString();
+
+                doctorRef.child("rdvTimes").child(selectedDay).child(hour + ":" + minute).removeValue();
+                removeFlexBoxViews();
+                dialog.dismiss();
+            }
+        });
+
 
         backImgBtn = (ImageButton) findViewById(R.id.profile_doc_back_btn);
         backImgBtn.setOnClickListener(new View.OnClickListener() {
@@ -210,19 +244,6 @@ public class DoctorProfile extends AppCompatActivity {
 
     }
 
-
-
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        setProfileData();
-
-        currentDay = getCurrentDay();
-        Log.i("Current Day", currentDay);
-
-    }
 
     private void showAllDayButtons(String day) {
 
@@ -246,8 +267,6 @@ public class DoctorProfile extends AppCompatActivity {
         });
 
     }
-
-
 
     private String getCurrentDay() {
         Calendar calendar = Calendar.getInstance();
@@ -280,23 +299,23 @@ public class DoctorProfile extends AppCompatActivity {
         return currentDay;
     }
 
-    private void addButtonToDB(String day, String time) {
+    private void addButtonToDB(String day, String time, String isAvailable) {
         // add time to DB
         doctorTimeRef = doctorRef.child("rdvTimes").child(day).child(time);
         HashMap<String, Object> map = new HashMap<>();
         map.put("time", time);
-        map.put("available", "yes");
+        map.put("available", isAvailable);
 
         doctorTimeRef.updateChildren(map);
     }
 
-    private void showButton(String time, String available) {
+    private void showButton(String time, String isAvailable) {
         Button button = new Button(DoctorProfile.this);
         FlexboxLayout flexboxLayout = findViewById(R.id.flex_box);
 
         button.setText(time);
         button.setTextColor(getResources().getColor(R.color.white));
-        if (available.equals("yes")) {
+        if (isAvailable.equals("yes")) {
             button.setBackground(getResources().getDrawable(R.drawable.circle_button));
         } else button.setBackground(getResources().getDrawable(R.drawable.circle_button_grey));
 
@@ -307,6 +326,35 @@ public class DoctorProfile extends AppCompatActivity {
 
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(widthPixel,heightPixel);
         params.setMargins(15,0,0,15);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.show();
+                // get hour and minute from time
+                int indexOfPoints = time.indexOf(":");
+                String hour = time.substring(0, indexOfPoints);
+                String minute = time.substring(indexOfPoints + 1, time.length());
+
+                hourLayout.getEditText().setText(hour);
+                minuteLayout.getEditText().setText(minute);
+
+                // he can't modify the hour and minute (he can delete it and add another one)
+                hourLayout.getEditText().setEnabled(false);
+                minuteLayout.getEditText().setEnabled(false);
+
+                hourLayout.setEndIconMode(TextInputLayout.END_ICON_NONE);
+                minuteLayout.setEndIconMode(TextInputLayout.END_ICON_NONE);
+
+                if (isAvailable.equals("yes")) {
+                    aSwitch.setChecked(true);
+                    aSwitch.setTextOn("Oui");
+                } else {
+                    aSwitch.setChecked(false);
+                    aSwitch.setTextOn("Non");
+                }
+            }
+        });
 
         button.setLayoutParams(params);
         flexboxLayout.addView(button);
@@ -348,14 +396,8 @@ public class DoctorProfile extends AppCompatActivity {
         days = getResources().getStringArray(R.array.days);
         arrayAdapter = new ArrayAdapter(this, R.layout.drop_down_item, days);
         autoCompleteTextView.setAdapter(arrayAdapter);
+        autoCompleteTextView.clearFocus();
 
-        // search index of current day in days(array) cause autoCompleteTextView.setText(take only char or index)
-
-
-    }
-
-    public void showTimePicker() {
-        dialog.show();
     }
 
     public void removeFlexBoxViews() {

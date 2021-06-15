@@ -1,8 +1,13 @@
 package com.moncefadj.medcare.ProfilePatient;
 
+import android.app.ProgressDialog;
+import android.content.ContentResolver;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -10,9 +15,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
+import com.google.android.gms.common.internal.service.Common;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -20,9 +30,14 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.moncefadj.medcare.Common.LoginActivity;
 import com.moncefadj.medcare.DataClasses.PatientData;
 import com.moncefadj.medcare.Medicaments.liste_medicaments;
 import com.moncefadj.medcare.Patient.PatientHome;
+import com.moncefadj.medcare.Patient.PatientSignUp;
 import com.moncefadj.medcare.PatientSearch.Search;
 import com.moncefadj.medcare.R;
 
@@ -30,12 +45,16 @@ public class PatientProfile extends AppCompatActivity {
     MeowBottomNavigation bottomNavigation;
     Toast toast;
     private Button play;
+    private Button logout;
 
     private FirebaseUser user;
     private DatabaseReference reference,referencee;
     private String userID;
 
     ImageView back;
+    private ImageView add;
+    private Uri imageUri;
+    private static final int IMAGE_REQUEST =2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +63,16 @@ public class PatientProfile extends AppCompatActivity {
 
 
         play= (Button) findViewById(R.id.play);
+        logout=(Button)findViewById(R.id.logout);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
+                Toast.makeText(PatientProfile.this,"logout",Toast.LENGTH_LONG).show();
+                startActivity(new Intent(PatientProfile.this, LoginActivity.class));
+                finish();
+            }
+        });
 
         play.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -179,5 +208,69 @@ public class PatientProfile extends AppCompatActivity {
 
             }
         });
+
+        add=(ImageView)findViewById(R.id.a);
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openImage();
+            }
+        });
+
+    }
+
+    private void openImage() {
+        Intent intent = new Intent();
+        intent.setType("image/");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent , IMAGE_REQUEST);
+    }
+//                                                                    pblm
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == IMAGE_REQUEST && resultCode == RESULT_OK){
+            imageUri = data.getData();
+
+            uploadImage();
+        }
+    }
+
+    private String getFileExtension (Uri uri){
+        ContentResolver contentResolver = getContentResolver();
+
+        MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
+
+        return  mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
+    }
+
+
+
+    private void uploadImage() {
+        final ProgressDialog pd = new ProgressDialog(this);
+        String k =imageUri.toString();
+        pd.setMessage(k);
+        pd.show();
+
+        if (imageUri != null){
+            final StorageReference fileRef = FirebaseStorage.getInstance().getReference().child("uploads").child(System.currentTimeMillis() + "." + getFileExtension(imageUri));
+
+            fileRef.putFile(imageUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                    fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            String url = uri.toString();
+
+                            Log.d("DownloadUrl" , url);
+                            pd.dismiss();
+                            Toast.makeText(PatientProfile.this, "Image upload successful1", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+            });
+        }
     }
 }

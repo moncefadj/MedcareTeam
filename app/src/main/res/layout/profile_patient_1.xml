@@ -27,7 +27,14 @@
             android:text="profile"
             android:textColor="@color/white"
             android:textSize="30dp" />
-
+        <android.widget.Button
+            android:id="@+id/logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/backgraoudbuttob"
+            android:text="logout"
+            android:textColor="@color/white" />
         <ImageView
             android:id="@+id/iback"
             android:layout_width="30dp"

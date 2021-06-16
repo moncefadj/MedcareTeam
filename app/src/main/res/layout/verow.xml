@@ -17,17 +17,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="2dp"
-            android:id="@+id/text1"
+            android:id="@+id/medcin"
             android:textColor="#33cc33"
             android:layout_marginTop="5dp"
             android:layout_marginLeft="10dp"
-            android:text="mediem text:"/>
+            android:text="medcin text:"/>
+
         <TextView
+            android:id="@+id/space"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@id/text2"
             android:layout_marginLeft="10dp"
-            android:text="text view" />
+            android:text="speca" />
 
     </LinearLayout>
 

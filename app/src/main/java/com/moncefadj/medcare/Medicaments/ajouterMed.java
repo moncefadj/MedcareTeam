@@ -1,9 +1,13 @@
 package com.moncefadj.medcare.Medicaments;
 
+import android.app.AlarmManager;
 import android.app.DatePickerDialog;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -16,6 +20,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
@@ -27,6 +32,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Random;
 
 
 public class ajouterMed extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener, AdapterView.OnItemClickListener , DatePickerDialog.OnDateSetListener {
@@ -98,6 +104,8 @@ public class ajouterMed extends AppCompatActivity implements TimePickerDialog.On
 
 
 
+
+
     private void sendData() {
         String name = EnomMed.getText().toString();
         String descrip = Description.getText().toString();
@@ -135,7 +143,7 @@ public class ajouterMed extends AppCompatActivity implements TimePickerDialog.On
         }
 
 
-        Toast.makeText(this,"data passes in the second activity ",Toast.LENGTH_LONG).show();
+
 
         uPatient = FirebaseAuth.getInstance().getCurrentUser();
         uidPatient = uPatient.getUid();
@@ -159,16 +167,36 @@ public class ajouterMed extends AppCompatActivity implements TimePickerDialog.On
         timePickerDialog.show(getSupportFragmentManager(), "time picker");
 
     }
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void onTimeSet(TimePicker timePicker, int intHourOfDay, int intMinute) {
         if(heure.getText().toString().equals("")) {
 
             heure.setText((intHourOfDay + ":" + intMinute));
+            Calendar c = Calendar.getInstance();
+            String[] parts = heure.getText().toString().split(":");
+            c.set(Calendar.HOUR_OF_DAY, Integer.parseInt(parts[0]));
+            c.set(Calendar.MINUTE, Integer.parseInt(parts[1]));
+            c.set(Calendar.SECOND, 0);
+            startAlarm(c);
         }
         else if (heure2.getText().toString().equals("")){
             heure2.setText((intHourOfDay + ":" + intMinute ));
+            Calendar c = Calendar.getInstance();
+            String[] parts = heure2.getText().toString().split(":");
+            c.set(Calendar.HOUR_OF_DAY, Integer.parseInt(parts[0]));
+            c.set(Calendar.MINUTE, Integer.parseInt(parts[1]));
+            c.set(Calendar.SECOND, 0);
+            startAlarm(c);
+
         }
         else {
             heure3.setText((intHourOfDay + ":" + intMinute ));
+            Calendar c = Calendar.getInstance();
+            String[] parts = heure3.getText().toString().split(":");
+            c.set(Calendar.HOUR_OF_DAY, Integer.parseInt(parts[0]));
+            c.set(Calendar.MINUTE, Integer.parseInt(parts[1]));
+            c.set(Calendar.SECOND, 0);
+            startAlarm(c);
         }
 
 
@@ -176,6 +204,18 @@ public class ajouterMed extends AppCompatActivity implements TimePickerDialog.On
         ajouter_med.setTextColor(Color.GRAY);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    private void startAlarm(Calendar c) {
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(this, AlertReceiver.class);
+        Random r = new Random();
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this,r.nextInt(1000) , intent, 0);
+        if (c.before(Calendar.getInstance())) {
+            c.add(Calendar.DATE, 1);
+        }
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(),AlarmManager.INTERVAL_DAY,pendingIntent);
+        Toast.makeText(this,"notification added succesfully !", Toast.LENGTH_LONG).show();
+    }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

@@ -45,7 +45,7 @@ public class PatientHome extends AppCompatActivity {
     //vertical view
     RecyclerView doctorsRecycler;
     doctorsAdapter docAdapter;
-    DoctorsDatabase docdata;
+     DoctorsDatabase docdata;
     boolean enableaniimation;
 
 
@@ -121,8 +121,8 @@ public class PatientHome extends AppCompatActivity {
         recyclerView=findViewById(R.id.recycler_view);
 
         //creat integer array
-        Integer[] categorieLogo={R.drawable.eye1,R.drawable.heart3
-                ,R.drawable.lung2,R.drawable.tooth};
+        Integer[] categorieLogo={R.drawable.eye_ic_use,R.drawable.heart_ic_use
+                ,R.drawable.lung_ic,R.drawable.tooth};
 
         //creat string array
         String[] categorieName={"Ophtalmomogie","Cardiologie"
@@ -139,7 +139,6 @@ public class PatientHome extends AppCompatActivity {
         //Design Horizontal lyout
         LinearLayoutManager layoutManager=new LinearLayoutManager(
                 PatientHome.this,LinearLayoutManager.HORIZONTAL, false
-
         );
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -155,7 +154,7 @@ public class PatientHome extends AppCompatActivity {
         String mydescription[];
 
         public Myadapter(Context c, String[] titles, int[] imgs, String[] description) {
-            super(c, R.layout.verow, R.id.text1, titles);
+            super(c, R.layout.verow, R.id.medcin, titles);
             this.context = c;
             this.imgs = imgs;
             this.mydescription = description;
@@ -173,7 +172,7 @@ public class PatientHome extends AppCompatActivity {
             ImageView images;
             images =  verow.findViewById(R.id.icon);
             TextView mytitle;
-            mytitle= verow.findViewById(R.id.text1);
+            mytitle= verow.findViewById(R.id.medcin);
             TextView mydescription;
             mydescription=  verow.findViewById(R.id.text2);
             images.setImageResource(imgs[position]);
@@ -184,7 +183,7 @@ public class PatientHome extends AppCompatActivity {
 
     //showing doctors
 
-    private void loadDocData() {
+   private  void loadDocData() {
         docdata.get().addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -192,6 +191,7 @@ public class PatientHome extends AppCompatActivity {
                 ArrayList<DoctorDataForHomePatient> othDoctors = new ArrayList<>();
 
                 for (DataSnapshot data : snapshot.getChildren()){
+                    
 
                     DoctorDataForHomePatient doctors;
                     doctors = data.getValue(DoctorDataForHomePatient.class);

@@ -1,24 +1,42 @@
 package com.moncefadj.medcare.PatientSearch;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.widget.EditText;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.SearchView;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.moncefadj.medcare.DataClasses.DoctorData;
 import com.moncefadj.medcare.DataClasses.DoctorDataForHomePatient;
 import com.moncefadj.medcare.DataClasses.DoctorsDatabase;
 import com.moncefadj.medcare.DataClasses.SpecialtiesData;
+import com.moncefadj.medcare.HelperClasses.adapter;
 import com.moncefadj.medcare.HelperClasses.doctorsAdapter;
 import com.moncefadj.medcare.Medicaments.liste_medicaments;
 import com.moncefadj.medcare.Patient.PatientHome;
@@ -32,11 +50,11 @@ public class Search extends AppCompatActivity {
     MeowBottomNavigation bottomNavigation;
     Toast toast;
     String name;
-    EditText searchbar;
+    SearchView searchbar;
     DoctorsDatabase docdata;
-    RecyclerView recyclerView;
-    doctorsAdapter docAdapter;
-    ArrayList<DoctorDataForHomePatient> list;
+RecyclerView recyclerView;
+   adapter docAdapter;
+    ArrayList<DoctorDataForHomePatient> list ,doclist ;
     ArrayList<SpecialtiesData> specialtiesData;
     SpecialitiesAdapter specialitiesAdapter;
     @Override
@@ -46,10 +64,11 @@ public class Search extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.doctors_recycler);
 
         //show doctors
-        docAdapter = new doctorsAdapter(this);
+        docAdapter = new adapter(this );
         recyclerView.setAdapter(docAdapter);
         docdata = new DoctorsDatabase();
         list=new ArrayList<>();
+        doclist = new ArrayList<DoctorDataForHomePatient>();
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -71,32 +90,19 @@ public class Search extends AppCompatActivity {
         //ArrayAdapter<String> mAdapter=new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,doctors);
 // mListeView.setAdapter(mAdapter);
 // msearch.setOnQueryTextListener((SearchView.OnQueryTextListener) this);
-        searchbar=findViewById(R.id.search_bar);
-        searchbar.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int i, int i1, int i2) {
+searchbar=findViewById(R.id.search_bar);
+      searchbar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+          @Override
+          public boolean onQueryTextSubmit(String s) {
+              return false;
+          }
 
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                filter(editable.toString());
-            }
-            private void filter(String text) {
-                ArrayList<DoctorDataForHomePatient> filterlist=new ArrayList<DoctorDataForHomePatient>();
-                for(DoctorDataForHomePatient a : list){
-                    if (a.getName().contains(text)){
-                        filterlist.add(a);
-                    }
-                    docAdapter.filterlist(filterlist);
-                }
-            }
-        });
+          @Override
+          public boolean onQueryTextChange(String s) {
+              docAdapter.getFilter().filter(s);
+              return false;
+          }
+      });
         bottomNavigation = (MeowBottomNavigation)
 
                 findViewById(R.id.bottom_navigation);
@@ -150,7 +156,6 @@ public class Search extends AppCompatActivity {
             }
         });
     }
-
     private void loadDocData() {
         docdata.get().addValueEventListener(new ValueEventListener() {
             @Override
@@ -160,12 +165,18 @@ public class Search extends AppCompatActivity {
 
                 for (DataSnapshot data : snapshot.getChildren()){
 
+
                     DoctorDataForHomePatient doctors = data.getValue(DoctorDataForHomePatient.class);
-                    othDoctors.add(doctors);
+
+
+                        othDoctors.add(doctors);
+
+
 
                 }
 
                 docAdapter.setItems(othDoctors);
+
                 docAdapter.notifyDataSetChanged();
             }
 
@@ -175,5 +186,4 @@ public class Search extends AppCompatActivity {
             }
         });
     }
-
 }

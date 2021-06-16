@@ -6,12 +6,15 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.moncefadj.medcare.DataClasses.DoctorDataForHomePatient;
-import com.moncefadj.medcare.Patient.DoctorProfileFromPatientHome;
+import com.moncefadj.medcare.Doctor.DoctorProfile;
+import com.moncefadj.medcare.PatientSearch.Search;
 import com.moncefadj.medcare.R;
 
 import java.util.ArrayList;
@@ -23,11 +26,16 @@ public class doctorsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     ArrayList<DoctorDataForHomePatient> DoctorsList = new ArrayList<>();
 
+    public doctorsAdapter(Context context, ArrayList<DoctorDataForHomePatient> doctorsList) {
+        this.context = context;
+        DoctorsList = doctorsList;
+    }
+
     public doctorsAdapter(Context context) {
         this.context = context;
     }
 
-    public void setItems (ArrayList <DoctorDataForHomePatient> doctors){
+    public void setItems(ArrayList<DoctorDataForHomePatient> doctors) {
         DoctorsList.addAll(doctors);
     }
 
@@ -38,33 +46,18 @@ public class doctorsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         View view = LayoutInflater.from(context).inflate(R.layout.activity_doctors_adapter, parent, false);
         return new doctorsViewHolder(view);
     }
-    public void filterlist(ArrayList<DoctorDataForHomePatient> filterlist) {
-        DoctorsList = filterlist;
-        notifyDataSetChanged();
 
-    }
+
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
         doctorsViewHolder viewHolder = (doctorsViewHolder) holder;
         DoctorDataForHomePatient doctors = DoctorsList.get(position);
         viewHolder.name.setText(doctors.getName());
-        viewHolder.spec.setText(doctors.getFullSpecialty());
-        viewHolder.adr.setText(doctors.getAddress());
-        viewHolder.phone.setText(doctors.getPhone());
-        viewHolder.id.setText(doctors.getId());
+        viewHolder.email.setText(doctors.getEmail());
+        viewHolder.speciality.setText(doctors.getSpecialty());
 
 //pour recherche
-        holder.itemView.setOnClickListener(view -> {
-            Intent intent=new Intent(context, DoctorProfileFromPatientHome.class);
-            intent.putExtra("Name",doctors.getName());
-            intent.putExtra("Spec",doctors.getFullSpecialty());
-            intent.putExtra("Adr",doctors.getAddress());
-            intent.putExtra("Phn",doctors.getPhone());
-            intent.putExtra("Dsc",doctors.getDesc());
-            intent.putExtra("Id",doctors.getId());
-            context.startActivity(intent);
-        });
     }
 
     @Override
@@ -72,4 +65,7 @@ public class doctorsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         return DoctorsList.size();
     }
 
+    public ArrayList<DoctorDataForHomePatient> listage(){
+        return  DoctorsList;
+    }
 }

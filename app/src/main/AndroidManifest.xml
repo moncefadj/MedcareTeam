@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.moncefadj.medcare">
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.SET_ALARM"/>
 
     <application
         android:allowBackup="true"
@@ -10,10 +12,13 @@
         android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:theme="@style/Theme.MedCare">
-        <activity android:name=".Patient.DoctorProfileFromPatientHome"></activity>
+        <activity android:name=".Patient.pneumologie"/>
+
+        <activity android:name=".Patient.cardiologie" />
+        <activity android:name=".Patient.ophtalmon" />
         <activity android:name=".Doctor.EditDoctorProfile" />
         <activity android:name=".Doctor.DoctorDashboard" />
-        <activity android:name=".Patient.PatientHome" />
+        <activity android:name=".Patient.PatientHome"/>
         <activity android:name=".Patient.OneSpecialtyDoctors" />
         <activity android:name=".Underbar.underbar" />
         <activity android:name=".PatientSearch.Search" />
@@ -39,6 +44,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <receiver android:name=".Medicaments.AlertReceiver"/>
 
         <meta-data
             android:name="preloaded_fonts"

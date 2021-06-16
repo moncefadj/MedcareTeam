@@ -33,7 +33,7 @@
         android:layout_marginBottom="10dp"
         android:background="@drawable/edittext_border"
         android:ems="10"
-        android:hint="nom de médicaments"
+        android:hint="nom du médicaments"
         android:inputType="textPersonName"
         android:padding="10dp"
         android:textColor="@color/black"
@@ -58,7 +58,7 @@
         android:layout_marginBottom="10dp"
         android:background="@drawable/edittext_border"
         android:ems="10"
-        android:hint="date de debut de prise "
+        android:hint="date debut du prise "
         android:inputType="textPersonName"
         android:padding="10dp"
         android:textColor="@color/black" />
@@ -70,7 +70,7 @@
         android:layout_marginBottom="10dp"
         android:background="@drawable/edittext_border"
         android:ems="10"
-        android:hint="date de fin de prise "
+        android:hint="date de fin du prise "
         android:inputType="textPersonName"
         android:padding="10dp"
         android:textColor="@color/black" />
@@ -144,7 +144,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/ic_wave__17_">
+        android:background="@drawable/ic_wave__27_">
 
         <Button
             android:id="@+id/ajouterAuliste"

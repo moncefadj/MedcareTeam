@@ -156,13 +156,15 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onSuccess(AuthResult authResult) {
                 Toast.makeText(LoginActivity.this, "Connexion réussie", Toast.LENGTH_SHORT).show();
+
                 // search if current user is patient or doctor
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 String currentUid = user.getUid();
-                DatabaseReference doctors = FirebaseDatabase.getInstance().getReference().child("Users").child("Doctors");
-                doctors.addListenerForSingleValueEvent(new ValueEventListener() {
+                DatabaseReference patients = FirebaseDatabase.getInstance().getReference().child("Users").child("Doctors");
+                patients.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
+
                         if (snapshot.hasChild(currentUid)) {  // user is a patient
                             Intent intent = new Intent(LoginActivity.this, DoctorDashboard.class);
                             startActivity(intent);
@@ -171,6 +173,25 @@ public class LoginActivity extends AppCompatActivity {
                             Intent intent = new Intent(LoginActivity.this, PatientHome.class);
                             startActivity(intent);
                             finish();
+
+                            if (snapshot.exists()) {
+                                Boolean isPatient = false;
+                                for (DataSnapshot user : snapshot.getChildren()) {
+                                    String email = user.child("email").getValue(String.class);
+                                    if (email.equals(emailTxt)) {  // the user exist in Patient
+                                        isPatient = true;
+                                        intent = new Intent(LoginActivity.this, PatientHome.class);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+                                }
+                                if (!isPatient) {
+                                    intent = new Intent(LoginActivity.this, DoctorDashboard.class);
+                                    startActivity(intent);
+                                    finish();
+                                }
+
+                            }
                         }
                     }
                     @Override
@@ -178,6 +199,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     }
                 });
+
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override

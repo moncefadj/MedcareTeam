@@ -2,21 +2,24 @@ package com.moncefadj.medcare.DataClasses;
 
 public class DoctorDataForHomePatient {
 
-    private String name, spec, id, phone, address, desc;
+    private String name, email, id,specialty;
 
     public DoctorDataForHomePatient(){
     }
 
-    public DoctorDataForHomePatient(String vNomMedecin, String vSpec, String vPhone, String vAdr, String vDsc, String vId) {
+    public DoctorDataForHomePatient(String vNomMedecin, String vEmail,String vspecialite) {
         this.name = vNomMedecin;
-        this.spec = vSpec;
-        this.phone = vPhone;
-        this.address = vAdr;
-        this.desc = vDsc;
-        this.id = vId;
+        this.email = vEmail;
+        this.specialty=vspecialite;
     }
 
+    public String getSpecialty() {
+        return specialty;
+    }
 
+    public void setSpecialty(String specialty) {
+        this.specialty = specialty;
+    }
 
     public String getName() {
         return name;
@@ -26,43 +29,16 @@ public class DoctorDataForHomePatient {
         this.name = vNomPatient;
     }
 
-    public String getFullSpecialty() {
-        return spec;
+    public String getEmail() {
+        return email;
     }
 
-    public void setFullSpecialty(String vSpec) {
-        this.spec = vSpec;
+    public void setEmail(String vEmail) {
+        this.email = vEmail;
     }
 
-    public String getId() {
-        return id;
-    }
+    public String getId() {return id;}
 
-    public void setId(String vId) {
-        this.id = vId;
-    }
+    public void setId(String id) {this.id = id;}
 
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getDesc() {
-        return desc;
-    }
-
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
 }

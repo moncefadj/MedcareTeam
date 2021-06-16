@@ -35,12 +35,12 @@ public class adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> imple
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view1 = LayoutInflater.from(context).inflate(R.layout.verow, parent, false);
-       return new row(view1);
+        return new row(view1);
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-       row viewHolder = (row) holder;
+        row viewHolder = (row) holder;
         DoctorDataForHomePatient doctors =Doctors.get(position);
         viewHolder.namedoc.setText(doctors.getName());
         viewHolder.specdoc.setText(doctors.getSpecialty());

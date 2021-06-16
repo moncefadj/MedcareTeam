@@ -10,12 +10,12 @@ package com.moncefadj.medcare.HelperClasses;
 
 public class patientsViewHolder extends RecyclerView.ViewHolder {
 
-    public TextView name, heure;
+    public TextView name, time;
     public ImageView img, delete;
     public patientsViewHolder(View view) {
         super(view);
         name = view.findViewById(R.id.NomPatient);
-        heure = view.findViewById(R.id.HeureRDV);
+        time = view.findViewById(R.id.HeureRDV);
         delete = view.findViewById(R.id.deleteImgBtn);
         img = view.findViewById(R.id.ImagePatient);
     }

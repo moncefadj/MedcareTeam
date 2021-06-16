@@ -3,14 +3,15 @@ package com.moncefadj.medcare.DataClasses;
 
 public class PatientData {
 
-    private String name, heure, id;
+    private String name, time, id;
 
     public PatientData(){
     }
 
-    public PatientData(String vNomPatient, String vHeure) {
+    public PatientData(String vNomPatient, String vHeure, String vId) {
         this.name = vNomPatient;
-        this.heure = vHeure;
+        this.time = vHeure;
+        this.id = vId;
     }
 
     public String getName() {
@@ -21,16 +22,19 @@ public class PatientData {
         this.name = vNomPatient;
     }
 
-    public String getHeure() {
-        return heure;
+    public String getTime() {
+        return time;
     }
 
-    public void setHeure(String heure) {
-        this.heure = heure;
+    public void setTime(String time) {
+        this.time = time;
     }
 
-    public String getId() {return id;}
+    public String getId() {
+        return id;
+    }
 
-    public void setId(String id) {this.id = id;}
-
+    public void setId(String id) {
+        this.id = id;
+    }
 }

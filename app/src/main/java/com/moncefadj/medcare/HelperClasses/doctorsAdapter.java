@@ -21,13 +21,15 @@ public class doctorsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     private Context context;
 
-    ArrayList<DoctorDataForHomePatient> DoctorsList ;
+    ArrayList<DoctorDataForHomePatient> DoctorsList = new ArrayList<>();
 
-    public doctorsAdapter(Context context , ArrayList<DoctorDataForHomePatient> DoctorsList) {
+    public doctorsAdapter(Context context) {
         this.context = context;
-        this.DoctorsList = DoctorsList;
     }
 
+    public void setItems (ArrayList <DoctorDataForHomePatient> doctors){
+        DoctorsList.addAll(doctors);
+    }
 
     @NonNull
     @Override
@@ -50,7 +52,6 @@ public class doctorsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         viewHolder.spec.setText(doctors.getFullSpecialty());
         viewHolder.adr.setText(doctors.getAddress());
         viewHolder.phone.setText(doctors.getPhone());
-        viewHolder.descry.setText(doctors.getDescry());
         viewHolder.id.setText(doctors.getId());
 
 //pour recherche
@@ -60,7 +61,7 @@ public class doctorsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             intent.putExtra("Spec",doctors.getFullSpecialty());
             intent.putExtra("Adr",doctors.getAddress());
             intent.putExtra("Phn",doctors.getPhone());
-            intent.putExtra("Dsc",doctors.getDescry());
+            intent.putExtra("Dsc",doctors.getDesc());
             intent.putExtra("Id",doctors.getId());
             context.startActivity(intent);
         });

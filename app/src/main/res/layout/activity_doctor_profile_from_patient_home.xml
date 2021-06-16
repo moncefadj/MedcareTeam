@@ -136,23 +136,25 @@
         </RelativeLayout>
 
         <TextView
-            android:id="@+id/doctor_description"
-            android:layout_width="wrap_content"
+            android:id="@+id/doctor_dsc"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/doctor_default_desc"
             app:layout_constraintTop_toBottomOf="@id/doctor_image"
             app:layout_constraintBottom_toTopOf="@id/doctor_phone_layout"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+            android:text="Ecrire une description ..."
+            android:gravity="top|left"
+            android:padding="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:fontFamily="@font/allerta"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="5dp"
-            android:padding="9dp"/>
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"/>
+
         <RelativeLayout
             android:id="@+id/doctor_phone_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/doctor_description"
+            app:layout_constraintTop_toBottomOf="@id/doctor_dsc"
             app:layout_constraintBottom_toTopOf="@+id/days_input"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"

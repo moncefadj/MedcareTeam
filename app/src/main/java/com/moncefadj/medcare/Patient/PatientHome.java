@@ -193,7 +193,8 @@ public class PatientHome extends AppCompatActivity {
 
                 for (DataSnapshot data : snapshot.getChildren()){
 
-                    DoctorDataForHomePatient doctors = data.getValue(DoctorDataForHomePatient.class);
+                    DoctorDataForHomePatient doctors;
+                    doctors = data.getValue(DoctorDataForHomePatient.class);
                     othDoctors.add(doctors);
 
                 }

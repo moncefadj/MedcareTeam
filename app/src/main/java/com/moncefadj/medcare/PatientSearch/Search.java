@@ -34,9 +34,9 @@ public class Search extends AppCompatActivity {
     String name;
     EditText searchbar;
     DoctorsDatabase docdata;
-RecyclerView recyclerView;
+    RecyclerView recyclerView;
     doctorsAdapter docAdapter;
-    ArrayList<DoctorDataForHomePatient> list ,doclist ;
+    ArrayList<DoctorDataForHomePatient> list;
     ArrayList<SpecialtiesData> specialtiesData;
     SpecialitiesAdapter specialitiesAdapter;
     @Override
@@ -46,11 +46,10 @@ RecyclerView recyclerView;
         recyclerView = (RecyclerView) findViewById(R.id.doctors_recycler);
 
         //show doctors
-        docAdapter = new doctorsAdapter(this , list);
+        docAdapter = new doctorsAdapter(this);
         recyclerView.setAdapter(docAdapter);
         docdata = new DoctorsDatabase();
         list=new ArrayList<>();
-        doclist = new ArrayList<DoctorDataForHomePatient>();
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -72,32 +71,32 @@ RecyclerView recyclerView;
         //ArrayAdapter<String> mAdapter=new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,doctors);
 // mListeView.setAdapter(mAdapter);
 // msearch.setOnQueryTextListener((SearchView.OnQueryTextListener) this);
-searchbar=findViewById(R.id.search_bar);
-       searchbar.addTextChangedListener(new TextWatcher() {
-    @Override
-    public void beforeTextChanged(CharSequence s, int i, int i1, int i2) {
+        searchbar=findViewById(R.id.search_bar);
+        searchbar.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int i, int i1, int i2) {
 
-    }
+            }
 
-    @Override
-    public void onTextChanged(CharSequence s, int i, int i1, int i2) {
+            @Override
+            public void onTextChanged(CharSequence s, int i, int i1, int i2) {
 
-    }
+            }
 
-    @Override
-    public void afterTextChanged(Editable editable) {
-filter(editable.toString());
-    }
-           private void filter(String text) {
-        ArrayList<DoctorDataForHomePatient> filterlist=new ArrayList<DoctorDataForHomePatient>();
-        for(DoctorDataForHomePatient a : list){
-            if (a.getName().contains(text)){
-                filterlist.add(a);
-        }
-        docAdapter.filterlist(filterlist);
-           }
-    }
-       });
+            @Override
+            public void afterTextChanged(Editable editable) {
+                filter(editable.toString());
+            }
+            private void filter(String text) {
+                ArrayList<DoctorDataForHomePatient> filterlist=new ArrayList<DoctorDataForHomePatient>();
+                for(DoctorDataForHomePatient a : list){
+                    if (a.getName().contains(text)){
+                        filterlist.add(a);
+                    }
+                    docAdapter.filterlist(filterlist);
+                }
+            }
+        });
         bottomNavigation = (MeowBottomNavigation)
 
                 findViewById(R.id.bottom_navigation);
@@ -151,36 +150,22 @@ filter(editable.toString());
             }
         });
     }
-    public boolean doctorexist(DoctorDataForHomePatient doctor ){
-        boolean exist = false;
-        int i = 0;
-        while ( ( i< doclist.size() )&& (!exist)){
-            if(list.get(i).getId() == doctor.getId()){
-                exist = true;
-            }
-            else {
-                i++;
-            }
-        }
-        return exist;
-
-    }
-
 
     private void loadDocData() {
         docdata.get().addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
+                ArrayList<DoctorDataForHomePatient> othDoctors = new ArrayList<>();
+
                 for (DataSnapshot data : snapshot.getChildren()){
 
                     DoctorDataForHomePatient doctors = data.getValue(DoctorDataForHomePatient.class);
-                    if (!doctorexist(doctors)) {
-                        doclist.add(doctors);
-                    }
+                    othDoctors.add(doctors);
 
                 }
 
+                docAdapter.setItems(othDoctors);
                 docAdapter.notifyDataSetChanged();
             }
 

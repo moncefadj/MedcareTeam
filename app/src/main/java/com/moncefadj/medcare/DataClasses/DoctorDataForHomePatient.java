@@ -2,7 +2,7 @@ package com.moncefadj.medcare.DataClasses;
 
 public class DoctorDataForHomePatient {
 
-    private String name, spec, id, phone, address, descry;
+    private String name, spec, id, phone, address, desc;
 
     public DoctorDataForHomePatient(){
     }
@@ -12,7 +12,7 @@ public class DoctorDataForHomePatient {
         this.spec = vSpec;
         this.phone = vPhone;
         this.address = vAdr;
-        this.descry = vDsc;
+        this.desc = vDsc;
         this.id = vId;
     }
 
@@ -58,11 +58,11 @@ public class DoctorDataForHomePatient {
         this.address = address;
     }
 
-    public String getDescry() {
-        return descry;
+    public String getDesc() {
+        return desc;
     }
 
-    public void setDescry(String descry) {
-        this.descry = descry;
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 }

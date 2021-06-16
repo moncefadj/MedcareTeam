@@ -1,6 +1,5 @@
 package com.moncefadj.medcare.HelperClasses;
 
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -18,19 +17,20 @@ import com.moncefadj.medcare.R;
 import java.util.ArrayList;
 
 
-public class patientsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class PatientsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private Context context;
+    private  final  Context context;
+    private ArrayList<PatientData> PatientsList ;
+    String UidDoctor;
 
-    ArrayList<PatientData> PatientsList = new ArrayList<>();
 
-    public patientsAdapter(Context context) {
+    public PatientsAdapter(Context context , ArrayList<PatientData> PatientsList, String uidDoctor) {
         this.context = context;
+        this.PatientsList = PatientsList;
+        this.UidDoctor = uidDoctor;
     }
 
-    public void setItems (ArrayList <PatientData> patients){
-        PatientsList.addAll(patients);
-    }
+
 
     @NonNull
     @Override
@@ -46,22 +46,17 @@ public class patientsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         com.moncefadj.medcare.HelperClasses.patientsViewHolder viewHolder = (com.moncefadj.medcare.HelperClasses.patientsViewHolder) holder;
         PatientData patients = PatientsList.get(position);
         viewHolder.name.setText(patients.getName());
-        viewHolder.heure.setText(patients.getHeure());
+        viewHolder.time.setText(patients.getTime());
+        String str = PatientsList.get(position).getId();
+        viewHolder.delete.setOnClickListener(view ->  {
 
-        viewHolder.delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
                 AlertDialog.Builder builder=new AlertDialog.Builder(viewHolder.img.getContext());
                 builder.setTitle("Voulez vous vraiment supprimer ce patient?");
                 builder.setMessage("Si vous cliquez sur Oui, vous aller annuler le rendez-vous pris par ce patient et il sera par la suite supprimé de votre liste de reception.");
+                builder.setPositiveButton("Oui", (dialogInterface, i) ->  {
 
-                builder.setPositiveButton("Oui", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
+                        FirebaseDatabase.getInstance().getReference("Users").child("Doctors").child(UidDoctor).child("PatientsWithRdv").child("Mardi").child(str).removeValue();
 
-                        String id = PatientsList.get(position).getId();
-                        FirebaseDatabase.getInstance().getReference().child("Users").child("Patients").child(id).removeValue();
-                    }
                 });
 
                 builder.setNegativeButton("Non", new DialogInterface.OnClickListener() {
@@ -71,11 +66,12 @@ public class patientsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 });
 
                 builder.show();
-            }
         });
 
 
     }
+
+
 
     @Override
     public int getItemCount() {

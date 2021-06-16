@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.moncefadj.medcare.DataClasses.DoctorDataForHomePatient;
 import com.moncefadj.medcare.Doctor.DoctorProfile;
+import com.moncefadj.medcare.Patient.DoctorProfileFromPatientHome;
 import com.moncefadj.medcare.R;
 
 import java.util.ArrayList;
@@ -46,7 +47,7 @@ public class adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> imple
         viewHolder.specdoc.setText(doctors.getSpecialty());
 
         holder.itemView.setOnClickListener(view -> {
-            Intent intent = new Intent(context, DoctorProfile.class);
+            Intent intent = new Intent(context, DoctorProfileFromPatientHome.class);
             intent.putExtra("Name", doctors.getName());
             context.startActivity(intent);
         });

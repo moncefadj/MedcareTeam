@@ -37,6 +37,11 @@
             android:name=".Common.LoginActivity"
             android:windowSoftInputMode="stateVisible|adjustPan" />
         <activity android:name=".Common.OnBoardingScreen" />
+
+        <activity
+            android:name=".Patient.DoctorProfileFromPatientHome"
+            android:windowSoftInputMode="stateVisible|adjustPan" />
+
         <activity android:name=".Common.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

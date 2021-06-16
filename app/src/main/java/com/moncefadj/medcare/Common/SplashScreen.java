@@ -80,7 +80,7 @@ public class SplashScreen extends AppCompatActivity {
                         patients.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
-<<<<<<< HEAD
+
                                 if (snapshot.hasChild(currentUid)) {  // user is a patient
                                     Intent intent = new Intent(SplashScreen.this, DoctorDashboard.class);
                                     startActivity(intent);
@@ -89,24 +89,25 @@ public class SplashScreen extends AppCompatActivity {
                                     Intent intent = new Intent(SplashScreen.this, PatientHome.class);
                                     startActivity(intent);
                                     finish();
-=======
-                                boolean isPatient = false;
-                                if (snapshot.exists()) {
-                                    for (DataSnapshot patient : snapshot.getChildren()) {
-                                        String patientUid = patient.child("id").getValue().toString();
-                                        if (patientUid.equals(currentUid)) { // current user is a Patient
-                                            isPatient = true;
-                                            Intent intent = new Intent(SplashScreen.this,underbar.class);
+
+                                    boolean isPatient = false;
+                                    if (snapshot.exists()) {
+                                        for (DataSnapshot patient : snapshot.getChildren()) {
+                                            String patientUid = patient.child("id").getValue().toString();
+                                            if (patientUid.equals(currentUid)) { // current user is a Patient
+                                                isPatient = true;
+                                                intent = new Intent(SplashScreen.this, underbar.class);
+                                                startActivity(intent);
+                                                finish();
+                                            }
+                                        }
+                                        if (!isPatient) { // current user is a Doctor
+                                            intent = new Intent(SplashScreen.this, DoctorDashboard.class);
                                             startActivity(intent);
                                             finish();
                                         }
+
                                     }
-                                    if (!isPatient) { // current user is a Doctor
-                                        Intent intent = new Intent(SplashScreen.this, DoctorDashboard.class);
-                                        startActivity(intent);
-                                        finish();
-                                    }
->>>>>>> 67f80cd03e148eb7e76e48df64d3c1d387bc5e86
                                 }
                             }
                             @Override

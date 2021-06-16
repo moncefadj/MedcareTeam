@@ -12,58 +12,21 @@
     android:background="@color/white"
     tools:context=".Patient.PatientHome">
 
-    <LinearLayout
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="vertical">
+        android:src="@drawable/logohome" />
 
-        <TextView
-            android:layout_width="384dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:fontFamily="sans-serif-medium"
-            android:text="BESOIN D'UN MEDECIN"
-            android:textColor="#F50C83E3"
-            android:textSize="20dp"
-            android:textStyle="bold|italic" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
-            android:layout_marginLeft="80dp"
-            android:layout_marginTop="5dp"
-            android:fontFamily="sans-serif-condensed"
-            android:gravity="center"
-            android:text="choisissez votre categorie  et prenez "
-            android:textColor="#F50C83E3"
-            android:textSize="20dp"
-            android:textStyle="bold|italic" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="130dp"
-            android:layout_marginTop="5dp"
-            android:gravity="center"
-            android:text="un rendez-vous"
-            android:textColor="#F50C83E3"
-            android:textSize="20dp"
-            android:textStyle="bold|italic" />
-
-
-    </LinearLayout>
 
     <androidx.cardview.widget.CardView
-        android:layout_width="379dp"
+        android:layout_width="match_parent"
         android:layout_height="189dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="7dp"
         android:orientation="vertical"
         android:scrollbarSize="15dp"
         app:cardBackgroundColor="#F50C83E3"
-        app:cardCornerRadius="25dp">
+        app:cardCornerRadius="30dp">
 
         <TextView
             android:layout_width="match_parent"
@@ -72,8 +35,8 @@
             android:layout_marginTop="10dp"
             android:text="Categories"
             android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textSize="25dp"
+            android:textStyle="bold|italic" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"
@@ -95,14 +58,14 @@
             android:layout_marginTop="10dp"
             android:text="Généralistes"
             android:textColor="#F50C83E3"
-            android:textSize="20sp"
-            android:textStyle="bold"
+            android:textSize="25dp"
+            android:textStyle="bold|italic"
             android:id="@+id/generaliste_title"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/doctors_recycler"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="270dp"
             android:layout_marginTop="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -115,7 +78,7 @@
 
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
-        android:layout_height="84dp"
+        android:layout_height="wrap_content"
         app:mbn_backgroundBottomColor="#0099ff"
         app:mbn_circleColor="#ffff"
         app:mbn_countBackgroundColor="#ff6f00"

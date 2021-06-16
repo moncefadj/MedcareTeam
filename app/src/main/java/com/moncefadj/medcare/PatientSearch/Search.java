@@ -36,6 +36,7 @@ import com.moncefadj.medcare.DataClasses.DoctorData;
 import com.moncefadj.medcare.DataClasses.DoctorDataForHomePatient;
 import com.moncefadj.medcare.DataClasses.DoctorsDatabase;
 import com.moncefadj.medcare.DataClasses.SpecialtiesData;
+import com.moncefadj.medcare.HelperClasses.adapter;
 import com.moncefadj.medcare.HelperClasses.doctorsAdapter;
 import com.moncefadj.medcare.Medicaments.liste_medicaments;
 import com.moncefadj.medcare.Patient.PatientHome;
@@ -49,10 +50,10 @@ public class Search extends AppCompatActivity {
     MeowBottomNavigation bottomNavigation;
     Toast toast;
     String name;
-    EditText searchbar;
+    SearchView searchbar;
     DoctorsDatabase docdata;
 RecyclerView recyclerView;
-    doctorsAdapter docAdapter;
+   adapter docAdapter;
     ArrayList<DoctorDataForHomePatient> list ,doclist ;
     ArrayList<SpecialtiesData> specialtiesData;
     SpecialitiesAdapter specialitiesAdapter;
@@ -63,7 +64,7 @@ RecyclerView recyclerView;
         recyclerView = (RecyclerView) findViewById(R.id.doctors_recycler);
 
         //show doctors
-        docAdapter = new doctorsAdapter(this , list);
+        docAdapter = new adapter(this );
         recyclerView.setAdapter(docAdapter);
         docdata = new DoctorsDatabase();
         list=new ArrayList<>();
@@ -90,31 +91,18 @@ RecyclerView recyclerView;
 // mListeView.setAdapter(mAdapter);
 // msearch.setOnQueryTextListener((SearchView.OnQueryTextListener) this);
 searchbar=findViewById(R.id.search_bar);
-       searchbar.addTextChangedListener(new TextWatcher() {
-    @Override
-    public void beforeTextChanged(CharSequence s, int i, int i1, int i2) {
+      searchbar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+          @Override
+          public boolean onQueryTextSubmit(String s) {
+              return false;
+          }
 
-    }
-
-    @Override
-    public void onTextChanged(CharSequence s, int i, int i1, int i2) {
-
-    }
-
-    @Override
-    public void afterTextChanged(Editable editable) {
-filter(editable.toString());
-    }
-           private void filter(String text) {
-        ArrayList<DoctorDataForHomePatient> filterlist=new ArrayList<DoctorDataForHomePatient>();
-        for(DoctorDataForHomePatient a : list){
-            if (a.getName().contains(text)){
-                filterlist.add(a);
-        }
-        docAdapter.filterlist(filterlist);
-           }
-    }
-       });
+          @Override
+          public boolean onQueryTextChange(String s) {
+              docAdapter.getFilter().filter(s);
+              return false;
+          }
+      });
         bottomNavigation = (MeowBottomNavigation)
 
                 findViewById(R.id.bottom_navigation);
@@ -168,35 +156,26 @@ filter(editable.toString());
             }
         });
     }
-    public boolean doctorexist(DoctorDataForHomePatient doctor ){
-        boolean exist = false;
-        int i = 0;
-        while ( ( i< doclist.size() )&& (!exist)){
-            if(list.get(i).getId() == doctor.getId()){
-                exist = true;
-            }
-            else {
-                i++;
-            }
-        }
-        return exist;
-
-    }
-
-
     private void loadDocData() {
         docdata.get().addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
+                ArrayList<DoctorDataForHomePatient> othDoctors = new ArrayList<>();
+
                 for (DataSnapshot data : snapshot.getChildren()){
 
+
                     DoctorDataForHomePatient doctors = data.getValue(DoctorDataForHomePatient.class);
-                    if (!doctorexist(doctors)) {
-                        doclist.add(doctors);
-                    }
+
+
+                        othDoctors.add(doctors);
+
+
 
                 }
+
+                docAdapter.setItems(othDoctors);
 
                 docAdapter.notifyDataSetChanged();
             }
@@ -207,5 +186,4 @@ filter(editable.toString());
             }
         });
     }
-
 }

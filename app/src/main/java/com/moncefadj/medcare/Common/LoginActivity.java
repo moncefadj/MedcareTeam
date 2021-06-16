@@ -164,7 +164,7 @@ public class LoginActivity extends AppCompatActivity {
                 patients.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-<<<<<<< HEAD
+
                         if (snapshot.hasChild(currentUid)) {  // user is a patient
                             Intent intent = new Intent(LoginActivity.this, DoctorDashboard.class);
                             startActivity(intent);
@@ -173,24 +173,25 @@ public class LoginActivity extends AppCompatActivity {
                             Intent intent = new Intent(LoginActivity.this, PatientHome.class);
                             startActivity(intent);
                             finish();
-=======
-                        if (snapshot.exists()) {
-                            Boolean isPatient = false;
-                            for (DataSnapshot user : snapshot.getChildren()) {
-                                String email = user.child("email").getValue(String.class);
-                                if (email.equals(emailTxt)) {  // the user exist in Patient
-                                    isPatient = true;
-                                    Intent intent = new Intent(LoginActivity.this,PatientHome.class);
+
+                            if (snapshot.exists()) {
+                                Boolean isPatient = false;
+                                for (DataSnapshot user : snapshot.getChildren()) {
+                                    String email = user.child("email").getValue(String.class);
+                                    if (email.equals(emailTxt)) {  // the user exist in Patient
+                                        isPatient = true;
+                                        intent = new Intent(LoginActivity.this, PatientHome.class);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+                                }
+                                if (!isPatient) {
+                                    intent = new Intent(LoginActivity.this, DoctorDashboard.class);
                                     startActivity(intent);
                                     finish();
                                 }
+
                             }
-                            if (!isPatient) {
-                                Intent intent = new Intent(LoginActivity.this, DoctorDashboard.class);
-                                startActivity(intent);
-                                finish();
-                            }
->>>>>>> 67f80cd03e148eb7e76e48df64d3c1d387bc5e86
                         }
                     }
                     @Override

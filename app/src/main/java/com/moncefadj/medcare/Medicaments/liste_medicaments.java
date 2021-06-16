@@ -63,10 +63,7 @@ public class liste_medicaments extends AppCompatActivity {
         dbreference = database.getReference().child("Users").child("Patients").child(uidPatient).child("Medicaments");
         list = new ArrayList<medDataDb>();
         retreiveData();
-        if (list.size() != 0){
-            title_liste.setText("");
 
-        }
 
 
 
@@ -78,13 +75,7 @@ public class liste_medicaments extends AppCompatActivity {
         ajouter_med = (FloatingActionButton) findViewById(R.id.add_med);
         title_liste = (TextView) findViewById(R.id.titie_liste);
 
-        ajouter_med.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openajouterMed();
-            }
-        });
-        // data base
+
 
         //-------------------------------------------------------------------------------------------------------------------*/
         ajouter_med.setOnClickListener(new View.OnClickListener() {
@@ -125,6 +116,12 @@ public class liste_medicaments extends AppCompatActivity {
                             Log.i("test ", med.getNomMed());
                         }
 
+                    }
+                    if (list.size() != 0 ){
+                        title_liste.setText("");
+                    }
+                    else {
+                        title_liste.setText("ajouter vos medicaments");
                     }
 
                     adapter.notifyDataSetChanged();

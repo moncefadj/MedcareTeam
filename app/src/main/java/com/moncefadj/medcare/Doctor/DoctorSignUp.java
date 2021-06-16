@@ -134,9 +134,9 @@ public class DoctorSignUp extends AppCompatActivity {
         map.put("key", key);
         map.put("specialty", speciality);
         map.put("fullSpecialty", speciality);
-        map.put("address", "Labita Esi Sba bloc A");
+        map.put("address", "Votre Adresse");
         map.put("rate", "4.6");
-        map.put("desc", "description du docteur");
+        map.put("desc", "");
         map.put("phone", phone);
         map.put("profileImg", "");
 

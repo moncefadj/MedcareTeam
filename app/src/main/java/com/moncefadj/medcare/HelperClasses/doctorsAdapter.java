@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,13 +24,20 @@ public class doctorsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     private Context context;
 
-    ArrayList<DoctorDataForHomePatient> DoctorsList ;
+    ArrayList<DoctorDataForHomePatient> DoctorsList = new ArrayList<>();
 
-    public doctorsAdapter(Context context , ArrayList<DoctorDataForHomePatient> DoctorsList) {
+    public doctorsAdapter(Context context, ArrayList<DoctorDataForHomePatient> doctorsList) {
         this.context = context;
-        this.DoctorsList = DoctorsList;
+        DoctorsList = doctorsList;
     }
 
+    public doctorsAdapter(Context context) {
+        this.context = context;
+    }
+
+    public void setItems(ArrayList<DoctorDataForHomePatient> doctors) {
+        DoctorsList.addAll(doctors);
+    }
 
     @NonNull
     @Override
@@ -37,11 +46,8 @@ public class doctorsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         View view = LayoutInflater.from(context).inflate(R.layout.activity_doctors_adapter, parent, false);
         return new doctorsViewHolder(view);
     }
-public void filterlist(ArrayList<DoctorDataForHomePatient> filterlist) {
-            DoctorsList = filterlist;
-            notifyDataSetChanged();
 
-}
+
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
@@ -49,13 +55,9 @@ public void filterlist(ArrayList<DoctorDataForHomePatient> filterlist) {
         DoctorDataForHomePatient doctors = DoctorsList.get(position);
         viewHolder.name.setText(doctors.getName());
         viewHolder.email.setText(doctors.getEmail());
+        viewHolder.speciality.setText(doctors.getSpecialty());
 
 //pour recherche
-        holder.itemView.setOnClickListener(view -> {
-            Intent intent=new Intent(context, DoctorProfile.class);
-            intent.putExtra("Name",doctors.getName());
-            context.startActivity(intent);
-        });
     }
 
     @Override
@@ -63,4 +65,7 @@ public void filterlist(ArrayList<DoctorDataForHomePatient> filterlist) {
         return DoctorsList.size();
     }
 
+    public ArrayList<DoctorDataForHomePatient> listage(){
+        return  DoctorsList;
+    }
 }

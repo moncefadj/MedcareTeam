@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -18,6 +19,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.moncefadj.medcare.Doctor.DoctorDashboard;
 import com.moncefadj.medcare.Doctor.DoctorProfile;
@@ -74,27 +76,19 @@ public class SplashScreen extends AppCompatActivity {
                     if (user != null) {
                         // search if current user is patient or doctor
                         String currentUid = user.getUid();
-                        DatabaseReference patientsRef = FirebaseDatabase.getInstance().getReference().child("Users").child("Patients");
-                        patientsRef.addValueEventListener(new ValueEventListener() {
+                        DatabaseReference doctors = FirebaseDatabase.getInstance().getReference().child("Users").child("Doctors");
+                        doctors.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                boolean isPatient = false;
-                                if (snapshot.exists()) {
-                                    for (DataSnapshot patient : snapshot.getChildren()) {
-                                        String patientUid = patient.child("id").getValue().toString();
-                                        if (patientUid.equals(currentUid)) { // current user is a Patient
-                                            isPatient = true;
-                                            Intent intent = new Intent(SplashScreen.this,underbar.class);
-                                            startActivity(intent);
-                                            finish();
-                                        }
+                                if (snapshot.hasChild(currentUid)) {  // user is a patient
+                                    Intent intent = new Intent(SplashScreen.this, DoctorDashboard.class);
+                                    startActivity(intent);
+                                    finish();
+                                } else {
+                                    Intent intent = new Intent(SplashScreen.this, PatientHome.class);
+                                    startActivity(intent);
+                                    finish();
                                     }
-                                    if (!isPatient) { // current user is a Doctor
-                                        Intent intent = new Intent(SplashScreen.this, DoctorDashboard.class);
-                                        startActivity(intent);
-                                        finish();
-                                    }
-                                }
                             }
 
                             @Override
@@ -108,8 +102,6 @@ public class SplashScreen extends AppCompatActivity {
                         finish();
                     }
                 }
-
-
             }
         },SPLASH_TIMER);
     }

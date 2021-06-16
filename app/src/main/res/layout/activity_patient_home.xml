@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity=""
+    android:id="@+id/wrapper"
     android:paddingRight="0dp"
     android:paddingLeft="0dp"
     android:background="@color/white"
@@ -47,6 +48,7 @@
 
 
     <LinearLayout
+        android:id="@+id/linear_doctors"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">

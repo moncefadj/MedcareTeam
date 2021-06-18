@@ -22,7 +22,7 @@ import java.util.Collection;
 
 public class adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements Filterable  {
     ArrayList<DoctorDataForHomePatient> Doctors=new ArrayList<>();
-    ArrayList<DoctorDataForHomePatient> Doc=new ArrayList<>(Doctors);
+
     Context context;
 
     public adapter(Context context) {
@@ -67,19 +67,21 @@ public class adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> imple
     Filter filter=new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence charSequence) {
-
-            return null;
-
-        }
-        @Override
-        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
             ArrayList<DoctorDataForHomePatient> liste = new ArrayList<>();
             for (DoctorDataForHomePatient item : Doctors) {
                 if (item.getName().contains(charSequence)) {
                     liste.add(item);
                 }
             }
+FilterResults filterResults=new FilterResults();
             filterResults.values = liste;
+            return filterResults;
+
+        }
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+            Doctors.clear();
+
             Doctors.addAll((Collection<? extends DoctorDataForHomePatient>) filterResults.values);
         }
 

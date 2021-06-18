@@ -87,6 +87,6 @@
         <item> doctor description</item>
         <item> doctor description</item>
     </string-array>
-
+    <string name="search">Search </string>
 
 </resources>

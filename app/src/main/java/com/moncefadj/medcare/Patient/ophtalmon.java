@@ -55,7 +55,7 @@ public class ophtalmon extends AppCompatActivity {
 
 
                     DoctorDataForHomePatient doctors = data.getValue(DoctorDataForHomePatient.class);
-                    if(doctors.getSpecialty().matches("Hépatogastroentérologie")) {
+                    if(doctors.getSpecialty().matches("Ophtalmologie")) {
                         othDoctors.add(doctors);
                     }
                 }

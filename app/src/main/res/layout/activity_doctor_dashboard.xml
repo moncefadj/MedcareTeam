@@ -78,7 +78,7 @@
         android:id="@+id/days_input_dashboard"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:hint="Selectionner le jour"
+        android:hint="Selectionner un jour"
         app:hintTextColor="@android:color/darker_gray"
         app:startIconDrawable="@drawable/ic_calendar"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
@@ -99,16 +99,22 @@
             android:inputType="none"/>
     </com.google.android.material.textfield.TextInputLayout>
 
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/days_input_dashboard"
+        android:layout_marginTop="5dp"
+        android:id="@+id/swiper">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/patients_recycler"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/days_input_dashboard">
-    </androidx.recyclerview.widget.RecyclerView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/patients_recycler"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+        </androidx.recyclerview.widget.RecyclerView>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

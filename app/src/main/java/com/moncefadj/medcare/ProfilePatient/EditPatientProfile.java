@@ -56,7 +56,6 @@ public class EditPatientProfile extends AppCompatActivity {
         mdayinput = (EditText) findViewById(R.id.day);
         mmonthinput = (EditText) findViewById(R.id.month);
         myearinput = (EditText) findViewById(R.id.year);
-        maddressseinput = (EditText) findViewById(R.id.iadresse);
         mnuminput = (EditText) findViewById(R.id.inumero);
         memailinput = (EditText) findViewById(R.id.iemail);
         mmotdepassinput = (EditText) findViewById(R.id.imotdepass);

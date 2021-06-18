@@ -25,7 +25,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 import com.moncefadj.medcare.DataClasses.DoctorDataForHomePatient;
 import com.moncefadj.medcare.DataClasses.DoctorsDatabase;
-import com.moncefadj.medcare.DataClasses.PatientData;
 import com.moncefadj.medcare.Doctor.EditDoctorProfile;
 import com.moncefadj.medcare.HelperClasses.doctorsAdapter;
 import com.moncefadj.medcare.Medicaments.liste_medicaments;
@@ -45,9 +44,8 @@ public class PatientHome extends AppCompatActivity {
     Toast toast;
     //vertical view
     RecyclerView doctorsRecycler;
-    ArrayList<DoctorDataForHomePatient> doclist;
     doctorsAdapter docAdapter;
-    DoctorsDatabase docdata;
+     DoctorsDatabase docdata;
     boolean enableaniimation;
 
 
@@ -62,7 +60,6 @@ public class PatientHome extends AppCompatActivity {
         bottomNavigation.add(new MeowBottomNavigation.Model(2, R.drawable.ic_med));
         bottomNavigation.add(new MeowBottomNavigation.Model(3, R.drawable.ic_baseline_search_24));
         bottomNavigation.add(new MeowBottomNavigation.Model(4, R.drawable.ic_profil));
-        doclist = new ArrayList<DoctorDataForHomePatient>();
         bottomNavigation.setOnShowListener(new MeowBottomNavigation.ShowListener() {
             @Override
 
@@ -111,7 +108,7 @@ public class PatientHome extends AppCompatActivity {
         doctorsRecycler.setHasFixedSize(true);
         LinearLayoutManager manager = new LinearLayoutManager(this);
         doctorsRecycler.setLayoutManager(manager);
-        docAdapter = new doctorsAdapter(this, doclist);
+        docAdapter = new doctorsAdapter(this);
         doctorsRecycler.setAdapter(docAdapter);
         docdata = new DoctorsDatabase();
 
@@ -124,8 +121,8 @@ public class PatientHome extends AppCompatActivity {
         recyclerView=findViewById(R.id.recycler_view);
 
         //creat integer array
-        Integer[] categorieLogo={R.drawable.eye1,R.drawable.heart3
-                ,R.drawable.lung2,R.drawable.tooth};
+        Integer[] categorieLogo={R.drawable.eye_ic_use,R.drawable.heart_ic_use
+                ,R.drawable.lung_ic,R.drawable.tooth};
 
         //creat string array
         String[] categorieName={"Ophtalmomogie","Cardiologie"
@@ -142,7 +139,6 @@ public class PatientHome extends AppCompatActivity {
         //Design Horizontal lyout
         LinearLayoutManager layoutManager=new LinearLayoutManager(
                 PatientHome.this,LinearLayoutManager.HORIZONTAL, false
-
         );
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -158,7 +154,7 @@ public class PatientHome extends AppCompatActivity {
         String mydescription[];
 
         public Myadapter(Context c, String[] titles, int[] imgs, String[] description) {
-            super(c, R.layout.verow, R.id.text1, titles);
+            super(c, R.layout.verow, R.id.medcin, titles);
             this.context = c;
             this.imgs = imgs;
             this.mydescription = description;
@@ -176,7 +172,7 @@ public class PatientHome extends AppCompatActivity {
             ImageView images;
             images =  verow.findViewById(R.id.icon);
             TextView mytitle;
-            mytitle= verow.findViewById(R.id.text1);
+            mytitle= verow.findViewById(R.id.medcin);
             TextView mydescription;
             mydescription=  verow.findViewById(R.id.text2);
             images.setImageResource(imgs[position]);
@@ -186,36 +182,24 @@ public class PatientHome extends AppCompatActivity {
 
 
     //showing doctors
-    public boolean doctorexist(DoctorDataForHomePatient doctor ){
-        boolean exist = false;
-        int i = 0;
-        while ( ( i< doclist.size() )&& (!exist)){
-            if(doclist.get(i).getId() == doctor.getId()){
-                exist = true;
-            }
-            else {
-                i++;
-            }
-        }
-        return exist;
 
-    }
-
-
-    private void loadDocData() {
+   private  void loadDocData() {
         docdata.get().addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                for (DataSnapshot data : snapshot.getChildren()){
+                ArrayList<DoctorDataForHomePatient> othDoctors = new ArrayList<>();
 
-                    DoctorDataForHomePatient doctors = data.getValue(DoctorDataForHomePatient.class);
-                    if (!doctorexist(doctors)) {
-                        doclist.add(doctors);
-                    }
+                for (DataSnapshot data : snapshot.getChildren()){
+                    
+
+                    DoctorDataForHomePatient doctors;
+                    doctors = data.getValue(DoctorDataForHomePatient.class);
+                    othDoctors.add(doctors);
 
                 }
 
+                docAdapter.setItems(othDoctors);
                 docAdapter.notifyDataSetChanged();
             }
 

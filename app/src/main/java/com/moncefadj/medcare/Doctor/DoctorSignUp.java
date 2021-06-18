@@ -144,7 +144,7 @@ public class DoctorSignUp extends AppCompatActivity {
         doctorRef.updateChildren(map).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-                Intent intent = new Intent(DoctorSignUp.this, DoctorProfile.class);
+                Intent intent = new Intent(DoctorSignUp.this, DoctorDashboard.class);
                 startActivity(intent);
                 finish();
             }

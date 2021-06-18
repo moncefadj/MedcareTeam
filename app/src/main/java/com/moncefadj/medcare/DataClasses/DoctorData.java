@@ -82,10 +82,6 @@ public class DoctorData {
         this.phone = phone;
     }
 
-    public String getSpecialty() {
-        return specialty;
-    }
-
     public void setSpecialty(String specialty) {
         this.specialty = specialty;
     }

@@ -173,7 +173,7 @@ public class PatientProfile extends AppCompatActivity {
                 if (userprofile !=null) {
                     String fullname = userprofile.getName();
                     String email= userprofile.getEmail();
-                    String numero=String.valueOf(userprofile.getNum());
+                    String numero=userprofile.getNum();
 
 
                     fullnametextview.setText(fullname);
@@ -225,7 +225,8 @@ public class PatientProfile extends AppCompatActivity {
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent , IMAGE_REQUEST);
     }
-//                                                                    pblm
+
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -249,8 +250,7 @@ public class PatientProfile extends AppCompatActivity {
 
     private void uploadImage() {
         final ProgressDialog pd = new ProgressDialog(this);
-        String k =imageUri.toString();
-        pd.setMessage(k);
+        pd.setMessage("image is uploading");
         pd.show();
 
         if (imageUri != null){

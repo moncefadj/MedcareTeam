@@ -4,7 +4,8 @@ public class SpecialtiesData {
     Integer categoryLogo;
     String  categoryName;
 
-    public SpecialtiesData(Integer categoryLogo, String categoryName) {
+
+    public SpecialtiesData(Integer categoryLogo, String categoryName ) {
         this.categoryLogo = categoryLogo;
         this.categoryName = categoryName;
     }

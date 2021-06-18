@@ -1,77 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
-    tools:context=".Doctor.DoctorDashboard">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Doctor.DoctorProfile">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+    <View
+        android:id="@+id/view_top"
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
+        android:background="@color/colorPrimary"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <ImageButton
+        android:id="@+id/CompteMedecin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:tint="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@null"
+        app:srcCompat="@drawable/ic_baseline_person_24"
+        tools:ignore="VectorDrawableCompat" />
+
+    <TextView
+        android:id="@+id/AccueilMedecin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:layout_marginStart="16dp"
+        android:text="Accueil"
+        android:fontFamily="@font/allerta"
+        android:textColor="#ffff"
+        android:textSize="24sp"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+    </TextView>
+
+    <TextView
+        android:id="@+id/Description1AccueilMedecin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:layout_marginStart="16dp"
+        android:text="Patients à recevoir aujourd'hui"
+        android:fontFamily="@font/allerta"
+        android:textColor="#ffff"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@id/AccueilMedecin"
+        app:layout_constraintLeft_toLeftOf="parent">
+    </TextView>
+
+    <TextView
+        android:id="@+id/Description2AccueilMedecin"
+        app:layout_constraintBottom_toBottomOf="@id/view_top"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:fontFamily="@font/allerta"
+        android:text="Vous trouvez ci-dessous la liste des patients que vous allez recevoir aujourd'hui à l'heure choisie."
+        android:textColor="#ffff"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@id/Description1AccueilMedecin">
+    </TextView>
 
 
-        <TextView
-            android:id="@+id/AccueilMedecin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="110dp"
-            android:layout_marginStart="16dp"
-            android:text="Accueil"
-            android:textColor="#ffff"
-            android:textSize="24sp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-        </TextView>
 
-        <TextView
-            android:id="@+id/Description1AccueilMedecin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:layout_marginStart="16dp"
-            android:text="Patients à recevoir aujourd'hui"
-            android:textColor="#ffff"
-            android:textSize="18sp"
-            app:layout_constraintTop_toBottomOf="@id/AccueilMedecin"
-            app:layout_constraintLeft_toLeftOf="parent">
-        </TextView>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/days_input_dashboard"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:hint="Selectionner le jour"
+        app:hintTextColor="@android:color/darker_gray"
+        app:startIconDrawable="@drawable/ic_calendar"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        app:startIconTint="@color/colorPrimary"
+        app:boxStrokeWidthFocused="2dp"
+        app:boxStrokeColor="@color/colorPrimary"
+        app:layout_constraintTop_toBottomOf="@id/view_top"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="10dp"
+        android:layout_centerVertical="true">
 
-        <TextView
-            android:id="@+id/Description2AccueilMedecin"
+        <AutoCompleteTextView
+            android:id="@+id/auto_complete_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="16dp"
-            android:text="Vous trouvez ci-dessous la liste des patients que vous allez recevoir aujourd'hui à l'heure choisie."
-            android:textColor="#ffff"
-            android:textSize="16sp"
-            app:layout_constraintTop_toBottomOf="@id/Description1AccueilMedecin">
-        </TextView>
-
-
-
-        <ImageButton
-            android:id="@+id/CompteMedecin"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="24dp"
-            android:tint="@android:color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:background="@null"
-            app:srcCompat="@drawable/ic_baseline_person_outline_24"
-            tools:ignore="VectorDrawableCompat" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:fontFamily="@font/allerta"
+            android:inputType="none"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -82,6 +108,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/days_input_dashboard">
+    </androidx.recyclerview.widget.RecyclerView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

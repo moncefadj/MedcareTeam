@@ -6,14 +6,14 @@
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
     app:cardCornerRadius="8dp"
-    app:cardElevation="8dp"
+    app:cardElevation="20dp"
   >
 
     <LinearLayout
         android:id="@+id/entreNom"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
         android:background="@drawable/list_item_back"
+        android:layout_height="match_parent"
         android:orientation="horizontal">
 
         <ImageView
@@ -41,7 +41,7 @@
                     android:text="nom de medicament
 "
                     android:textColor="@color/black"
-                    android:textSize="18sp"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <ImageButton
@@ -74,7 +74,9 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="temps"
-                    android:textColor="@color/blue_app" />
+                    android:textColor="@color/blue_app"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/timeitem2"
@@ -82,7 +84,9 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="temps2"
-                    android:textColor="@color/blue_app" />
+                    android:textColor="@color/blue_app"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/timeitm3"
@@ -90,7 +94,9 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="temps3"
-                    android:textColor="@color/blue_app" />
+                    android:textColor="@color/blue_app"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
 
 
             </LinearLayout>

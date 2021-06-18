@@ -76,10 +76,11 @@ public class SplashScreen extends AppCompatActivity {
                     if (user != null) {
                         // search if current user is patient or doctor
                         String currentUid = user.getUid();
-                        DatabaseReference doctors = FirebaseDatabase.getInstance().getReference().child("Users").child("Doctors");
-                        doctors.addListenerForSingleValueEvent(new ValueEventListener() {
+                        DatabaseReference patients = FirebaseDatabase.getInstance().getReference().child("Users").child("Doctors");
+                        patients.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
+
                                 if (snapshot.hasChild(currentUid)) {  // user is a patient
                                     Intent intent = new Intent(SplashScreen.this, DoctorDashboard.class);
                                     startActivity(intent);
@@ -88,20 +89,40 @@ public class SplashScreen extends AppCompatActivity {
                                     Intent intent = new Intent(SplashScreen.this, PatientHome.class);
                                     startActivity(intent);
                                     finish();
-                                    }
-                            }
 
+                                boolean isPatient = false;
+                                if (snapshot.exists()) {
+                                    for (DataSnapshot patient : snapshot.getChildren()) {
+                                        String patientUid = patient.child("id").getValue().toString();
+                                        if (patientUid.equals(currentUid)) { // current user is a Patient
+                                            isPatient = true;
+                                            intent = new Intent(SplashScreen.this, underbar.class);
+                                            startActivity(intent);
+                                            finish();
+                                        }
+                                    }
+                                    if (!isPatient) { // current user is a Doctor
+                                        intent = new Intent(SplashScreen.this, DoctorDashboard.class);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+                                }
+                                }
+                            }
                             @Override
                             public void onCancelled(@NonNull DatabaseError error) {
 
                             }
                         });
+
                     } else {
                         Intent intent = new Intent(SplashScreen.this, LoginActivity.class);
                         startActivity(intent);
                         finish();
                     }
                 }
+
+
             }
         },SPLASH_TIMER);
     }

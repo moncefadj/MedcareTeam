@@ -50,7 +50,7 @@ public class Search extends AppCompatActivity {
     MeowBottomNavigation bottomNavigation;
     Toast toast;
     String name;
-    SearchView searchbar;
+SearchView searchView;
     DoctorsDatabase docdata;
 RecyclerView recyclerView;
    adapter docAdapter;
@@ -61,15 +61,12 @@ RecyclerView recyclerView;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
-        recyclerView = (RecyclerView) findViewById(R.id.doctors_recycler);
+        recyclerView = (RecyclerView) findViewById(R.id.doctors);
 
         //show doctors
-        docAdapter = new adapter(this );
+        docAdapter = new adapter(this);
         recyclerView.setAdapter(docAdapter);
         docdata = new DoctorsDatabase();
-        list=new ArrayList<>();
-        doclist = new ArrayList<DoctorDataForHomePatient>();
-
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         loadDocData();
@@ -90,19 +87,19 @@ RecyclerView recyclerView;
         //ArrayAdapter<String> mAdapter=new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,doctors);
 // mListeView.setAdapter(mAdapter);
 // msearch.setOnQueryTextListener((SearchView.OnQueryTextListener) this);
-searchbar=findViewById(R.id.search_bar);
-      searchbar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-          @Override
-          public boolean onQueryTextSubmit(String s) {
-              return false;
-          }
+searchView=findViewById(R.id.search_d);
+       searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+           @Override
+           public boolean onQueryTextSubmit(String s) {
+               return false;
+           }
 
-          @Override
-          public boolean onQueryTextChange(String s) {
-              docAdapter.getFilter().filter(s);
-              return false;
-          }
-      });
+           @Override
+           public boolean onQueryTextChange(String s) {
+               docAdapter.getFilter().filter(s);
+               return false;
+           }
+       });
         bottomNavigation = (MeowBottomNavigation)
 
                 findViewById(R.id.bottom_navigation);
@@ -156,6 +153,7 @@ searchbar=findViewById(R.id.search_bar);
             }
         });
     }
+
     private void loadDocData() {
         docdata.get().addValueEventListener(new ValueEventListener() {
             @Override
@@ -168,15 +166,11 @@ searchbar=findViewById(R.id.search_bar);
 
                     DoctorDataForHomePatient doctors = data.getValue(DoctorDataForHomePatient.class);
 
-
                         othDoctors.add(doctors);
-
-
 
                 }
 
                 docAdapter.setItems(othDoctors);
-
                 docAdapter.notifyDataSetChanged();
             }
 

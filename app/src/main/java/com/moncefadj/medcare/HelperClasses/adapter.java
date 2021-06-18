@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.moncefadj.medcare.DataClasses.DoctorDataForHomePatient;
 import com.moncefadj.medcare.Doctor.DoctorProfile;
+import com.moncefadj.medcare.Patient.DoctorProfileFromPatientHome;
 import com.moncefadj.medcare.R;
 
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ import java.util.Collection;
 
 public class adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements Filterable  {
     ArrayList<DoctorDataForHomePatient> Doctors=new ArrayList<>();
-    ArrayList<DoctorDataForHomePatient> Doc=new ArrayList<>(Doctors);
+
     Context context;
 
     public adapter(Context context) {
@@ -46,7 +47,7 @@ public class adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> imple
         viewHolder.specdoc.setText(doctors.getSpecialty());
 
         holder.itemView.setOnClickListener(view -> {
-            Intent intent = new Intent(context, DoctorProfile.class);
+            Intent intent = new Intent(context, DoctorProfileFromPatientHome.class);
             intent.putExtra("Name", doctors.getName());
             context.startActivity(intent);
         });
@@ -66,19 +67,21 @@ public class adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> imple
     Filter filter=new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence charSequence) {
-
-            return null;
-
-        }
-        @Override
-        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
             ArrayList<DoctorDataForHomePatient> liste = new ArrayList<>();
             for (DoctorDataForHomePatient item : Doctors) {
                 if (item.getName().contains(charSequence)) {
                     liste.add(item);
                 }
             }
+FilterResults filterResults=new FilterResults();
             filterResults.values = liste;
+            return filterResults;
+
+        }
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+            Doctors.clear();
+
             Doctors.addAll((Collection<? extends DoctorDataForHomePatient>) filterResults.values);
         }
 

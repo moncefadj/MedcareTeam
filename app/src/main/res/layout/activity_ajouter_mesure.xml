@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:paddingLeft="80dp"
+    android:paddingTop="80dp"
+    android:theme="@style/AppCompatDialogStyle"
+    tools:context=".Medicaments.ajouterMed">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="211dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-black"
+            android:gravity="center_horizontal"
+            android:padding="20dp"
+            android:text="ajouter une mesure "
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/blue_app"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/somewords"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="sans-serif-black"
+            android:gravity="center_horizontal"
+            android:padding="20dp"
+            android:text="l'enregistrment de vos mesures à temps facilitera votre suivi par votre medecin   "
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/cloud"
+            android:textSize="18sp"
+             />
+    </LinearLayout>
+
+
+    <EditText
+        android:id="@+id/nomMesure"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/edittext_border"
+        android:ems="10"
+        android:hint="nom du mesure "
+        android:inputType="textPersonName"
+        android:padding="10dp"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+
+    <EditText
+        android:id="@+id/valeur"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/edittext_border"
+        android:ems="10"
+        android:hint="la valeur trouver "
+        android:inputType="numberDecimal"
+        android:padding="10dp"
+        android:textColor="@color/black" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/ic_wave__27_">
+
+        <Button
+            android:id="@+id/ajouterAuMesureList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
+            android:layout_marginRight="32dp"
+            android:layout_marginBottom="4dp"
+            android:background="@drawable/button_border"
+            android:text="sauvgarder"
+            android:textColor="#000b76"
+            app:backgroundTint="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

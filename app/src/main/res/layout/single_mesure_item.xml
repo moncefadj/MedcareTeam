@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="20dp"
+    >
+
+    <LinearLayout
+        android:id="@+id/entreNom"
+        android:layout_width="match_parent"
+        android:background="@drawable/list_item_back"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/mesureimg"
+            android:layout_width="83dp"
+            android:layout_height="81dp"
+            android:layout_margin="10dp"
+            app:srcCompat="@drawable/heartbeat" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/mesurename"
+                    android:layout_width="222dp"
+                    android:layout_height="match_parent"
+                    android:text="nom du mesure"
+
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <ImageButton
+                    android:id="@+id/deletemesure"
+                    android:layout_width="60dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/close_sign"
+                    tools:ignore="VectorDrawableCompat" />
+
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/mesurevaleur"
+                android:layout_width="match_parent"
+                android:layout_height="21dp"
+                android:layout_weight="1"
+                android:text="valeur"
+                android:textSize="24sp" />
+
+
+
+                <TextView
+                    android:id="@+id/timemesure"
+                    android:layout_width="match_parent"
+                    android:layout_height="23dp"
+                    android:layout_weight="1"
+                    android:text="temps"
+                    android:textColor="@color/blue_app"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

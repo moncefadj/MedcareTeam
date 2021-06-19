@@ -6,25 +6,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ProfilePatient.PatientProfile"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/rose">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="183dp"
+        android:padding="20dp"
 
-        <View
-            android:id="@+id/view_top"
-            android:layout_width="match_parent"
-            android:layout_height="203dp"
-            android:background="#0099ff"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        >
+
         <ImageView
             android:id="@+id/iback"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            app:srcCompat="@drawable/ic_baseline_arrow_back_ios" />
+            android:src="@drawable/ic_baseline_arrow_back_ios" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/c"
@@ -36,21 +32,13 @@
             android:textColor="@color/white"
             android:textSize="30dp" />
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/edit_profile_doc_image"
-            android:layout_width="147dp"
-            android:layout_height="118dp"
-            android:layout_alignParentEnd="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="112dp"
-            android:layout_marginEnd="-4dp"
-            android:src="@drawable/profill"
-            app:civ_border_color="@color/colorPrimaryDark"
-            app:civ_border_width="3dp"
-            app:layout_constraintHorizontal_bias="0.557"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/a"
+            android:layout_width="wrap_content"
+            android:layout_height="61dp"
+            android:layout_marginTop="60dp"
+            android:src="@drawable/ic_baseline_personw"
+            app:shapeAppearanceOverlay="@style/cicular" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/k"
@@ -60,6 +48,7 @@
             android:layout_below="@id/c"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/a"
             android:hint="nom"
             android:textColorHint="@color/white"
             app:counterEnabled="true"
@@ -74,6 +63,7 @@
                 android:id="@+id/inom"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
+                android:drawableLeft="@drawable/ic_baseline_personw"
                 android:drawablePadding="10dp"
                 android:textColor="@color/white" />
 
@@ -85,6 +75,7 @@
             android:layout_height="50dp"
             android:layout_below="@id/k"
             android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/a"
             android:hint="mot de passe"
             android:textColorHint="@color/white"
             app:counterEnabled="true"
@@ -111,57 +102,75 @@
         android:layout_width="match_parent"
         android:layout_height="530dp"
         android:background="@drawable/patient_profile_bg"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingTop="20dp">
 
-
-        <DatePicker
-            android:id="@+id/date_picker"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:calendarViewShown="false"
-            android:datePickerMode="spinner"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-            />
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="63dp"
-            android:layout_marginTop="5dp"
-            android:hint="date de naissance"
-            android:paddingHorizontal="10dp"
-            app:counterEnabled="true"
-            app:counterMaxLength="10"
-            app:endIconMode="clear_text">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/idate"
-                android:layout_width="match_parent"
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_baseline_person_24"
-                android:drawablePadding="10dp"
-                android:maxLength="10" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="398dp"
-            android:layout_height="65dp"
-            android:layout_marginTop="5dp"
-            android:hint="l'adresse"
-            android:paddingHorizontal="10dp"
-            app:endIconMode="clear_text"
-            app:errorEnabled="true">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/iadresse"
-                android:layout_width="398dp"
+                android:layout_weight="0.3"
+                android:paddingLeft="10dp"
+                android:hint="Jour"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:endIconMode="clear_text"
+                app:endIconTint="@color/colorPrimary"
+                app:boxStrokeWidthFocused="2dp"
+                app:boxStrokeColor="@color/colorPrimary"
+                android:layout_marginRight="5dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/day"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/allerta"
+                    android:inputType="number"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_baseline_person_24"
-                android:drawablePadding="10dp" />
+                android:layout_weight="0.3"
+                android:hint="Mois"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:endIconMode="clear_text"
+                app:endIconTint="@color/colorPrimary"
+                app:boxStrokeWidthFocused="2dp"
+                app:boxStrokeColor="@color/colorPrimary"
+                android:layout_marginRight="5dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/month"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/allerta"
+                    android:inputType="number"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:paddingRight="10dp"
+                android:hint="Année"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:endIconMode="clear_text"
+                app:endIconTint="@color/colorPrimary"
+                app:boxStrokeWidthFocused="2dp"
+                app:boxStrokeColor="@color/colorPrimary">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/year"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/allerta"
+                    android:inputType="number"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
-        </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+
+
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -206,6 +215,7 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+
         <android.widget.Button
 
             android:id="@+id/button_confirm"
@@ -214,13 +224,12 @@
             android:layout_gravity="center"
             android:layout_marginTop="5dp"
             android:background="@drawable/backgraoudbuttob"
-            android:onClick="envoyer"
             android:text="valider"
             android:textColor="@color/rose"
-            tools:ignore="OnClick" />
+            />
+
 
 
     </LinearLayout>
 
 </LinearLayout>
-

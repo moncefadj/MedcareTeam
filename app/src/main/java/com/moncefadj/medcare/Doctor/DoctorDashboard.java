@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,6 +28,7 @@ import com.moncefadj.medcare.DataClasses.PatientsDatabase;
 import com.moncefadj.medcare.HelperClasses.PatientsAdapter;
 import com.moncefadj.medcare.R;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -45,6 +47,7 @@ public class DoctorDashboard extends AppCompatActivity {
     ArrayAdapter arrayAdapter;
     DatabaseReference doctorRef;
 
+    SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,14 +58,6 @@ public class DoctorDashboard extends AppCompatActivity {
         uidDoctor = FirebaseAuth.getInstance().getCurrentUser().getUid();
         doctorRef = FirebaseDatabase.getInstance().getReference("Users").child("Doctors").child(uidDoctor);
 
-        patientsList = new ArrayList<PatientData>();
-        patientsRecycler = findViewById(R.id.patients_recycler);
-        patientsRecycler.setHasFixedSize(true);
-        LinearLayoutManager manager = new LinearLayoutManager(this);
-        patientsRecycler.setLayoutManager(manager);
-        patientsAdapter = new PatientsAdapter(this, patientsList, uidDoctor);
-        patientsRecycler.setAdapter(patientsAdapter);
-
         //Acceder au profile du médecin
         docProfileBtn = findViewById(R.id.CompteMedecin);
         docProfileBtn.setOnClickListener(v -> {
@@ -71,8 +66,6 @@ public class DoctorDashboard extends AppCompatActivity {
             startActivity(intentLoadNewActivity);
 
         });
-
-
 
         daysAutoCompleteTxt();
         autoCompleteTextView.addTextChangedListener(new TextWatcher() {
@@ -85,6 +78,7 @@ public class DoctorDashboard extends AppCompatActivity {
 
                 String day = daysInput.getEditText().getText().toString();
                 daysInput.setError(null);
+                recycStuff(day);
                 patientsList.clear();
                 loadPatients(day);
 
@@ -93,6 +87,30 @@ public class DoctorDashboard extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable editable) {
 
+            }
+        });
+
+    }
+
+    private void recycStuff(String day) {
+
+        patientsList = new ArrayList<PatientData>();
+        patientsRecycler = findViewById(R.id.patients_recycler);
+        patientsRecycler.setHasFixedSize(true);
+        LinearLayoutManager manager = new LinearLayoutManager(this);
+        patientsRecycler.setLayoutManager(manager);
+        patientsAdapter = new PatientsAdapter(this, patientsList, uidDoctor, day);
+        patientsRecycler.setAdapter(patientsAdapter);
+
+        swipeRefreshLayout = findViewById(R.id.swiper);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+
+                patientsList.clear();
+                loadPatients(day);
+                patientsAdapter.notifyDataSetChanged();
+                swipeRefreshLayout.setRefreshing(false);
             }
         });
 

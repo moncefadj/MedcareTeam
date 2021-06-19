@@ -6,21 +6,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ProfilePatient.PatientProfile"
-    android:orientation="vertical"
-    android:background="@drawable/rose">
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="183dp"
-        android:padding="20dp"
+        android:layout_height="wrap_content">
 
-        >
-
+        <View
+            android:id="@+id/view_top"
+            android:layout_width="match_parent"
+            android:layout_height="203dp"
+            android:background="#0099ff"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
         <ImageView
             android:id="@+id/iback"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@drawable/ic_baseline_arrow_back_ios" />
+            app:srcCompat="@drawable/ic_baseline_arrow_back_ios" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/c"
@@ -32,13 +36,21 @@
             android:textColor="@color/white"
             android:textSize="30dp" />
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/a"
-            android:layout_width="wrap_content"
-            android:layout_height="61dp"
-            android:layout_marginTop="60dp"
-            android:src="@drawable/ic_baseline_person"
-            app:shapeAppearanceOverlay="@style/cicular" />
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/edit_profile_doc_image"
+            android:layout_width="147dp"
+            android:layout_height="118dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="112dp"
+            android:layout_marginEnd="-4dp"
+            android:src="@drawable/profill"
+            app:civ_border_color="@color/colorPrimaryDark"
+            app:civ_border_width="3dp"
+            app:layout_constraintHorizontal_bias="0.557"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/k"
@@ -48,7 +60,6 @@
             android:layout_below="@id/c"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
-            android:layout_toRightOf="@id/a"
             android:hint="nom"
             android:textColorHint="@color/white"
             app:counterEnabled="true"
@@ -74,7 +85,6 @@
             android:layout_height="50dp"
             android:layout_below="@id/k"
             android:layout_marginLeft="20dp"
-            android:layout_toRightOf="@id/a"
             android:hint="mot de passe"
             android:textColorHint="@color/white"
             app:counterEnabled="true"

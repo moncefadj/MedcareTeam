@@ -34,7 +34,7 @@
                 android:id="@+id/image_medecin"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:background="@drawable/ic_baseline_person_24"
+                android:background="@drawable/medcin"
                 android:contentDescription="TODO" />
 
             <TextView

@@ -32,7 +32,7 @@
             android:layout_alignParentEnd="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="40dp"
-            android:layout_marginEnd="259dp"
+            android:layout_marginEnd="278dp"
             android:src="@drawable/profill"
             app:civ_border_color="@color/colorPrimaryDark"
             app:civ_border_width="3dp"
@@ -254,7 +254,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="5dp"
-            android:background="@drawable/backgraoudbuttob"
+            android:background="@drawable/back"
             android:text="valider"
             android:textColor="@color/rose" />
 

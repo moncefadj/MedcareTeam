@@ -86,13 +86,7 @@ public class PatientProfile extends AppCompatActivity {
         });
 
 
-        back=(ImageView) findViewById(R.id.iback) ;
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+      
 
        /* Intent intent= getIntent();
         String message =intent.getStringExtra(EditPatientProfile.EXTRA_MESSAGE);

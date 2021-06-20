@@ -178,7 +178,10 @@ public class PatientHome extends AppCompatActivity {
 
                     DoctorDataForHomePatient doctors;
                     doctors = data.getValue(DoctorDataForHomePatient.class);
-                    othDoctors.add(doctors);
+                    if(doctors.getSpecialty().matches("Généraliste")){
+                        othDoctors.add(doctors);
+                    }
+
 
                 }
 

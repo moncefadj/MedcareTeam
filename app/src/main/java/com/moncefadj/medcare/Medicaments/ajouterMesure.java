@@ -12,6 +12,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -38,6 +40,7 @@ public class ajouterMesure extends AppCompatActivity {
     String uidPatient;
     DatabaseReference dbreference ;
     private mesureAdapter mesAdapter;
+    ImageView back;
 
 
     @Override
@@ -49,10 +52,12 @@ public class ajouterMesure extends AppCompatActivity {
         addMesure = (Button) findViewById(R.id.ajouterAuMesureList);
         mesureList = new ArrayList<mesureData>();
         mesAdapter = new mesureAdapter(this,mesureList);
+        back = (ImageView) findViewById(R.id.back_to_liste);
 
         uPatient = FirebaseAuth.getInstance().getCurrentUser();
         uidPatient = uPatient.getUid();
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        data_base = FirebaseDatabase.getInstance();
+        //-----------------adding---methods---to--buttons
         addMesure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,9 +72,7 @@ public class ajouterMesure extends AppCompatActivity {
                     valeur_mes.setError("la valeur est obligatoire ");
                     return;
                 }
-                uPatient = FirebaseAuth.getInstance().getCurrentUser();
-                uidPatient = uPatient.getUid();
-                data_base = FirebaseDatabase.getInstance();
+
                 mesuresReference = data_base.getReference().child("Users").child("Patients").child(uidPatient).child("Mesures");
                 mesReference =mesuresReference.child(nom);
                 mesReference.setValue( new mesureData(nom,time,valeur) );
@@ -77,6 +80,13 @@ public class ajouterMesure extends AppCompatActivity {
                 Intent intent = new Intent(ajouterMesure.this, liste_medicaments.class);
                 startActivity(intent);
 
+            }
+        });
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),liste_medicaments.class);
+                startActivity(intent);
             }
         });
     }

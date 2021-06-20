@@ -11,8 +11,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -61,6 +64,7 @@ public class liste_medicaments extends AppCompatActivity {
     FirebaseUser uPatient;
     String uidPatient;
     Dialog dialog;
+    ImageView back ;
     private Button goTOmesure;
     private DatabaseReference medreference , mesureref;
 
@@ -79,10 +83,14 @@ public class liste_medicaments extends AppCompatActivity {
         dialog.setCancelable(false);
         // we can make animation for Dialog by mentioned it in Style
         dialog.getWindow().getAttributes().windowAnimations = R.style.animation;
-
+        TextView text = dialog.findViewById(R.id.check_user_txt);
         Button med_button = dialog.findViewById(R.id.add_med);
         Button mesure_button = dialog.findViewById(R.id.add_mesure);
         ImageView cancelDialogBtn = dialog.findViewById(R.id.cancel_dialog_btn);
+        //--------------------------------------------------------------------------------------------------------------
+
+
+
         //---------------------------------------------------------------------------------------------------------------
         uPatient = FirebaseAuth.getInstance().getCurrentUser();
         uidPatient = uPatient.getUid();
@@ -93,22 +101,30 @@ public class liste_medicaments extends AppCompatActivity {
         list = new ArrayList<medDataDb>();
         mesureList = new ArrayList<mesureData>();
         retreiveData();
-
-
-
+        //--------------------------------list-------------------------------------------------------
         mesAdapter = new mesureAdapter(this,mesureList);
         adapter = new medAdapter(this,list );
         malist = (RecyclerView) findViewById(R.id.malist);
         malist.setHasFixedSize(true);
         malist.setLayoutManager(new LinearLayoutManager(this));
         malist.setAdapter(adapter);
+        //----------------------------declaration-----------------------------------
         ajouter_med = (FloatingActionButton) findViewById(R.id.add_med);
         title_liste = (TextView) findViewById(R.id.titie_liste);
         goTOmesure = (Button) findViewById(R.id.goTOmesure);
+        back  =(ImageView) findViewById(R.id.back_to_acceuil);
+        //-------------------------buttons onclick-------------------------------
         goTOmesure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                  affichermesmesure();
+            }
+        });
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),PatientHome.class);
+                startActivity(intent);
             }
         });
 
@@ -146,7 +162,7 @@ public class liste_medicaments extends AppCompatActivity {
 
 
     }
-//--------------------------------------mesures-------------------------------------------------------
+    //--------------------------------------mesures-------------------------------------------------------
     private void affichermesmesure() {
 
         retreivemesureData();
@@ -190,6 +206,7 @@ public class liste_medicaments extends AppCompatActivity {
                     }
                     adapter.notifyDataSetChanged();
                     Toast.makeText(liste_medicaments.this, "'mesures' retreived succefully ", Toast.LENGTH_LONG).show();
+
                 }
             }
 
@@ -211,7 +228,7 @@ public class liste_medicaments extends AppCompatActivity {
     }
 
     // get data from database ------------------------------------------
-   
+
     public boolean medexist(medDataDb medicament){
         boolean exist = false;
         int i = 0;
@@ -223,7 +240,7 @@ public class liste_medicaments extends AppCompatActivity {
                 i++;
             }
         }
-       return exist;
+        return exist;
 
     }
     public void retreiveData() {

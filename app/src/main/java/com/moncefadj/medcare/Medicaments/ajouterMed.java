@@ -53,6 +53,7 @@ public class ajouterMed extends AppCompatActivity implements TimePickerDialog.On
     DatabaseReference medsReference;
     DatabaseReference medReference;
     Dialog dialog;
+    ImageView back;
     FirebaseUser uPatient;
     String uidPatient ;
 
@@ -66,6 +67,7 @@ public class ajouterMed extends AppCompatActivity implements TimePickerDialog.On
         heure2 = (TextView) findViewById(R.id.heure2);
         heure3 = (TextView) findViewById(R.id.heure3);
         Description = (EditText) findViewById(R.id.description);
+        back = (ImageView) findViewById(R.id.back_to_liste);
 
         ajouter_med = (Button) findViewById(R.id.ajoutertemps);
         ajouter_au_list = (Button ) findViewById(R.id.ajouterAuliste);
@@ -90,6 +92,7 @@ public class ajouterMed extends AppCompatActivity implements TimePickerDialog.On
         Button med_button = dialog.findViewById(R.id.add_med);
         Button mesure_button = dialog.findViewById(R.id.add_mesure);
         ImageView cancelDialogBtn = dialog.findViewById(R.id.cancel_dialog_btn);
+        //----------------------buttons methods------------------------------------------------------
 
         ajouter_med.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,6 +118,13 @@ public class ajouterMed extends AppCompatActivity implements TimePickerDialog.On
             public void onClick(View v) {
                 openDatePicker2();
 
+            }
+        });
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent  = new Intent(getApplicationContext(),liste_medicaments.class);
+                startActivity(intent);
             }
         });
 

@@ -46,6 +46,10 @@
         <item>Au milieu repas</item>
         <item>Apres repas</item>
     </string-array>
+    <string-array name="lists">
+        <item>Medicaments</item>
+        <item>Mesure</item>
+    </string-array>
 
     <string-array name="days">
         <item>Samedi</item>

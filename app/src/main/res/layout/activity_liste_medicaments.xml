@@ -5,6 +5,7 @@
     android:id="@+id/constraint"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="1dp"
     android:orientation="vertical"
     android:background="@color/white"
     tools:context=".Medicaments.liste_medicaments">
@@ -12,25 +13,36 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="161dp"
+        android:layout_height="158dp"
         android:background="@drawable/ic_wave"
         tools:ignore="MissingConstraints">
 
+
+        <ImageView
+            android:id="@+id/back_to_acceuil"
+            android:layout_width="wrap_content"
+            android:layout_height="49dp"
+            android:layout_alignParentStart="true"
+            android:layout_gravity="left"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="12dp"
+            app:srcCompat="@drawable/ic_arrow_back"
+            app:tint="@color/white" />
+
         <Button
             android:id="@+id/goTOmesure"
-            android:layout_width="99dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="81dp"
+            android:layout_marginEnd="11dp"
+            android:layout_marginBottom="89dp"
             android:backgroundTint="@color/white"
-            android:text="mesures"
-            android:textColor="@color/blue_app"
-            android:textSize="10dp" />
+            android:text="Mesures"
+            android:textColor="@color/blue_app" />
     </RelativeLayout>
 
-  <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
       android:layout_width="match_parent"
       android:layout_height="match_parent">
 
@@ -60,16 +72,16 @@
         app:tint="#FFFF" />
 
 
-      <androidx.recyclerview.widget.RecyclerView
-          android:id="@+id/malist"
-          android:layout_width="match_parent"
-          android:layout_height="500dp"
-          app:layout_constraintBottom_toBottomOf="parent"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintHorizontal_bias="0.0"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toTopOf="parent"
-          app:layout_constraintVertical_bias="0.512" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/malist"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.512" />
   </androidx.constraintlayout.widget.ConstraintLayout>
 
 

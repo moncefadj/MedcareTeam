@@ -34,6 +34,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
             android:text="Categories"
+            android:fontFamily="@font/allerta"
             android:textColor="@color/white"
             android:textSize="25dp"
             android:textStyle="bold|italic" />
@@ -58,6 +59,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
             android:text="Généralistes"
+            android:fontFamily="@font/allerta"
             android:textColor="@color/blue_app"
             android:textSize="25dp"
             android:textStyle="bold|italic"

@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity=""
+    android:id="@+id/wrapper"
     android:paddingRight="0dp"
     android:paddingLeft="0dp"
     android:background="@color/white"
@@ -25,7 +26,7 @@
         android:layout_marginTop="7dp"
         android:orientation="vertical"
         android:scrollbarSize="15dp"
-        app:cardBackgroundColor="#F50C83E3"
+        app:cardBackgroundColor="#0099ff"
         app:cardCornerRadius="30dp">
 
         <TextView
@@ -47,6 +48,7 @@
 
 
     <LinearLayout
+        android:id="@+id/linear_doctors"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -57,7 +59,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
             android:text="Généralistes"
-            android:textColor="#F50C83E3"
+            android:textColor="#0099ff"
             android:textSize="25dp"
             android:textStyle="bold|italic"
             android:id="@+id/generaliste_title"/>
@@ -65,7 +67,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/doctors_recycler"
             android:layout_width="match_parent"
-            android:layout_height="270dp"
+            android:layout_height="250dp"
             android:layout_marginTop="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

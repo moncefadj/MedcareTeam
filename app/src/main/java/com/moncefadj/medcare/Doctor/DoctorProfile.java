@@ -123,7 +123,7 @@ public class DoctorProfile extends AppCompatActivity {
         setProfileData();
 
         daysAutoCompleteTxt();
-        
+
         autoCompleteTextView.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -276,25 +276,25 @@ public class DoctorProfile extends AppCompatActivity {
         switch (day) {
             case Calendar.SATURDAY:
                 currentDay = "Samedi";
-            break;
+                break;
             case Calendar.SUNDAY:
                 currentDay = "Dimanche";
                 break;
             case Calendar.MONDAY:
                 currentDay = "Lundi";
-            break;
+                break;
             case Calendar.TUESDAY:
                 currentDay = "Mardi";
                 break;
             case Calendar.WEDNESDAY:
                 currentDay = "Mercredie";
-            break;
+                break;
             case Calendar.THURSDAY:
                 currentDay = "Jeudi";
-            break;
+                break;
             case Calendar.FRIDAY:
                 currentDay = "Vendredi";
-            break;
+                break;
         }
         return currentDay;
     }

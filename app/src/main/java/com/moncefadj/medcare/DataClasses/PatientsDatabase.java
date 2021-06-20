@@ -9,10 +9,10 @@ public class PatientsDatabase {
 
     private DatabaseReference databaseReference;
 
-    public PatientsDatabase(){
+    public PatientsDatabase(String uid){
 
         FirebaseDatabase db = FirebaseDatabase.getInstance();
-        databaseReference = db.getReference().child("Users").child("Patients");
+        databaseReference = db.getReference("Users").child("Doctors").child(uid).child("PatientsWithRdv");
 
     }
 

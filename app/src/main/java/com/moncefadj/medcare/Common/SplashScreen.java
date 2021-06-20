@@ -88,7 +88,7 @@ public class SplashScreen extends AppCompatActivity {
                                     Intent intent = new Intent(SplashScreen.this, PatientHome.class);
                                     startActivity(intent);
                                     finish();
-                                    }
+                                }
                             }
 
                             @Override

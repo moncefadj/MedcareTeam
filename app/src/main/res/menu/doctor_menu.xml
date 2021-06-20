@@ -8,6 +8,6 @@
 
     <item
         android:id="@+id/logout_item"
-        android:title="Déconnecter"/>
+        android:title="Se déconnecter"/>
 
 </menu>

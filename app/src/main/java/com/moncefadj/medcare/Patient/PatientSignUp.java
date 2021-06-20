@@ -1,3 +1,4 @@
+
 package com.moncefadj.medcare.Patient;
 
 import androidx.annotation.NonNull;
@@ -138,6 +139,7 @@ public class PatientSignUp extends AppCompatActivity {
         map.put("name", nameTxt);
         map.put("email", emailTxt);
         map.put("phone", phoneTxt);
+       // map.put("password",passTxt);
         map.put("password", passTxt);
         map.put("profile", "soon...");
 

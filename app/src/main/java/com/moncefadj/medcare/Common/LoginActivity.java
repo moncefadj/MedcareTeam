@@ -126,7 +126,7 @@ public class LoginActivity extends AppCompatActivity {
         cancelDialogBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               dialog.dismiss();
+                dialog.dismiss();
             }
         });
 

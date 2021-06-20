@@ -3,7 +3,6 @@ package com.moncefadj.medcare.Medicaments;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -13,7 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.moncefadj.medcare.Medicaments.medData;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,13 +21,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.moncefadj.medcare.Patient.PatientHome;
-import com.moncefadj.medcare.PatientSearch.Search;
-import com.moncefadj.medcare.ProfilePatient.PatientProfile;
 import com.moncefadj.medcare.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class liste_medicaments extends AppCompatActivity {
     MeowBottomNavigation bottomNavigation;
@@ -43,7 +39,7 @@ public class liste_medicaments extends AppCompatActivity {
     public static final String TIME2 = "TIME2";
     private FloatingActionButton ajouter_med;
     ArrayList<medDataDb> list;
-    private TextView nom, description, temps;
+    private TextView nom, description, temps, title_liste;
     private RecyclerView malist;
     MainViewModel viewModel;
     private medAdapter adapter;
@@ -60,10 +56,9 @@ public class liste_medicaments extends AppCompatActivity {
         uidPatient = uPatient.getUid();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         dbreference = database.getReference().child("Users").child("Patients").child(uidPatient).child("Medicaments");
-
-
         list = new ArrayList<medDataDb>();
         retreiveData();
+
 
 
 
@@ -73,13 +68,9 @@ public class liste_medicaments extends AppCompatActivity {
         malist.setLayoutManager(new LinearLayoutManager(this));
         malist.setAdapter(adapter);
         ajouter_med = (FloatingActionButton) findViewById(R.id.add_med);
-        ajouter_med.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openajouterMed();
-            }
-        });
-        // data base
+        title_liste = (TextView) findViewById(R.id.titie_liste);
+
+
 
         //-------------------------------------------------------------------------------------------------------------------*/
         ajouter_med.setOnClickListener(new View.OnClickListener() {
@@ -93,6 +84,7 @@ public class liste_medicaments extends AppCompatActivity {
     }
 
     // get data from database ------------------------------------------
+   
     public boolean medexist(medDataDb medicament){
         boolean exist = false;
         int i = 0;
@@ -119,6 +111,12 @@ public class liste_medicaments extends AppCompatActivity {
                             Log.i("test ", med.getNomMed());
                         }
 
+                    }
+                    if (list.size() != 0 ){
+                        title_liste.setText("");
+                    }
+                    else {
+                        title_liste.setText("ajouter vos medicaments");
                     }
 
                     adapter.notifyDataSetChanged();
@@ -161,4 +159,5 @@ public class liste_medicaments extends AppCompatActivity {
             }
         }
     }
+
 }

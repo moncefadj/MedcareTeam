@@ -2,15 +2,45 @@ package com.moncefadj.medcare.DataClasses;
 
 public class DoctorDataForHomePatient {
 
-    private String name, email, id,specialty;
+    private String name, spec, id, phone, address, desc, specialty;
 
     public DoctorDataForHomePatient(){
     }
 
-    public DoctorDataForHomePatient(String vNomMedecin, String vEmail,String vspecialite) {
+    public DoctorDataForHomePatient(String vNomMedecin, String vSpec, String vPhone, String vAdr, String vDsc, String vId, String vspeciality) {
         this.name = vNomMedecin;
-        this.email = vEmail;
-        this.specialty=vspecialite;
+        this.spec = vSpec;
+        this.phone = vPhone;
+        this.address = vAdr;
+        this.desc = vDsc;
+        this.id = vId;
+        this.specialty = vspeciality;
+    }
+
+
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String vNomPatient) {
+        this.name = vNomPatient;
+    }
+
+    public String getFullSpecialty() {
+        return spec;
+    }
+
+    public void setFullSpecialty(String vSpec) {
+        this.spec = vSpec;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getSpec() {
+        return spec;
     }
 
     public String getSpecialty() {
@@ -21,24 +51,31 @@ public class DoctorDataForHomePatient {
         this.specialty = specialty;
     }
 
-    public String getName() {
-        return name;
+    public void setId(String vId) {
+        this.id = vId;
     }
 
-    public void setName(String vNomPatient) {
-        this.name = vNomPatient;
+    public String getPhone() {
+        return phone;
     }
 
-    public String getEmail() {
-        return email;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
-    public void setEmail(String vEmail) {
-        this.email = vEmail;
+    public String getAddress() {
+        return address;
     }
 
-    public String getId() {return id;}
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
-    public void setId(String id) {this.id = id;}
+    public String getDesc() {
+        return desc;
+    }
 
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
 }

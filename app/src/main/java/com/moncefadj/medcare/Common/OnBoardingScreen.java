@@ -112,9 +112,9 @@ public class OnBoardingScreen extends AppCompatActivity {
                 nextBtn.startAnimation(fadeOut);
                 startBtn.startAnimation(fadeIn);
 
-               skipBtn.setVisibility(View.GONE);
-               nextBtn.setVisibility(View.GONE);
-               startBtn.setVisibility(View.VISIBLE);
+                skipBtn.setVisibility(View.GONE);
+                nextBtn.setVisibility(View.GONE);
+                startBtn.setVisibility(View.VISIBLE);
 
             } else {
 

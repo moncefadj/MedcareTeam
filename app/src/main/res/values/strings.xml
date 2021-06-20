@@ -33,12 +33,8 @@
     <string-array name="specialities">
         <item>Cardiologie</item>
         <item>Ophtalmologie</item>
-        <item>Imagerie médicale</item>
-        <item>Endocrinologie</item>
-        <item>Hépatogastroentérologie</item>
-        <item>Dermatologie</item>
-        <item>ORL</item>
-        <item>Gynéco-obstétrique</item>
+        <item>Pneumoligie</item>
+        <item>Chirurgie Dentaire</item>
     </string-array>
 
     <string-array name="instructions">
@@ -57,36 +53,5 @@
         <item>Vendredi</item>
     </string-array>
 
-    <string-array name="titles">
-        <item>Mr.doctor</item>
-        <item>Mr.doctor</item>
-        <item>Mr.doctor</item>
-        <item>Mr.doctor</item>
-        <item>Mr.doctor</item>
-        <item>Mr.doctor</item>
-        <item>Mr.doctor</item>
-        <item>Mr.doctor</item>
-        <item>Mr.doctor</item>
-        <item>Mr.doctor</item>
-        <item>Mr.doctor</item>
-        <item>Mr.doctor</item>
-
-    </string-array>
-
-    <string-array name="description">
-        <item> doctor description</item>
-        <item> doctor description</item>
-        <item> doctor description</item>
-        <item> doctor description</item>
-        <item> doctor description</item>
-        <item> doctor description</item>
-        <item> doctor description</item>
-        <item> doctor description</item>
-        <item> doctor description</item>
-        <item> doctor description</item>
-        <item> doctor description</item>
-        <item> doctor description</item>
-    </string-array>
-    <string name="search">Search </string>
 
 </resources>

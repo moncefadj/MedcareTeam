@@ -111,6 +111,23 @@ public class PatientSignUp extends AppCompatActivity {
             return;
         }
 
+        int dayInt = Integer.parseInt(dayTxt);
+        int monthInt = Integer.parseInt(monthTxt);
+        int yearInt = Integer.parseInt(yearTxt);
+
+        if (dayInt < 1 || dayInt > 31) {
+            dayInput.setError("Veuillez pas dépasser la limite");
+            return;
+        }
+        if (monthInt < 1 || monthInt > 12) {
+            monthInput.setError("Veuillez pas dépasser la limite");
+            return;
+        }
+        if (yearInt < 2002 || dayInt > 2021) {
+            yearInput.setError("Veuillez pas dépasser la limite");
+            return;
+        }
+
 
         fAuth = FirebaseAuth.getInstance();
         fAuth.createUserWithEmailAndPassword(emailTxt, passTxt).addOnSuccessListener(new OnSuccessListener<AuthResult>() {

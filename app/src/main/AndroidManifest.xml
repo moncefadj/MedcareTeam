@@ -27,6 +27,7 @@
 
         <activity android:name=".Medicaments.ajouterMed" />
         <activity android:name=".Medicaments.liste_medicaments" />
+        <activity android:name=".Medicaments.ajouterMesure"/>
         <activity android:name=".Doctor.DoctorProfile" />
         <activity android:name=".ProfilePatient.PatientProfile" />
         <activity android:name=".ProfilePatient.EditPatientProfile" />

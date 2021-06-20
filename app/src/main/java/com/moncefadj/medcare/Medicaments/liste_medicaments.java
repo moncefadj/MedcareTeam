@@ -111,7 +111,7 @@ public class liste_medicaments extends AppCompatActivity {
         //----------------------------declaration-----------------------------------
         ajouter_med = (FloatingActionButton) findViewById(R.id.add_med);
         title_liste = (TextView) findViewById(R.id.titie_liste);
-        //goTOmesure = (Button) findViewById(R.id.goTOmesure);
+        goTOmesure = (Button) findViewById(R.id.goTOmesure);
         back  =(ImageView) findViewById(R.id.back_to_acceuil);
         //-------------------------buttons onclick-------------------------------
         goTOmesure.setOnClickListener(new View.OnClickListener() {

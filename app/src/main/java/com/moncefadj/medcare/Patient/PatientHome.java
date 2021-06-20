@@ -109,7 +109,7 @@ public class PatientHome extends AppCompatActivity {
 
         //creat string array
         String[] categorieName={"Ophtalmomogie","Cardiologie"
-                ,"Pneumoligie","Dentiste"};
+                ,"Pneumoligie","Chirurgie Dentaire"};
 
         //initilize arraylist
         specialtiesData =new ArrayList<>();

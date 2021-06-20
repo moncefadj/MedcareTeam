@@ -45,14 +45,13 @@ public class PatientProfile extends AppCompatActivity {
     MeowBottomNavigation bottomNavigation;
     Toast toast;
     private Button play;
-    private Button logout;
 
     private FirebaseUser user;
     private DatabaseReference reference,referencee;
     private String userID;
 
     ImageView back;
-    private ImageView add;
+    private ImageView add,logout;
     private Uri imageUri;
     private static final int IMAGE_REQUEST =2;
 
@@ -63,7 +62,7 @@ public class PatientProfile extends AppCompatActivity {
 
 
         play= (Button) findViewById(R.id.play);
-        logout=(Button)findViewById(R.id.logout);
+        logout=(ImageView)findViewById(R.id.logout);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -128,23 +127,6 @@ public class PatientProfile extends AppCompatActivity {
         boolean enableAnimation;
         //set home fragment initialy selected
         bottomNavigation.show(4, enableAnimation = true);
-        bottomNavigation.setOnClickMenuListener(new MeowBottomNavigation.ClickListener() {
-            @Override
-            public void onClickItem(MeowBottomNavigation.Model item) {
-                //display toast
-                Toast.makeText(getApplicationContext(), "you clicked" + item.getId(), Toast.LENGTH_SHORT).show();
-            }
-
-            ;
-        });
-
-        bottomNavigation.setOnReselectListener(new MeowBottomNavigation.ReselectListener() {
-            @Override
-            public void onReselectItem(MeowBottomNavigation.Model item) {
-                //display toast
-                Toast.makeText(getApplicationContext(), "YOU reslected" + item.getId(), Toast.LENGTH_SHORT).show();
-            }
-        });
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference().child("Users").child("Patients");
@@ -260,7 +242,7 @@ public class PatientProfile extends AppCompatActivity {
 
                             Log.d("DownloadUrl" , url);
                             pd.dismiss();
-                            Toast.makeText(PatientProfile.this, "Image upload successful1", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(PatientProfile.this, "Image upload successfull", Toast.LENGTH_SHORT).show();
                         }
                     });
                 }

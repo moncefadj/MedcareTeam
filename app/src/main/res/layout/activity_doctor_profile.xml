@@ -25,7 +25,7 @@
             android:layout_height="22dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp"
-            android:src="@drawable/ic_arrow_back"
+            app:srcCompat="@drawable/ic_arrow_back"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:tint="@color/white" />
@@ -34,7 +34,7 @@
             android:id="@+id/profile_doc_settings_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_settings"
+            app:srcCompat="@drawable/ic_baseline_settings"
             app:tint="@color/white"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -68,7 +68,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_location"
+            app:srcCompat="@drawable/ic_location"
             app:layout_constraintTop_toTopOf="@+id/profile_doctor_address"
             app:layout_constraintBottom_toBottomOf="@id/profile_doctor_address"
             app:layout_constraintRight_toLeftOf="@id/profile_doctor_address"
@@ -126,7 +126,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_star"
+                app:srcCompat="@drawable/ic_star"
                 android:layout_toRightOf="@id/rate_txt"
                 android:layout_centerVertical="true"/>
         </RelativeLayout>
@@ -164,7 +164,7 @@
                 android:id="@+id/profile_phone_icon"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/ic_phone"
+                app:srcCompat="@drawable/ic_phone"
                 app:tint="@color/colorPrimary"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"/>
@@ -218,7 +218,7 @@
                 android:id="@+id/add_rdv_btn"
                 android:layout_width="50dp"
                 android:layout_height="45dp"
-                android:src="@drawable/ic_add"
+                app:srcCompat="@drawable/ic_add"
                 android:background="@drawable/circle_button_grey"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"/>

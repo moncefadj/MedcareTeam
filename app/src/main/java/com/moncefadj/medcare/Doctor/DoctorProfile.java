@@ -197,21 +197,39 @@ public class DoctorProfile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                hourLayout.setError(null);
+                minuteLayout.setError(null);
+
                 hour = hourLayout.getEditText().getText().toString();
                 minute = minuteLayout.getEditText().getText().toString();
+
+
 
                 if (aSwitch.isChecked()) {
                     available = "yes";
                 } else available = "no";
 
-                if ((!hour.equals("")) && (!minute.equals(""))) {
+                if ((!hour.isEmpty()) && (!minute.isEmpty())) {
 
-                    String selectedDay = daysInput.getEditText().getText().toString();
+                    int hourInt = Integer.parseInt(hour);
+                    int minuteInt = Integer.parseInt(minute);
 
-                    addButtonToDB(selectedDay, hour + ":" + minute, available);
-                    // like that it will appear the buttons without using showAllDayButtons and duplicate circles(buttons)
-                    removeFlexBoxViews();
-                    dialog.dismiss();
+                    if (hourInt >= 0 && hourInt <= 23 && minuteInt >= 1 && minuteInt <= 60) {
+
+                        String selectedDay = daysInput.getEditText().getText().toString();
+
+                        addButtonToDB(selectedDay, hour + ":" + minute, available);
+                        // like that it will appear the buttons without using showAllDayButtons and duplicate circles(buttons)
+                        removeFlexBoxViews();
+                        dialog.dismiss();
+                    } else {
+                        hourLayout.setError("Veuillez pas dépasser la limite");
+                        minuteLayout.setError("Veuillez pas dépasser la limite");
+                    }
+
+                } else {
+                    hourLayout.setError("Champ vide");
+                    minuteLayout.setError("Champ vide");
                 }
             }
         });

@@ -23,7 +23,7 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="0dp"
-            android:background="#0099ff"
+            android:background="@color/blue_app"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -35,8 +35,8 @@
             android:layout_height="30dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="85dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="74dp"
+            android:layout_marginTop="70dp"
             android:autofillHints="Specialite"
             android:background="@drawable/backgraoudbuttob" />
 
@@ -45,10 +45,9 @@
             android:layout_width="300dp"
             android:layout_height="40dp"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="52dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginStart="44dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/backgraoudbuttob"
-            android:hint="   Rechercher un Nom"
             android:inputType="textVisiblePassword" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -72,6 +71,6 @@
         app:mbn_countTextColor="#ffff"
         app:mbn_countBackgroundColor="#ff6f00"
         app:mbn_defaultIconColor="#ffff"
-        app:mbn_backgroundBottomColor="#0099ff" />
+        app:mbn_backgroundBottomColor="@color/blue_app" />
 </LinearLayout>
 

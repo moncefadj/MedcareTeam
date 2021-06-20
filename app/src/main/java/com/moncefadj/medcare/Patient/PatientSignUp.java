@@ -123,7 +123,7 @@ public class PatientSignUp extends AppCompatActivity {
             monthInput.setError("Veuillez pas dépasser la limite");
             return;
         }
-        if (yearInt < 2002 || dayInt > 2021) {
+        if (yearInt > 2002 || dayInt > 2021) {
             yearInput.setError("Veuillez pas dépasser la limite");
             return;
         }

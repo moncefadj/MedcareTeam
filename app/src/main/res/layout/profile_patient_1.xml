@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     tools:context=".ProfilePatient.PatientProfile"
     android:orientation="vertical"
-    android:background="@drawable/rose"
+    android:background="@color/colorPrimary"
 
     >
 
@@ -73,7 +73,7 @@
         android:layout_marginHorizontal="20dp"
         android:background="@drawable/patient_profile_bg"
         android:orientation="vertical"
-        android:padding="10dp">
+        android:padding="20dp">
 
         <TextView
             android:layout_width="wrap_content"

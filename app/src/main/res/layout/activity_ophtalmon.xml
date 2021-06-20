@@ -19,7 +19,7 @@
         android:shadowColor="@color/purple_500"
         android:shadowRadius="@android:integer/config_longAnimTime"
         android:text="OPHTALMOLOGIE"
-        android:textColor="#2196F3"
+        android:textColor="@color/colorPrimary"
         android:textSize="35dp"
         android:textStyle="italic|bold" />
 

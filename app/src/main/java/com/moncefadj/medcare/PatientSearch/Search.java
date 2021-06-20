@@ -69,46 +69,49 @@ RecyclerView recyclerView;
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         Spinner spinner1 = findViewById(R.id.spinner1);
-        String[] Categouries = {"    Specialitées", "denstiste", "Cardiologie","Ophtalmologie","Imagerie médicale","Endocrinologie"
-                ,"Hépatogastroentérologie","Dermatologie","ORL","Gynéco-obstétrique"};
+        String[] Categouries = {"    Specialitées", "denstiste", "Cardiologie", "Ophtalmologie", "Imagerie médicale", "Endocrinologie"
+                , "Hépatogastroentérologie", "Dermatologie", "ORL", "Gynéco-obstétrique"};
         ArrayAdapter<String> arrayAdapter1 = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, Categouries);
         spinner1.setAdapter(arrayAdapter1);
         spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                String spec=spinner1.getSelectedItem().toString();
-                if(spec.matches("    Specialitées"))
-                {   loadDocData();}
-                else {loadDocDataByspec(spec);}
+                String spec = spinner1.getSelectedItem().toString();
+                if (spec.matches("    Specialitées")) {
+                    loadDocData();
+                } else {
+                    loadDocDataByspec(spec);
+                }
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-         loadDocData();
+                loadDocData();
 
             }
         });
-           searchView = findViewById(R.id.search_d);
-           searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-               @Override
-               public boolean onQueryTextSubmit(String s) {
-                   return false;
-               }
+        searchView = findViewById(R.id.search_d);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
 
-               @Override
-               public boolean onQueryTextChange(String s) {
-                   docAdapter.getFilter().filter(s);
-                   return false;
-               }
-           });
-           searchView.setOnCloseListener(new SearchView.OnCloseListener() {
-               @Override
-               public boolean onClose() {
-                   loadDocData();
-                   return false;
-               }
-           });
+            @Override
+            public boolean onQueryTextChange(String s) {
+                docAdapter.getFilter().filter(s);
+                return false;
+            }
+        });
+        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                loadDocData();
+                return false;
+            }
+        });
 
-      // loadDocData();
+        // loadDocData();
         bottomNavigation = (MeowBottomNavigation)
 
                 findViewById(R.id.bottom_navigation);
@@ -144,26 +147,7 @@ RecyclerView recyclerView;
         boolean enableAnimation;
         //set home fragment initialy selected
         bottomNavigation.show(3, enableAnimation = true);
-        bottomNavigation.setOnClickMenuListener(new MeowBottomNavigation.ClickListener() {
-            @Override
-            public void onClickItem(MeowBottomNavigation.Model item) {
-                //display toast
-                Toast.makeText(getApplicationContext(), "you clicked" + item.getId(), Toast.LENGTH_SHORT).show();
-            }
-
-            ;
-        });
-
-        bottomNavigation.setOnReselectListener(new MeowBottomNavigation.ReselectListener() {
-            @Override
-            public void onReselectItem(MeowBottomNavigation.Model item) {
-                //display toast
-                Toast.makeText(getApplicationContext(), "YOU reslected" + item.getId(), Toast.LENGTH_SHORT).show();
-            }
-        });
     }
-
-
     private void loadDocData() {
         docdata.get().addValueEventListener(new ValueEventListener() {
             @Override

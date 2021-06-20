@@ -37,6 +37,8 @@
             android:layout_marginBottom="95dp"
             android:paddingBottom="10dp"
             android:text="Mesures"
+            android:textAllCaps="false"
+            android:background="@drawable/rounded_corner"
             android:textColor="@color/blue_app"
             app:backgroundTint="@color/white" />
 

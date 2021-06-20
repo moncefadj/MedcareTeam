@@ -15,6 +15,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,6 +49,8 @@ public class DoctorProfileFromPatientHome extends AppCompatActivity {
     String[] days;
     TextInputLayout daysInput;
     ArrayAdapter arrayAdapter;
+
+    RelativeLayout relativeLayoutRating;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +92,14 @@ public class DoctorProfileFromPatientHome extends AppCompatActivity {
 
             }
 
+        });
+
+        relativeLayoutRating = findViewById(R.id.rating_button);
+        relativeLayoutRating.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
         });
 
         //current patient path
@@ -145,6 +156,7 @@ public class DoctorProfileFromPatientHome extends AppCompatActivity {
 
                 if (snapshot.exists()) {
 
+                    removeFlexBoxViews();
                     for (DataSnapshot dayChosen : snapshot.getChildren()) {
 
                         //récupération du temps choisi et de la disponibilité
@@ -185,6 +197,7 @@ public class DoctorProfileFromPatientHome extends AppCompatActivity {
                 public void onClick(View view) {
 
                     //boite de dialogue de confirmation de la prise du rdv
+
                     createAlertDialog(time, dayRef, day);
 
                 }
@@ -232,9 +245,10 @@ public class DoctorProfileFromPatientHome extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
-                    //prise de rdv apres la confirmation
-                    // la chaine "no" sert à rendre l'horraire non disponible
-                    prendreRdv("no", time, dayRef, day);
+                //prise de rdv apres la confirmation
+                // la chaine "no" sert à rendre l'horraire non disponible
+                removeFlexBoxViews();
+                prendreRdv("no", time, dayRef, day);
 
             }
 

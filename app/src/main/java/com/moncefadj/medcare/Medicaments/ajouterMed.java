@@ -2,6 +2,7 @@ package com.moncefadj.medcare.Medicaments;
 
 import android.app.AlarmManager;
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Context;
@@ -10,11 +11,13 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -26,6 +29,7 @@ import androidx.fragment.app.DialogFragment;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.moncefadj.medcare.Common.LoginActivity;
 import com.moncefadj.medcare.R;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -48,6 +52,8 @@ public class ajouterMed extends AppCompatActivity implements TimePickerDialog.On
     FirebaseDatabase data_base;
     DatabaseReference medsReference;
     DatabaseReference medReference;
+    Dialog dialog;
+    ImageView back;
     FirebaseUser uPatient;
     String uidPatient ;
 
@@ -61,6 +67,7 @@ public class ajouterMed extends AppCompatActivity implements TimePickerDialog.On
         heure2 = (TextView) findViewById(R.id.heure2);
         heure3 = (TextView) findViewById(R.id.heure3);
         Description = (EditText) findViewById(R.id.description);
+        back = (ImageView) findViewById(R.id.back_to_liste);
 
         ajouter_med = (Button) findViewById(R.id.ajoutertemps);
         ajouter_au_list = (Button ) findViewById(R.id.ajouterAuliste);
@@ -71,6 +78,21 @@ public class ajouterMed extends AppCompatActivity implements TimePickerDialog.On
         instructions.getOnItemSelectedListener();
         dateDebut = (EditText) findViewById(R.id.dateDebut);
         dateFin = (EditText)  findViewById(R.id.dateFin);
+        // ** Dialog ** to ask patient if he want to add a med or mesure
+        dialog = new Dialog(ajouterMed.this);
+        dialog.setContentView(R.layout.custom_med_dialog);
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            dialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.rounded_corner_white));
+        }
+        dialog.setCancelable(false);
+        // we can make animation for Dialog by mentioned it in Style
+        dialog.getWindow().getAttributes().windowAnimations = R.style.animation;
+
+        Button med_button = dialog.findViewById(R.id.add_med);
+        Button mesure_button = dialog.findViewById(R.id.add_mesure);
+        ImageView cancelDialogBtn = dialog.findViewById(R.id.cancel_dialog_btn);
+        //----------------------buttons methods------------------------------------------------------
 
         ajouter_med.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,6 +118,13 @@ public class ajouterMed extends AppCompatActivity implements TimePickerDialog.On
             public void onClick(View v) {
                 openDatePicker2();
 
+            }
+        });
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent  = new Intent(getApplicationContext(),liste_medicaments.class);
+                startActivity(intent);
             }
         });
 

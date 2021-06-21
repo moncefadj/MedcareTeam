@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -35,16 +36,15 @@ import com.google.firebase.database.ValueEventListener;
 import com.moncefadj.medcare.DataClasses.DoctorData;
 import com.moncefadj.medcare.DataClasses.DoctorDataForHomePatient;
 import com.moncefadj.medcare.DataClasses.DoctorsDatabase;
-import com.moncefadj.medcare.DataClasses.SpecialtiesData;
 import com.moncefadj.medcare.HelperClasses.adapter;
 import com.moncefadj.medcare.HelperClasses.doctorsAdapter;
 import com.moncefadj.medcare.Medicaments.liste_medicaments;
 import com.moncefadj.medcare.Patient.PatientHome;
-import com.moncefadj.medcare.PatientHome.SpecialitiesAdapter;
 import com.moncefadj.medcare.ProfilePatient.PatientProfile;
 import com.moncefadj.medcare.R;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Search extends AppCompatActivity {
     MeowBottomNavigation bottomNavigation;
@@ -54,9 +54,7 @@ SearchView searchView;
     DoctorsDatabase docdata;
 RecyclerView recyclerView;
    adapter docAdapter;
-    ArrayList<DoctorDataForHomePatient> list ,doclist ;
-    ArrayList<SpecialtiesData> specialtiesData;
-    SpecialitiesAdapter specialitiesAdapter;
+    ArrayList<DoctorDataForHomePatient> doctor=new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,37 +67,48 @@ RecyclerView recyclerView;
         docdata = new DoctorsDatabase();
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        loadDocData();
-     /*   Spinner spinner1 = findViewById(R.id.spinner1);
-        Spinner spinner2 = findViewById(R.id.spinner2);
-        Spinner spinner3 = findViewById(R.id.spinner3);
-        String[] Categouries = {"categouries", "denstiste", "cardiologue"};
-        String[] wilayas = {"wilayas", "adrar", "bechar"};
-        String[] disponible = {"disponibilité", "Plus diponible", "moins disponible"};
-        ArrayAdapter<String> arrayAdapter1 = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, Categouries);
-        ArrayAdapter<String> arrayAdapter2 = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, wilayas);
-        ArrayAdapter<String> arrayAdapter3 = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, disponible);
-        spinner1.setAdapter(arrayAdapter1);
-        spinner2.setAdapter(arrayAdapter2);
-        spinner3.setAdapter(arrayAdapter3);
-        String[] doctors = {"dorcto1", "doctor2", "doctor3", "doctor4", "doctor5"};
-*/
-        //ArrayAdapter<String> mAdapter=new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,doctors);
-// mListeView.setAdapter(mAdapter);
-// msearch.setOnQueryTextListener((SearchView.OnQueryTextListener) this);
-searchView=findViewById(R.id.search_d);
-       searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-           @Override
-           public boolean onQueryTextSubmit(String s) {
-               return false;
-           }
 
-           @Override
-           public boolean onQueryTextChange(String s) {
-               docAdapter.getFilter().filter(s);
-               return false;
-           }
-       });
+        Spinner spinner1 = findViewById(R.id.spinner1);
+        String[] Categouries = {"    Specialitées", "denstiste", "Cardiologie","Ophtalmologie","Imagerie médicale","Endocrinologie"
+                ,"Hépatogastroentérologie","Dermatologie","ORL","Gynéco-obstétrique"};
+        ArrayAdapter<String> arrayAdapter1 = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, Categouries);
+        spinner1.setAdapter(arrayAdapter1);
+        spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String spec=spinner1.getSelectedItem().toString();
+                if(spec.matches("    Specialitées"))
+                {   loadDocData();}
+                else {loadDocDataByspec(spec);}
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+         loadDocData();
+
+            }
+        });
+           searchView = findViewById(R.id.search_d);
+           searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+               @Override
+               public boolean onQueryTextSubmit(String s) {
+                   return false;
+               }
+
+               @Override
+               public boolean onQueryTextChange(String s) {
+                   docAdapter.getFilter().filter(s);
+                   return false;
+               }
+           });
+           searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+               @Override
+               public boolean onClose() {
+                   loadDocData();
+                   return false;
+               }
+           });
+
+      // loadDocData();
         bottomNavigation = (MeowBottomNavigation)
 
                 findViewById(R.id.bottom_navigation);
@@ -154,6 +163,7 @@ searchView=findViewById(R.id.search_d);
         });
     }
 
+
     private void loadDocData() {
         docdata.get().addValueEventListener(new ValueEventListener() {
             @Override
@@ -163,13 +173,37 @@ searchView=findViewById(R.id.search_d);
 
                 for (DataSnapshot data : snapshot.getChildren()){
 
-
                     DoctorDataForHomePatient doctors = data.getValue(DoctorDataForHomePatient.class);
 
                         othDoctors.add(doctors);
 
                 }
 
+                docAdapter.setItems(othDoctors);
+                docAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void loadDocDataByspec(String name) {
+        docdata.get().addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                ArrayList<DoctorDataForHomePatient> othDoctors = new ArrayList<>();
+
+                for (DataSnapshot data : snapshot.getChildren()){
+
+                    DoctorDataForHomePatient doctors = data.getValue(DoctorDataForHomePatient.class);
+                    if(doctors.getSpecialty().matches(name)) {
+                        othDoctors.add(doctors);
+                    }
+                }
                 docAdapter.setItems(othDoctors);
                 docAdapter.notifyDataSetChanged();
             }

@@ -35,11 +35,12 @@
             android:background="@drawable/backgraoudbuttob"
             android:text="logout"
             android:textColor="@color/white" />
+
         <ImageView
             android:id="@+id/iback"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/ic_baseline_arrow_back_ios" />
+            android:layout_width="23dp"
+            android:layout_height="19dp"
+            app:srcCompat="@drawable/ic_baseline_arrow_back_ios" />
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/a"
@@ -48,7 +49,7 @@
             android:layout_below="@id/c"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="26dp"
-            android:src="@drawable/ic_baseline_personw"
+            app:srcCompat="@drawable/ic_baseline_personw"
             app:shapeAppearanceOverlay="@style/cicular" />
 
         <TextView

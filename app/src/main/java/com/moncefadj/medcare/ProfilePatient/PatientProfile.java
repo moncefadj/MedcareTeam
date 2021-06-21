@@ -266,7 +266,7 @@ public class PatientProfile extends AppCompatActivity {
 
                             Log.d("DownloadUrl" , url);
                             pd.dismiss();
-                            Toast.makeText(PatientProfile.this, "Image upload successful1", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(PatientProfile.this, "Image upload successfull", Toast.LENGTH_SHORT).show();
                         }
                     });
                 }

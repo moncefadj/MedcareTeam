@@ -50,11 +50,17 @@ public class adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> imple
         row viewHolder = (row) holder;
         DoctorDataForHomePatient doctors = Doctors.get(position);
         viewHolder.namedoc.setText(doctors.getName());
-        viewHolder.specdoc.setText(doctors.getSpecialty());
+        viewHolder.specdoc.setText(doctors
+                .getSpecialty());
 
         holder.itemView.setOnClickListener(view -> {
             Intent intent = new Intent(context, DoctorProfileFromPatientHome.class);
-            intent.putExtra("Name", doctors.getName());
+            intent.putExtra("Name",doctors.getName());
+            intent.putExtra("Spec",doctors.getFullSpecialty());
+            intent.putExtra("Adr",doctors.getAddress());
+            intent.putExtra("Phn",doctors.getPhone());
+            intent.putExtra("Dsc",doctors.getDesc());
+            intent.putExtra("Id",doctors.getId());
             context.startActivity(intent);
         });
     }

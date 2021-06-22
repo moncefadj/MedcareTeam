@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="15dp"
+    android:layout_margin="20dp">
+
+    <ImageView
+        android:id="@+id/cancel_dialog_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_close"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/rounded_corner"
+        android:padding="2dp"/>
+
+
+    <ImageView
+        android:id="@+id/check_user_icon"
+        android:layout_width="65dp"
+        android:layout_height="43dp"
+        android:padding="10dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_medical_bag" />
+
+    <TextView
+        android:id="@+id/check_user_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="vous voulez ajouter un medicament ou une mesure !"
+        android:fontFamily="@font/allerta"
+        android:textSize="20sp"
+        android:textAlignment="center"
+        android:gravity="center_horizontal"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/check_user_icon"
+        android:padding="10dp"/>
+    <Button
+        android:id="@+id/add_med"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="medicament"
+        android:textAllCaps="false"
+        app:layout_constraintWidth_percent="0.5"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/add_mesure"
+        app:layout_constraintTop_toBottomOf="@+id/check_user_txt"
+        android:layout_marginRight="5dp"
+        android:padding="10dp"/>
+    <Button
+        android:id="@+id/add_mesure"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="une mesure"
+        android:textAllCaps="false"
+        app:layout_constraintWidth_percent="0.5"
+        app:layout_constraintLeft_toRightOf="@id/add_med"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/check_user_txt"
+        android:layout_marginLeft="5dp"
+        android:padding="10dp"/>
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

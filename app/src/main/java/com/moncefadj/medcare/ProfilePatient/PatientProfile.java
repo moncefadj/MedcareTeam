@@ -45,14 +45,13 @@ public class PatientProfile extends AppCompatActivity {
     MeowBottomNavigation bottomNavigation;
     Toast toast;
     private Button play;
-    private Button logout;
 
     private FirebaseUser user;
     private DatabaseReference reference,referencee;
     private String userID;
 
     ImageView back;
-    private ImageView add;
+    private ImageView add,logout;
     private Uri imageUri;
     private static final int IMAGE_REQUEST =2;
 
@@ -63,7 +62,7 @@ public class PatientProfile extends AppCompatActivity {
 
 
         play= (Button) findViewById(R.id.play);
-        logout=(Button)findViewById(R.id.logout);
+        logout=(ImageView)findViewById(R.id.logout);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

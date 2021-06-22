@@ -19,11 +19,7 @@
         <activity android:name=".Doctor.EditDoctorProfile" />
         <activity android:name=".Doctor.DoctorDashboard" />
         <activity android:name=".Patient.PatientHome">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
     </activity>
         <activity android:name=".Patient.OneSpecialtyDoctors" />
         <activity android:name=".Underbar.underbar" />

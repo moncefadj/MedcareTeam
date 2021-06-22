@@ -13,34 +13,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <android.widget.Button
-            android:id="@+id/logout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:background="@color/transparent"
-            android:text="Logout"
-            android:textColor="@color/white"/>
 
 
         <View
             android:id="@+id/view_top"
             android:layout_width="match_parent"
             android:layout_height="203dp"
-            android:background="#0099ff"
+            android:background="@color/blue_app"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:id="@+id/logout"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            app:srcCompat="@drawable/ic_baseline_exit_to_app_24"
+            android:layout_margin="10dp"/>
 
         <TextView
             android:id="@+id/b"
-            android:layout_width="248dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/c"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="0dp"
-            android:layout_marginEnd="17dp"
-            android:text="Chaouch Hanan"
+            android:layout_centerHorizontal="true"
             android:textColor="@color/white"
             android:textSize="30sp" />
 
@@ -69,8 +65,8 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="112dp"
             android:layout_marginEnd="104dp"
-            android:src="@drawable/profill"
-            app:civ_border_color="@color/colorPrimaryDark"
+            android:src="@drawable/img_patient"
+            app:civ_border_color="@color/colorPrimary"
             app:civ_border_width="3dp"
             app:layout_constraintHorizontal_bias="0.557"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -97,16 +93,18 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:text="votre date de naissance"
-            android:textColor="@color/rose" />
+            android:textColor="@color/blue_app" />
 
-        <EditText
+        <TextView
             android:id="@+id/e"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:drawableLeft="@drawable/ic_baseline_person_24"
+            android:hint="Date de naissance"
+            android:textSize="15dp"
+            android:layout_marginVertical="10dp"
+            android:padding="10dp"
             android:drawablePadding="10dp"
-            android:hint="date de naissance"
-
             />
 
         <TextView
@@ -114,40 +112,47 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:text="votre email"
-            android:textColor="@color/rose" />
+            android:textColor="@color/blue_app" />
 
         <TextView
             android:id="@+id/pemail"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:drawableLeft="@drawable/ic_baseline_email_24"
+            android:hint="E-mail"
+            android:textSize="15dp"
+            android:layout_marginVertical="10dp"
+            android:padding="10dp"
             android:drawablePadding="10dp"
-            android:hint="e-mail" />
+            />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="votre numero"
-            android:textColor="@color/rose" />
+            android:text="votre numéro de téléphone"
+            android:textColor="@color/blue_app" />
 
-        <EditText
+        <TextView
             android:id="@+id/n"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:drawableLeft="@drawable/ic_baseline_phone_24"
+            android:hint="Numéro"
+            android:textSize="15dp"
+            android:layout_marginVertical="10dp"
+            android:padding="10dp"
             android:drawablePadding="10dp"
-            android:hint="numero" />
-
+            />
         <android.widget.Button
             android:id="@+id/play"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="5dp"
             android:background="@drawable/back"
             android:text="modifier"
-            android:textColor="#F50C83E3" />
+            android:textColor="@color/blue_app" />
 
 
     </LinearLayout>
@@ -157,7 +162,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        app:mbn_backgroundBottomColor="#0099ff"
+        app:mbn_backgroundBottomColor="@color/blue_app"
         app:mbn_circleColor="#ffff"
         app:mbn_countBackgroundColor="#ff6f00"
         app:mbn_countTextColor="#ffff"

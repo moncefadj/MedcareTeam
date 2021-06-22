@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
@@ -39,6 +40,7 @@ public class EditPatientProfile extends AppCompatActivity {
     private FirebaseUser userr;
 
     private EditText mnameinput, mmotdepassinput, mdayinput, mmonthinput, myearinput, maddressseinput, mnuminput, memailinput;
+    private TextInputLayout enameinput, emotdepassinput, edayinput, emonthinput, eyearinput, eaddressseinput, enuminput, eemailinput;
 
     private Button mplaybutton;
     private ImageView back;
@@ -59,6 +61,15 @@ public class EditPatientProfile extends AppCompatActivity {
         mnuminput = (EditText) findViewById(R.id.inumero);
         memailinput = (EditText) findViewById(R.id.iemail);
         mmotdepassinput = (EditText) findViewById(R.id.imotdepass);
+
+        edayinput=(TextInputLayout) findViewById(R.id.k2);
+        emonthinput=(TextInputLayout) findViewById(R.id.k3);
+        eyearinput=(TextInputLayout) findViewById(R.id.k4);
+        enameinput=(TextInputLayout) findViewById(R.id.k);
+        emotdepassinput=(TextInputLayout) findViewById(R.id.k1);
+        enuminput=(TextInputLayout) findViewById(R.id.k5);
+        eemailinput=(TextInputLayout) findViewById(R.id.k6);
+
 
        /* mplaybutton.setEnabled(false);
         mnameinput.addTextChangedListener(loginTextWatcher);
@@ -103,6 +114,9 @@ public class EditPatientProfile extends AppCompatActivity {
             }
         });
 
+        edayinput.setError(null);
+        emonthinput.setError(null);
+        eyearinput.setError(null);
 
         mplaybutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,8 +129,16 @@ public class EditPatientProfile extends AppCompatActivity {
                 String month = mmonthinput.getText().toString();
                 String year = myearinput.getText().toString();
 
-                if ((!(motdepasse.isEmpty())) && (!(email.isEmpty()))) {
-                    HashMap<String, Object> hashMap = new HashMap<>();
+                int dayInt = Integer.parseInt(day);
+                int monthInt = Integer.parseInt(month);
+                int yearInt = Integer.parseInt(year);
+
+
+
+                if (!Name.isEmpty() && !email.isEmpty() && !numero.isEmpty() && !motdepasse.isEmpty()
+                        && !day.isEmpty() && !month.isEmpty() && !year.isEmpty()) {
+                    if (dayInt >= 1 && dayInt <= 31 && monthInt >= 1 && monthInt <= 12 && yearInt <= 2002){
+                        HashMap<String, Object> hashMap = new HashMap<>();
                     hashMap.put("name", Name);
                     hashMap.put("email", email);
                     hashMap.put("phone", numero);
@@ -135,8 +157,14 @@ public class EditPatientProfile extends AppCompatActivity {
                         }
                     });
                     reff.updateChildren(hashMapp);
+                }else {
+                        edayinput.setError("Vous avez dépasser la limite");
+                        emonthinput.setError("Vous avez dépasser la limite");
+                        eyearinput.setError("Vous avez dépasser la limite");
+                    }
+                    }
                 }
-            }
+
         });
 
     }

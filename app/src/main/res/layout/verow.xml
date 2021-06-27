@@ -26,6 +26,7 @@
             android:layout_marginTop="5dp"
             android:padding="2dp"
             android:text="medcin text:"
+            android:fontFamily="@font/allerta"
             android:textColor="@color/blue_app"
             android:textSize="18sp" />
 

@@ -420,13 +420,14 @@ public class DoctorProfile extends AppCompatActivity {
                     DoctorData doctorData = snapshot.getValue(DoctorData.class);
 
                     String img =doctorData.getProfileImg();
+                    Picasso.get().load(img).into(profileImg);
+
                     name.setText(doctorData.getName());
                     fullSpecialty.setText(doctorData.getFullSpecialty());
                     address.setText(doctorData.getAddress());
                     desc.setText(doctorData.getDesc());
                     rate.setText(doctorData.getRate());
                     phone.setText(doctorData.getPhone());
-                    Picasso.get().load(img).into(profileImg);
 
 
                 }

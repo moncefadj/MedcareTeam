@@ -7,7 +7,7 @@
     android:layout_margin="5dp"
     app:cardCornerRadius="8dp"
     app:cardElevation="50dp"
-    android:id="@+id/meditem"
+    android:id="@+id/meditemcard"
   >
 
     <LinearLayout

@@ -113,7 +113,7 @@
             android:fontFamily="@font/allerta"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
-            android:text="Date de naissance"
+            android:text="Date de naissance:"
             android:textColor="@color/rose" />
 
         <LinearLayout
@@ -230,7 +230,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
-            android:text="Adresse email"
+            android:text="Adresse email:"
             android:fontFamily="@font/allerta"
             android:textColor="@color/rose" />
 

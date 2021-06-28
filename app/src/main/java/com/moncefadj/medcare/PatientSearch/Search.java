@@ -67,7 +67,6 @@ RecyclerView recyclerView;
         docdata = new DoctorsDatabase();
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
         Spinner spinner1 = findViewById(R.id.spinner1);
         String[] Categouries = {"    Specialitées", "Chirurgie Dentaire", "Cardiologie","Ophtalmologie",
                 "Pneumologie"};

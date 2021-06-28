@@ -17,8 +17,6 @@
         android:orientation="vertical"
         android:layout_weight="1"/>
 
-
-
     <com.etebarian.meowbottomnavigation.MeowBottomNavigation
 
         android:id="@+id/bottom_navigation"
@@ -30,4 +28,5 @@
         app:mbn_countTextColor="#ffff"
         app:mbn_defaultIconColor="#ffff"
         app:mbn_selectedIconColor="#902196f3" />
+
 </LinearLayout>

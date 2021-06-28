@@ -10,6 +10,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,14 +29,12 @@ import com.moncefadj.medcare.DataClasses.DoctorDataForHomePatient;
 import com.moncefadj.medcare.DataClasses.DoctorsDatabase;
 import com.moncefadj.medcare.Doctor.EditDoctorProfile;
 import com.moncefadj.medcare.HelperClasses.doctorsAdapter;
-import com.moncefadj.medcare.HelperClasses.doctorsViewHolder;
 import com.moncefadj.medcare.Medicaments.liste_medicaments;
 import com.moncefadj.medcare.PatientHome.SpecialitiesAdapter;
 import com.moncefadj.medcare.DataClasses.SpecialtiesData;
 import com.moncefadj.medcare.PatientSearch.Search;
 import com.moncefadj.medcare.ProfilePatient.PatientProfile;
 import com.moncefadj.medcare.R;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -77,6 +77,7 @@ public class PatientHome extends AppCompatActivity {
                     case 4: intent = new Intent(getApplicationContext(), PatientProfile.class);
                         startActivity(intent);
                         break;
+                    default:break;
 
                 }
 
@@ -90,7 +91,7 @@ public class PatientHome extends AppCompatActivity {
             @Override
             public void onClickItem(MeowBottomNavigation.Model item) {
                 //display toast
-                Toast.makeText(getApplicationContext(), "you clicked" + item.getId(), Toast.LENGTH_SHORT).show();
+
             }
 
             ;
@@ -100,7 +101,7 @@ public class PatientHome extends AppCompatActivity {
             @Override
             public void onReselectItem(MeowBottomNavigation.Model item) {
                 //display toast
-                Toast.makeText(getApplicationContext(), "YOU reslected" + item.getId(), Toast.LENGTH_SHORT).show();
+
             }
         });
 
@@ -127,8 +128,8 @@ public class PatientHome extends AppCompatActivity {
                 ,R.drawable.lung_ic,R.drawable.tooth};
 
         //creat string array
-        String[] categorieName={"Ophtalmomogie","Cardiologie"
-                ,"Pneumoligie","Dentiste"};
+        String[] categorieName={"Ophtalmologie","Cardiologie"
+                ,"Pneumologie","Chir. dentaire"};
 
         //initilize arraylist
         specialtiesData =new ArrayList<>();
@@ -193,9 +194,14 @@ public class PatientHome extends AppCompatActivity {
                 ArrayList<DoctorDataForHomePatient> othDoctors = new ArrayList<>();
 
                 for (DataSnapshot data : snapshot.getChildren()){
+                    
+
                     DoctorDataForHomePatient doctors;
                     doctors = data.getValue(DoctorDataForHomePatient.class);
-                    othDoctors.add(doctors);
+                    if(doctors.getSpecialty().matches("Généraliste")){
+                        othDoctors.add(doctors);
+                    }
+
 
                 }
 

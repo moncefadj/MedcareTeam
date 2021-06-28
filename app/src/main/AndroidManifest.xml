@@ -13,10 +13,10 @@
         android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:theme="@style/Theme.MedCare">
-        <activity android:name=".Patient.pneumologie"/>
+        <activity android:name=".Patient.Pneumologie"/>
 
         <activity android:name=".Patient.cardiologie" />
-        <activity android:name=".Patient.ophtalmon" />
+        <activity android:name=".Patient.Ophtalmologie" />
         <activity android:name=".Doctor.EditDoctorProfile" />
         <activity android:name=".Doctor.DoctorDashboard" />
         <activity android:name=".Patient.PatientHome">
@@ -46,6 +46,8 @@
         <activity
             android:name=".Patient.DoctorProfileFromPatientHome"
             android:windowSoftInputMode="stateVisible|adjustPan" />
+
+        <activity android:name=".Medicaments.liste_mesure"/>
 
         <activity android:name=".Common.SplashScreen">
             <intent-filter>

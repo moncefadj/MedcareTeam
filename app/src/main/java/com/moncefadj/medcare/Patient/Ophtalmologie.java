@@ -19,7 +19,7 @@ import com.moncefadj.medcare.R;
 
 import java.util.ArrayList;
 
-public class ophtalmon extends AppCompatActivity {
+public class Ophtalmologie extends AppCompatActivity {
     adapter docAdapter;
     DoctorsDatabase docdata;
     RecyclerView doctorsRecycler;

@@ -28,6 +28,7 @@ public class mesureAdapter extends RecyclerView.Adapter<mesureAdapter.viewHolder
         ImageButton deletemesure;
         ImageView mesureimg;
 
+
         public viewHolder(@NonNull View itemView) {
             super(itemView);
             nameitm = (TextView) itemView.findViewById(R.id.mesurename);
@@ -79,10 +80,10 @@ public class mesureAdapter extends RecyclerView.Adapter<mesureAdapter.viewHolder
                                        if (task.isSuccessful()){
                                            list.remove(list.get(position));
                                            notifyDataSetChanged();
-                                           Toast.makeText(context , "data deleted succesfully ", Toast.LENGTH_LONG).show();
+                                           Toast.makeText(context , "Mesure supprimée", Toast.LENGTH_LONG).show();
                                        }
                                        else{
-                                           Toast.makeText(context , "erreur "+task.getException().getMessage() , Toast.LENGTH_LONG).show();
+                                           Toast.makeText(context , "Erreur "+task.getException().getMessage() , Toast.LENGTH_LONG).show();
                                        }
                                    }
                                });

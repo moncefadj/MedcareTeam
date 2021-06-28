@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Patient.pneumologie">
+    tools:context=".Patient.Pneumologie">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,19 +14,19 @@
         android:id="@+id/tete"
         android:layout_width="match_parent"
         android:layout_height="70dp"
+        android:fontFamily="@font/allerta"
         android:layout_marginTop="@android:dimen/app_icon_size"
         android:gravity="center"
-        android:shadowColor="@color/purple_500"
+        android:shadowColor="@color/blue_app"
         android:shadowRadius="@android:integer/config_longAnimTime"
-        android:text="OPHTALMOLOGIE"
-        android:textColor="@color/colorPrimary"
-        android:textSize="35dp"
-        android:textStyle="italic|bold" />
+        android:text="Pneumologues"
+        android:textColor="@color/blue_app"
+        android:textSize="35dp"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/doctors"
             android:layout_width="match_parent"
-            android:layout_height="404dp"
+            android:layout_height="match_parent"
             android:layout_marginTop="5dp"
             android:dividerHeight="10sp" />
 </LinearLayout>

@@ -66,10 +66,10 @@ public class ajouterMesure extends AppCompatActivity {
                 Calendar now = Calendar.getInstance();
                 String time = now.get(Calendar.HOUR_OF_DAY)+":"+now.get(Calendar.MINUTE);
                 if (nom.isEmpty()){
-                    nomMesure.setError("le nom est obligatoire");
+                    nomMesure.setError("Le nom est obligatoire");
                 }
                 if (valeur.isEmpty()){
-                    valeur_mes.setError("la valeur est obligatoire ");
+                    valeur_mes.setError("La valeur est obligatoire ");
                     return;
                 }
 
@@ -77,7 +77,7 @@ public class ajouterMesure extends AppCompatActivity {
                 mesReference =mesuresReference.child(nom);
                 mesReference.setValue( new mesureData(nom,time,valeur) );
                 Toast.makeText(getApplicationContext(), "Ajout réussi" , Toast.LENGTH_LONG ).show();
-                Intent intent = new Intent(ajouterMesure.this, liste_medicaments.class);
+                Intent intent = new Intent(ajouterMesure.this, liste_mesure.class);
                 startActivity(intent);
 
             }

@@ -24,18 +24,18 @@
             app:srcCompat="@drawable/ic_arrow_back" />
 
         <TextView
-        android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fontFamily="sans-serif-black"
-        android:padding="20dp"
-        android:text="Ajouter un medicament "
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textColor="@color/blue_app"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:gravity="center_horizontal" />
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/allerta"
+            android:gravity="center_horizontal"
+            android:padding="20dp"
+            android:text="Ajouter un medicament "
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/blue_app"
+            android:textSize="24sp"
+            android:textStyle="bold" />
     </RelativeLayout>
 
     <EditText
@@ -45,7 +45,8 @@
         android:layout_marginBottom="10dp"
         android:background="@drawable/edittext_border"
         android:ems="10"
-        android:hint="nom du médicaments"
+        android:hint="Nom du médicaments"
+        android:fontFamily="@font/allerta"
         android:inputType="textPersonName"
         android:padding="10dp"
         android:textColor="@color/black"
@@ -58,7 +59,8 @@
         android:layout_marginBottom="10dp"
         android:background="@drawable/edittext_border"
         android:ems="10"
-        android:hint="petit description"
+        android:fontFamily="@font/allerta"
+        android:hint="Description"
         android:inputType="textPersonName"
         android:padding="10dp"
         android:textColor="@color/black" />
@@ -70,7 +72,8 @@
         android:layout_marginBottom="10dp"
         android:background="@drawable/edittext_border"
         android:ems="10"
-        android:hint="date debut du prise "
+        android:hint="Date de début de prise"
+        android:fontFamily="@font/allerta"
         android:inputType="textPersonName"
         android:padding="10dp"
         android:textColor="@color/black" />
@@ -82,7 +85,8 @@
         android:layout_marginBottom="10dp"
         android:background="@drawable/edittext_border"
         android:ems="10"
-        android:hint="date de fin du prise "
+        android:fontFamily="@font/allerta"
+        android:hint="Date de fin de prise "
         android:inputType="textPersonName"
         android:padding="10dp"
         android:textColor="@color/black" />
@@ -97,6 +101,7 @@
             android:id="@+id/spinnerInst"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:autofillHints="Avant repas"
             android:paddingBottom="10dp" />
 
     </LinearLayout>
@@ -110,6 +115,7 @@
             android:id="@+id/heure"
             android:layout_width="126dp"
             android:layout_height="50dp"
+            android:fontFamily="@font/allerta"
             android:layout_marginBottom="10dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="@color/black"
@@ -123,6 +129,7 @@
             android:layout_width="135dp"
             android:layout_height="50dp"
             android:layout_marginBottom="10dp"
+            android:fontFamily="@font/allerta"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="@color/black"
             android:textIsSelectable="true"
@@ -132,6 +139,7 @@
 
         <TextView
             android:id="@+id/heure3"
+            android:fontFamily="@font/allerta"
             android:layout_width="126dp"
             android:layout_height="50dp"
             android:layout_marginBottom="10dp"
@@ -150,8 +158,9 @@
         android:layout_height="wrap_content"
         android:background="@drawable/button_border"
         android:paddingBottom="10dp"
-        android:text="ajouter l'heure de prise"
-        app:backgroundTint="@color/blue_app" />
+        android:text="Ajouter l'heure de prise"
+        app:backgroundTint="@color/blue_app"
+        android:fontFamily="@font/allerta" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -164,6 +173,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="32dp"
             android:layout_marginRight="32dp"
+            android:fontFamily="@font/allerta"
             android:layout_marginBottom="4dp"
             android:background="@drawable/button_border"
             android:text="sauvgarder"

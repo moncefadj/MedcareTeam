@@ -50,10 +50,10 @@ public class Search extends AppCompatActivity {
     MeowBottomNavigation bottomNavigation;
     Toast toast;
     String name;
-SearchView searchView;
+    SearchView searchView;
     DoctorsDatabase docdata;
-RecyclerView recyclerView;
-   adapter docAdapter;
+    RecyclerView recyclerView;
+    adapter docAdapter;
     ArrayList<DoctorDataForHomePatient> doctor=new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,17 +67,16 @@ RecyclerView recyclerView;
         docdata = new DoctorsDatabase();
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
         Spinner spinner1 = findViewById(R.id.spinner1);
-        String[] Categouries = {"    Specialitées", "denstiste", "Cardiologie","Ophtalmologie","Imagerie médicale","Endocrinologie"
-                ,"Hépatogastroentérologie","Dermatologie","ORL","Gynéco-obstétrique"};
+        String[] Categouries = {"Specialités", "Chirurgie Dentaire", "Cardiologie","Ophtalmologie",
+                "Pneumologie"};
         ArrayAdapter<String> arrayAdapter1 = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, Categouries);
         spinner1.setAdapter(arrayAdapter1);
         spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String spec=spinner1.getSelectedItem().toString();
-                if(spec.matches("    Specialitées"))
+                if(spec.matches("Specialités"))
                 {   loadDocData();}
                 else {loadDocDataByspec(spec);}
             }
@@ -148,7 +147,7 @@ RecyclerView recyclerView;
             @Override
             public void onClickItem(MeowBottomNavigation.Model item) {
                 //display toast
-                Toast.makeText(getApplicationContext(), "you clicked" + item.getId(), Toast.LENGTH_SHORT).show();
+
             }
 
             ;
@@ -158,9 +157,11 @@ RecyclerView recyclerView;
             @Override
             public void onReselectItem(MeowBottomNavigation.Model item) {
                 //display toast
-                Toast.makeText(getApplicationContext(), "YOU reslected" + item.getId(), Toast.LENGTH_SHORT).show();
+
+
             }
         });
+
     }
 
 

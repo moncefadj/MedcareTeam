@@ -62,7 +62,7 @@ public class underbar extends AppCompatActivity {
             @Override
             public void onClickItem(MeowBottomNavigation.Model item) {
                 //display toast
-                Toast.makeText(getApplicationContext(), "you clicked" + item.getId(), Toast.LENGTH_SHORT).show();
+
             }
 
             ;
@@ -72,7 +72,8 @@ public class underbar extends AppCompatActivity {
             @Override
             public void onReselectItem(MeowBottomNavigation.Model item) {
                 //display toast
-                Toast.makeText(getApplicationContext(), "YOU reslected" + item.getId(), Toast.LENGTH_SHORT).show();
+
+
             }
         });
 

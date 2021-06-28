@@ -69,8 +69,8 @@ RecyclerView recyclerView;
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         Spinner spinner1 = findViewById(R.id.spinner1);
-        String[] Categouries = {"    Specialitées", "denstiste", "Cardiologie","Ophtalmologie","Imagerie médicale","Endocrinologie"
-                ,"Hépatogastroentérologie","Dermatologie","ORL","Gynéco-obstétrique"};
+        String[] Categouries = {"    Specialitées", "Chirurgie Dentaire", "Cardiologie","Ophtalmologie",
+                "Pneumologie"};
         ArrayAdapter<String> arrayAdapter1 = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, Categouries);
         spinner1.setAdapter(arrayAdapter1);
         spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

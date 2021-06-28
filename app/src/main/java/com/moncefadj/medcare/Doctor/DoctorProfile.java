@@ -214,7 +214,7 @@ public class DoctorProfile extends AppCompatActivity {
                     int hourInt = Integer.parseInt(hour);
                     int minuteInt = Integer.parseInt(minute);
 
-                    if (hourInt >= 0 && hourInt <= 23 && minuteInt >= 1 && minuteInt <= 60) {
+                    if (hourInt >= 0 && hourInt <= 23 && minuteInt >= 0 && minuteInt <= 60) {
 
                         String selectedDay = daysInput.getEditText().getText().toString();
 

@@ -37,6 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/c"
             android:layout_centerHorizontal="true"
+            android:fontFamily="@font/allerta"
             android:textColor="@color/white"
             android:textSize="30sp" />
 
@@ -46,7 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="16dp"
-            android:fontFamily="sans-serif-medium"
+            android:fontFamily="@font/allerta"
             android:shadowColor="@color/white"
             android:text="Profile"
             android:textColor="@color/white"

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -48,16 +47,15 @@
             android:layout_marginStart="44dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/backgraoudbuttob"
-            android:inputType="textVisiblePassword" />
+            android:inputType="textVisiblePassword"
+            android:queryHint="Search" />
 
         <androidx.recyclerview.widget.RecyclerView
-           android:id="@+id/doctors"
-           android:layout_width="fill_parent"
-           android:layout_marginTop="60dp"
-           android:layout_height="fill_parent"
-           android:layout_below="@+id/search_d"/>
-
-
+            android:id="@+id/doctors"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_below="@+id/search_d"
+            android:layout_marginTop="60dp" />
 
 
     </RelativeLayout>
@@ -66,11 +64,11 @@
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="70dp"
+        app:mbn_backgroundBottomColor="@color/blue_app"
         app:mbn_circleColor="#ffff"
-        app:mbn_selectedIconColor="#902196f3"
-        app:mbn_countTextColor="#ffff"
         app:mbn_countBackgroundColor="#ff6f00"
+        app:mbn_countTextColor="#ffff"
         app:mbn_defaultIconColor="#ffff"
-        app:mbn_backgroundBottomColor="@color/blue_app" />
+        app:mbn_selectedIconColor="#902196f3" />
 </LinearLayout>
 

@@ -109,7 +109,7 @@ public class PatientHome extends AppCompatActivity {
 
         //creat string array
         String[] categorieName={"Ophtalmomogie","Cardiologie"
-                ,"Pneumoligie","Dentiste"};
+                ,"Pneumoligie","Chirurgie Dentaire"};
 
         //initilize arraylist
         specialtiesData =new ArrayList<>();
@@ -178,7 +178,10 @@ public class PatientHome extends AppCompatActivity {
 
                     DoctorDataForHomePatient doctors;
                     doctors = data.getValue(DoctorDataForHomePatient.class);
-                    othDoctors.add(doctors);
+                    if(doctors.getSpecialty().matches("Généraliste")){
+                        othDoctors.add(doctors);
+                    }
+
 
                 }
 

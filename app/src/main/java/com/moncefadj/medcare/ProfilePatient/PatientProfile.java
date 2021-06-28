@@ -115,6 +115,7 @@ public class PatientProfile extends AppCompatActivity {
                     case 3: intent = new Intent(getApplicationContext(), Search.class);
                         startActivity(intent);
                         break;
+                    default:break;
 
 
                     //  case 4: fragment=new ProfilFragment();

@@ -14,14 +14,15 @@
         android:id="@+id/tete"
         android:layout_width="match_parent"
         android:layout_height="70dp"
+        android:fontFamily="@font/allerta"
         android:layout_marginTop="@android:dimen/app_icon_size"
         android:gravity="center"
-        android:shadowColor="@color/purple_500"
+        android:shadowColor="@color/blue_app"
         android:shadowRadius="@android:integer/config_longAnimTime"
         android:text="CARDIOLOGIE"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/blue_app"
         android:textSize="35dp"
-        android:textStyle="italic|bold" />
+        android:textStyle="" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/doctors"

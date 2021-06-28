@@ -15,7 +15,8 @@
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
+        android:padding="10dp"
         android:src="@drawable/logohome" />
 
 
@@ -40,7 +41,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"
-            android:layout_width="356dp"
+            android:layout_width="400dp"
             android:layout_height="125dp"
             android:layout_marginTop="50dp" />
     </androidx.cardview.widget.CardView>

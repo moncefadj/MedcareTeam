@@ -1,10 +1,14 @@
 package com.moncefadj.medcare.Doctor;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
+import android.content.ContentResolver;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
@@ -14,6 +18,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.MimeTypeMap;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -25,8 +30,12 @@ import android.widget.Switch;
 import android.widget.PopupMenu;
 import android.widget.PopupMenu.OnMenuItemClickListener;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.flexbox.FlexboxLayout;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -34,14 +43,23 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.moncefadj.medcare.Common.LoginActivity;
 import com.moncefadj.medcare.DataClasses.DoctorData;
+import com.moncefadj.medcare.ProfilePatient.PatientProfile;
 import com.moncefadj.medcare.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.Calendar;
 import java.util.HashMap;
 
 public class DoctorProfile extends AppCompatActivity {
+
+    private Uri imageUri;
+    private static final int IMAGE_REQUEST =2;
+
 
     AutoCompleteTextView autoCompleteTextView;
     String[] days;
@@ -88,6 +106,9 @@ public class DoctorProfile extends AppCompatActivity {
 
         uidDoctor = FirebaseAuth.getInstance().getCurrentUser().getUid();
         doctorRef = FirebaseDatabase.getInstance().getReference().child("Users").child("Doctors").child(uidDoctor);
+
+
+
 
         setProfileData();
 
@@ -258,9 +279,17 @@ public class DoctorProfile extends AppCompatActivity {
             }
         });
 
+        profileImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openImage();
+            }
+        });
 
 
     }
+
+
 
 
     private void showAllDayButtons(String day) {
@@ -390,12 +419,16 @@ public class DoctorProfile extends AppCompatActivity {
 
                     DoctorData doctorData = snapshot.getValue(DoctorData.class);
 
+                    String img =doctorData.getProfileImg();
                     name.setText(doctorData.getName());
                     fullSpecialty.setText(doctorData.getFullSpecialty());
                     address.setText(doctorData.getAddress());
                     desc.setText(doctorData.getDesc());
                     rate.setText(doctorData.getRate());
                     phone.setText(doctorData.getPhone());
+                    Picasso.get().load(img).into(profileImg);
+
+
                 }
             }
 
@@ -423,6 +456,71 @@ public class DoctorProfile extends AppCompatActivity {
         flexboxLayout.removeAllViews();
     }
 
+
+
+
+
+
+
+    private void openImage() {
+        Intent intent = new Intent();
+        intent.setType("image/");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent , IMAGE_REQUEST);
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == IMAGE_REQUEST && resultCode == RESULT_OK){
+            imageUri = data.getData();
+
+            uploadImage();
+        }
+    }
+
+    private String getFileExtension (Uri uri){
+        ContentResolver contentResolver = getContentResolver();
+
+        MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
+
+        return  mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
+    }
+
+
+
+    private void uploadImage() {
+        final ProgressDialog pd = new ProgressDialog(this);
+        pd.setMessage("image is uploading");
+        pd.show();
+
+        if (imageUri != null){
+            final StorageReference fileRef = FirebaseStorage.getInstance().getReference().child("uploads").child(System.currentTimeMillis() + "." + getFileExtension(imageUri));
+
+            fileRef.putFile(imageUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                    fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            String url = uri.toString();
+
+                            Log.d("DownloadUrl" , url);
+                            pd.dismiss();
+                            HashMap<String, Object> hashMap = new HashMap<>();
+                            hashMap.put("profileImg", url);
+                            doctorRef.updateChildren(hashMap);
+
+
+                            Toast.makeText(DoctorProfile.this, "Image upload successfull", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+            });
+        }
+    }
 
 
 }

@@ -27,12 +27,14 @@ import com.moncefadj.medcare.DataClasses.DoctorDataForHomePatient;
 import com.moncefadj.medcare.DataClasses.DoctorsDatabase;
 import com.moncefadj.medcare.Doctor.EditDoctorProfile;
 import com.moncefadj.medcare.HelperClasses.doctorsAdapter;
+import com.moncefadj.medcare.HelperClasses.doctorsViewHolder;
 import com.moncefadj.medcare.Medicaments.liste_medicaments;
 import com.moncefadj.medcare.PatientHome.SpecialitiesAdapter;
 import com.moncefadj.medcare.DataClasses.SpecialtiesData;
 import com.moncefadj.medcare.PatientSearch.Search;
 import com.moncefadj.medcare.ProfilePatient.PatientProfile;
 import com.moncefadj.medcare.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -84,6 +86,23 @@ public class PatientHome extends AppCompatActivity {
         boolean enableAnimation;
         //set home fragment initialy selected
         bottomNavigation.show(1, enableAnimation = true);
+        bottomNavigation.setOnClickMenuListener(new MeowBottomNavigation.ClickListener() {
+            @Override
+            public void onClickItem(MeowBottomNavigation.Model item) {
+                //display toast
+                Toast.makeText(getApplicationContext(), "you clicked" + item.getId(), Toast.LENGTH_SHORT).show();
+            }
+
+            ;
+        });
+
+        bottomNavigation.setOnReselectListener(new MeowBottomNavigation.ReselectListener() {
+            @Override
+            public void onReselectItem(MeowBottomNavigation.Model item) {
+                //display toast
+                Toast.makeText(getApplicationContext(), "YOU reslected" + item.getId(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
         //show doctors
 
@@ -174,14 +193,9 @@ public class PatientHome extends AppCompatActivity {
                 ArrayList<DoctorDataForHomePatient> othDoctors = new ArrayList<>();
 
                 for (DataSnapshot data : snapshot.getChildren()){
-                    
-
                     DoctorDataForHomePatient doctors;
                     doctors = data.getValue(DoctorDataForHomePatient.class);
-                    if(doctors.getSpecialty().matches("Généraliste")){
-                        othDoctors.add(doctors);
-                    }
-
+                    othDoctors.add(doctors);
 
                 }
 

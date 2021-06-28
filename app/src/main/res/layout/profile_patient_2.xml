@@ -113,7 +113,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
-            android:text="entrer votre date de naissance :"
+            android:text="Entrer votre date de naissance :"
             android:textColor="@color/rose" />
 
         <LinearLayout
@@ -195,7 +195,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
-            android:text="entrer votre numéro de téléphone:"
+            android:text="Entrer votre numéro de téléphone:"
             android:textColor="@color/rose" />
 
         <com.google.android.material.textfield.TextInputLayout
@@ -228,7 +228,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
-            android:text="entrer votre email:"
+            android:text="Entrer votre email:"
             android:textColor="@color/rose" />
 
         <com.google.android.material.textfield.TextInputLayout

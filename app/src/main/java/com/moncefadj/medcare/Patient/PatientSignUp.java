@@ -37,7 +37,7 @@ public class PatientSignUp extends AppCompatActivity {
     DatabaseReference patientRef;
 
     TextInputLayout nameInput,emailInput,passInput,confPassInput,phoneInput,dayInput,monthInput,yearInput;
-    String nameTxt,emailTxt,passTxt,confPassTxt,phoneTxt,dayTxt,monthTxt,yearTxt;
+    String nameTxt,emailTxt,passTxt,confPassTxt,phoneTxt,dayTxt,monthTxt,yearTxt,profiletxt;
     Button signUpBtn;
 
     @Override
@@ -158,7 +158,7 @@ public class PatientSignUp extends AppCompatActivity {
         map.put("phone", phoneTxt);
        // map.put("password",passTxt);
         map.put("password", passTxt);
-        map.put("profile", "soon...");
+        map.put("profile", profiletxt);
 
         HashMap<String, Object> birthMap = new HashMap<>();
         birthMap.put("day", dayTxt);

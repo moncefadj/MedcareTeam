@@ -40,6 +40,9 @@ import com.moncefadj.medcare.Patient.PatientHome;
 import com.moncefadj.medcare.Patient.PatientSignUp;
 import com.moncefadj.medcare.PatientSearch.Search;
 import com.moncefadj.medcare.R;
+import com.squareup.picasso.Picasso;
+
+import java.util.HashMap;
 
 public class PatientProfile extends AppCompatActivity {
     MeowBottomNavigation bottomNavigation;
@@ -51,7 +54,7 @@ public class PatientProfile extends AppCompatActivity {
     private String userID;
 
     ImageView back;
-    private ImageView add,logout;
+    private ImageView add,logout,photo;
     private Uri imageUri;
     private static final int IMAGE_REQUEST =2;
 
@@ -127,9 +130,24 @@ public class PatientProfile extends AppCompatActivity {
         boolean enableAnimation;
         //set home fragment initialy selected
         bottomNavigation.show(4, enableAnimation = true);
+        bottomNavigation.setOnClickMenuListener(new MeowBottomNavigation.ClickListener() {
+            @Override
+            public void onClickItem(MeowBottomNavigation.Model item) {
+                //display toast
+            }
+
+            ;
+        });
+
+        bottomNavigation.setOnReselectListener(new MeowBottomNavigation.ReselectListener() {
+            @Override
+            public void onReselectItem(MeowBottomNavigation.Model item) {
+                //display toast
+                Toast.makeText(getApplicationContext(), "YOU reslected" + item.getId(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
         user = FirebaseAuth.getInstance().getCurrentUser();
-        reference = FirebaseDatabase.getInstance().getReference().child("Users").child("Patients");
         reference = FirebaseDatabase.getInstance().getReference().child("Users").child("Patients");
         userID =user.getUid();
         referencee = FirebaseDatabase.getInstance().getReference().child("Users").child("Patients").child(userID).child("BirthDay");
@@ -140,6 +158,10 @@ public class PatientProfile extends AppCompatActivity {
         final TextView emailtextview =(TextView) findViewById(R.id.pemail);
         final TextView numerotextview =(TextView) findViewById(R.id.n);
         final TextView datetextview =(TextView) findViewById(R.id.e);
+        add=(ImageView)findViewById(R.id.a);
+        photo=(ImageView)findViewById(R.id.aa);
+
+
 
 
         reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -149,12 +171,14 @@ public class PatientProfile extends AppCompatActivity {
                 if (userprofile !=null) {
                     String fullname = userprofile.getName();
                     String email= userprofile.getEmail();
-                    String numero=userprofile.getNum();
+                    String numero=userprofile.getPhone();
+                    String img =userprofile.getProfile();
 
 
                     fullnametextview.setText(fullname);
                     emailtextview.setText(email);
                     numerotextview.setText(numero);
+                    Picasso.get().load(img).into(add);
 
                 }
             }
@@ -185,13 +209,14 @@ public class PatientProfile extends AppCompatActivity {
             }
         });
 
-        add=(ImageView)findViewById(R.id.a);
-        add.setOnClickListener(new View.OnClickListener() {
+        photo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openImage();
             }
         });
+
+
 
     }
 
@@ -242,6 +267,11 @@ public class PatientProfile extends AppCompatActivity {
 
                             Log.d("DownloadUrl" , url);
                             pd.dismiss();
+                            HashMap<String, Object> hashMap = new HashMap<>();
+                            hashMap.put("profile", url);
+                            reference.child(userID).updateChildren(hashMap);
+
+
                             Toast.makeText(PatientProfile.this, "Image upload successfull", Toast.LENGTH_SHORT).show();
                         }
                     });

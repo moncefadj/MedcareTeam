@@ -1,7 +1,8 @@
 package com.moncefadj.medcare.DataClasses;
 
-public class DoctorDataForHomePatient {
+import android.graphics.drawable.Drawable;
 
+public class DoctorDataForHomePatient {
     private String name, spec, id, phone, address, desc, specialty;
 
     public DoctorDataForHomePatient(){
@@ -15,6 +16,7 @@ public class DoctorDataForHomePatient {
         this.desc = vDsc;
         this.id = vId;
         this.specialty = vspeciality;
+
     }
 
 

@@ -29,6 +29,7 @@ import com.google.firebase.storage.StorageReference;
 import com.moncefadj.medcare.DataClasses.PatientData;
 import com.moncefadj.medcare.Doctor.EditDoctorProfile;
 import com.moncefadj.medcare.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
 
@@ -43,7 +44,7 @@ public class EditPatientProfile extends AppCompatActivity {
     private TextInputLayout enameinput, emotdepassinput, edayinput, emonthinput, eyearinput, eaddressseinput, enuminput, eemailinput;
 
     private Button mplaybutton;
-    private ImageView back;
+    private ImageView back,add;
     private ImageView imageView;
 
 
@@ -87,6 +88,7 @@ public class EditPatientProfile extends AppCompatActivity {
             }
         });
 
+        add=(ImageView)findViewById(R.id.a);
 
         ref = FirebaseDatabase.getInstance().getReference().child("Users").child("Patients");
         userr = FirebaseAuth.getInstance().getCurrentUser();
@@ -100,10 +102,12 @@ public class EditPatientProfile extends AppCompatActivity {
                 if (userprofile !=null) {
                     String motdepasse = userprofile.getPassword();
                     String email= userprofile.getEmail();
+                    String img =userprofile.getProfile();
 
 
                     mmotdepassinput.setText(motdepasse);
                     memailinput.setText(email);
+                    Picasso.get().load(img).into(add);
 
                 }
             }
@@ -144,6 +148,7 @@ public class EditPatientProfile extends AppCompatActivity {
                     hashMap.put("phone", numero);
                     hashMap.put("password", motdepasse);
 
+
                     HashMap<String, Object> hashMapp = new HashMap<>();
 
                     hashMapp.put("day", day);
@@ -163,8 +168,8 @@ public class EditPatientProfile extends AppCompatActivity {
                         eyearinput.setError("Vous avez dépasser la limite");
                     }
                     }
-                }
 
+                }
         });
 
     }

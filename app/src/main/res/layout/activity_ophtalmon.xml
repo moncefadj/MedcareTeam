@@ -14,6 +14,7 @@
         android:id="@+id/tete"
         android:layout_width="match_parent"
         android:layout_height="70dp"
+        android:fontFamily="@font/allerta"
         android:layout_marginTop="@android:dimen/app_icon_size"
         android:gravity="center"
         android:shadowColor="@color/blue_app"

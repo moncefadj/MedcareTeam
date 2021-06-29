@@ -2,9 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="200dp"
-    android:layout_height="150dp"
-    android:layout_margin="40dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="20dp"
     android:orientation="vertical"
     android:padding="0dp">
 
@@ -48,39 +48,40 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/check_user_icon" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="37dp"
-        android:orientation="horizontal">
+
 
         <TextView
             android:id="@+id/debutD"
-            android:layout_width="102dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="5dp"
-            android:text="date debut"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="0dp"
+            android:text="Date debut"
             android:textAlignment="center"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/finD"
-            android:layout_width="170dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
-            android:text="date fin"
-            android:textStyle="bold"
-            android:textAlignment="center" />
-    </LinearLayout>
+    <TextView
+        android:id="@+id/finD"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_marginStart="-102dp"
+        android:layout_marginLeft="0dp"
+        android:layout_toEndOf="@+id/debutD"
+        android:layout_toRightOf="@+id/debutD"
+        android:text="date fin"
+        android:textAlignment="center"
+        android:textStyle="bold" />
+
 
     <TextView
         android:id="@+id/instructionM"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="25dp"
         android:layout_margin="5dp"
         android:layout_marginStart="50dp"
-        android:textStyle="bold"
         android:text="instruction"
-        android:textAlignment="gravity" />
+        android:textAlignment="gravity"
+        android:textStyle="bold" />
 
 
 </LinearLayout>

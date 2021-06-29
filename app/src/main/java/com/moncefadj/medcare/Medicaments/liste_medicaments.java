@@ -3,6 +3,7 @@ package com.moncefadj.medcare.Medicaments;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -45,14 +46,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public class liste_medicaments extends AppCompatActivity {
-    MeowBottomNavigation bottomNavigation;
-    Toast toast;
-    public static final String TIME3 = "TIME3";
     private static final int ADD_MED_ACTIVITY = 0;
-    public static final String NAME = "NAME";
-    public static final String DESCR = "DESCRIPTION";
-    public static final String TIME = "TIME";
-    public static final String TIME2 = "TIME2";
+
     private FloatingActionButton ajouter_med;
     ArrayList<medDataDb> list;
     ArrayList<mesureData> mesureList;
@@ -78,7 +73,8 @@ public class liste_medicaments extends AppCompatActivity {
         dialog.setContentView(R.layout.custom_med_dialog);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            dialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.rounded_corner_white));
+            Drawable draw = getResources().getDrawable(R.drawable.rounded_corner_white);
+            dialog.getWindow().setBackgroundDrawable(draw);
         }
         dialog.setCancelable(false);
         // we can make animation for Dialog by mentioned it in Style
@@ -117,7 +113,8 @@ public class liste_medicaments extends AppCompatActivity {
         goTOmesure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                 affichermesmesure();
+                Intent intent = new Intent(getApplicationContext() , liste_mesure.class);
+                startActivity(intent);
             }
         });
         back.setOnClickListener(new View.OnClickListener() {

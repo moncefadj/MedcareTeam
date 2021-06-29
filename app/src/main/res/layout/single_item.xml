@@ -3,10 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/meditemcard"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
     app:cardCornerRadius="8dp"
-    app:cardElevation="50dp"
+    app:cardElevation="10dp"
   >
 
     <LinearLayout
@@ -38,8 +39,8 @@
                     android:id="@+id/nameitem"
                     android:layout_width="222dp"
                     android:layout_height="match_parent"
-                    android:text="nom de medicament
-"
+                    android:text="nom de medicament"
+
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -58,14 +59,14 @@
             <TextView
                 android:id="@+id/descriptionitem"
                 android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:layout_weight="1"
+                android:layout_height="34dp"
                 android:text="description"
+                android:layout_weight="1"
                 android:textSize="18sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="23dp"
+                android:layout_height="32dp"
                 android:orientation="horizontal">
 
                 <TextView

@@ -71,7 +71,7 @@ public class liste_mesure extends AppCompatActivity {
         boolean exist = false;
         int i = 0;
         while ( ( i< mesureList.size() )&& (!exist)){
-            if((mesureList.get(i).getTime() == mesure.getTime()) && (mesureList.get(i).getValeur() == mesure.getValeur())){
+            if((mesureList.get(i).getTime() == mesure.getTime()) ){
                 exist = true;
             }
             else {

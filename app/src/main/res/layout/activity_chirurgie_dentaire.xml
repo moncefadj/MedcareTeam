@@ -19,15 +19,14 @@
         android:fontFamily="@font/allerta"
         android:shadowColor="@color/blue_app"
         android:shadowRadius="@android:integer/config_longAnimTime"
-        android:text="DENTISTE"
+        android:text="Dentistes"
         android:textColor="@color/blue_app"
-        android:textSize="35dp"
-        android:textStyle="italic|bold" />
+        android:textSize="35dp"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/doctors"
             android:layout_width="match_parent"
-            android:layout_height="343dp"
+            android:layout_height="match_parent"
             android:layout_marginTop="5dp"
             android:dividerHeight="10sp" />
     </LinearLayout>

@@ -19,17 +19,16 @@
         android:gravity="center"
         android:shadowColor="@color/blue_app"
         android:shadowRadius="@android:integer/config_longAnimTime"
-        android:text="CARDIOLOGIE"
+        android:text="Cardiologues"
         android:textColor="@color/blue_app"
-        android:textSize="35dp"
-        android:textStyle="" />
+        android:textSize="35dp"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/doctors"
             android:layout_width="match_parent"
-            android:layout_height="385dp"
+            android:layout_height="match_parent"
             android:layout_marginTop="5dp"
-            android:dividerHeight="10sp" />
+            android:dividerHeight="10sp"/>
     </LinearLayout>
 
 

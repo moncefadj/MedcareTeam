@@ -17,6 +17,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.google.android.gms.common.internal.service.Common;
@@ -54,6 +55,7 @@ public class PatientProfile extends AppCompatActivity {
     private ImageView add,logout;
     private Uri imageUri;
     private static final int IMAGE_REQUEST =2;
+    SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,6 +130,25 @@ public class PatientProfile extends AppCompatActivity {
         boolean enableAnimation;
         //set home fragment initialy selected
         bottomNavigation.show(4, enableAnimation = true);
+        bottomNavigation.setOnClickMenuListener(new MeowBottomNavigation.ClickListener() {
+            @Override
+            public void onClickItem(MeowBottomNavigation.Model item) {
+                //display toast
+
+            }
+
+            ;
+        });
+
+        bottomNavigation.setOnReselectListener(new MeowBottomNavigation.ReselectListener() {
+            @Override
+            public void onReselectItem(MeowBottomNavigation.Model item) {
+                //display toast
+
+
+            }
+        });
+
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference().child("Users").child("Patients");
@@ -142,6 +163,20 @@ public class PatientProfile extends AppCompatActivity {
         final TextView numerotextview =(TextView) findViewById(R.id.n);
         final TextView datetextview =(TextView) findViewById(R.id.e);
 
+        getInfo(userID, fullnametextview, emailtextview, numerotextview, datetextview);
+        swipeRefreshLayout = findViewById(R.id.swiper_linear);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+
+                getInfo(userID, fullnametextview, emailtextview, numerotextview, datetextview);
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
+
+    }
+
+    private void getInfo(String userID, TextView fullnametextview, TextView emailtextview, TextView numerotextview, TextView datetextview) {
 
         reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -251,106 +286,3 @@ public class PatientProfile extends AppCompatActivity {
         }
     }
 }
-
-/*package com.moncefadj.medcare.ProfilePatient;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.Toast;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
-import com.moncefadj.medcare.Medicaments.liste_medicaments;
-import com.moncefadj.medcare.Patient.PatientHome;
-import com.moncefadj.medcare.PatientSearch.Search;
-import com.moncefadj.medcare.R;
-
-public class PatientProfile extends AppCompatActivity {
-    MeowBottomNavigation bottomNavigation;
-    Toast toast;
-
-
-    ImageView back;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.profile_patient_1);
-
-
-      //  play= (Button) findViewById(R.id.play);
-
-   //     play.setOnClickListener(new View.OnClickListener() {
-     //       @Override
-     //       public void onClick(View v) {
-      //          Intent otherAct =new Intent(getApplicationContext(), EditPatientProfile.class);
-        //        startActivity(otherAct);
-//
-    //        }
-    //    });
-
-
-        Intent intent= getIntent();
-        String message =intent.getStringExtra(EditPatientProfile.EXTRA_MESSAGE);
-        EditText editText=findViewById(R.id.n);
-        editText.setText(message);
-
-
-        //underbar
-        bottomNavigation = (MeowBottomNavigation) findViewById(R.id.bottom_navigation);
-        bottomNavigation.add(new MeowBottomNavigation.Model(1, R.drawable.ic_home));
-        bottomNavigation.add(new MeowBottomNavigation.Model(2, R.drawable.ic_med));
-        bottomNavigation.add(new MeowBottomNavigation.Model(3, R.drawable.ic_baseline_search_24));
-        bottomNavigation.add(new MeowBottomNavigation.Model(4, R.drawable.ic_profil));
-        bottomNavigation.setOnShowListener(new MeowBottomNavigation.ShowListener() {
-            @Override
-
-            public void onShowItem(MeowBottomNavigation.Model item) {
-                Intent intent = null;
-                switch (item.getId()) {
-                    case 1:
-                        intent = new Intent(getApplicationContext(), PatientHome.class);
-                        startActivity(intent);
-                        break;
-                    case 2: intent = new Intent(getApplicationContext(), liste_medicaments.class);
-                        startActivity(intent);
-                        break;
-                    case 3: intent = new Intent(getApplicationContext(), Search.class);
-                        startActivity(intent);
-                        break;
-
-
-                    //  case 4: fragment=new ProfilFragment();
-                    //  break;*/
-/*
-                }
-            }
-
-        });
-        boolean enableAnimation;
-        //set home fragment initialy selected
-        bottomNavigation.show(4, enableAnimation = true);
-        bottomNavigation.setOnClickMenuListener(new MeowBottomNavigation.ClickListener() {
-            @Override
-            public void onClickItem(MeowBottomNavigation.Model item) {
-                //display toast
-                Toast.makeText(getApplicationContext(), "you clicked" + item.getId(), Toast.LENGTH_SHORT).show();
-            }
-
-            ;
-        });
-
-        bottomNavigation.setOnReselectListener(new MeowBottomNavigation.ReselectListener() {
-            @Override
-            public void onReselectItem(MeowBottomNavigation.Model item) {
-                //display toast
-                Toast.makeText(getApplicationContext(), "YOU reslected" + item.getId(), Toast.LENGTH_SHORT).show();
-            }
-        });
-
-    }
-}*/

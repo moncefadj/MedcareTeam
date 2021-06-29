@@ -9,9 +9,10 @@
 
 
     <RelativeLayout
-        android:layout_width="396dp"
-        android:layout_height="577dp"
-android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:id="@+id/layoutyy"
         android:orientation="vertical">
 
 
@@ -30,30 +31,35 @@ android:layout_weight="1"
 
         <Spinner
             android:id="@+id/spinner1"
-            android:layout_width="205dp"
+            android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="74dp"
-            android:layout_marginTop="70dp"
-            android:autofillHints="Specialite"
+            android:layout_marginStart="75dp"
+            android:layout_marginEnd="75dp"
+            android:padding="5dp"
+            android:layout_marginTop="75dp"
+            android:autofillHints="Specialité"
             android:background="@drawable/backgraoudbuttob" />
 
         <SearchView
             android:id="@+id/search_d"
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="44dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/backgraoudbuttob"
             android:inputType="textVisiblePassword"
-            android:queryHint="Search" />
+            android:queryHint="Rechercher"
+            android:iconifiedByDefault="false"
+            android:searchHintIcon="@color/black"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/doctors"
             android:layout_width="match_parent"
-            android:layout_height="467dp"
+            android:layout_height="match_parent"
             android:layout_below="@+id/search_d"
             android:layout_marginTop="60dp" />
     </RelativeLayout>
@@ -64,7 +70,6 @@ android:layout_weight="1"
         android:layout_height="wrap_content"
         app:mbn_backgroundBottomColor="@color/blue_app"
         app:mbn_circleColor="#ffff"
-
         app:mbn_countBackgroundColor="#ff6f00"
         app:mbn_countTextColor="#ffff"
         app:mbn_defaultIconColor="#ffff"

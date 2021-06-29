@@ -50,10 +50,10 @@ public class Search extends AppCompatActivity {
     MeowBottomNavigation bottomNavigation;
     Toast toast;
     String name;
-SearchView searchView;
+    SearchView searchView;
     DoctorsDatabase docdata;
-RecyclerView recyclerView;
-   adapter docAdapter;
+    RecyclerView recyclerView;
+    adapter docAdapter;
     ArrayList<DoctorDataForHomePatient> doctor=new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +68,7 @@ RecyclerView recyclerView;
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         Spinner spinner1 = findViewById(R.id.spinner1);
-        String[] Categouries = {"    Specialitées", "Chirurgie Dentaire", "Cardiologie","Ophtalmologie",
+        String[] Categouries = {"Specialités", "Chirurgie Dentaire", "Cardiologie","Ophtalmologie",
                 "Pneumologie"};
         ArrayAdapter<String> arrayAdapter1 = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, Categouries);
         spinner1.setAdapter(arrayAdapter1);
@@ -76,7 +76,7 @@ RecyclerView recyclerView;
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String spec=spinner1.getSelectedItem().toString();
-                if(spec.matches("    Specialitées"))
+                if(spec.matches("Specialités"))
                 {   loadDocData();}
                 else {loadDocDataByspec(spec);}
             }
@@ -143,6 +143,24 @@ RecyclerView recyclerView;
         boolean enableAnimation;
         //set home fragment initialy selected
         bottomNavigation.show(3, enableAnimation = true);
+        bottomNavigation.setOnClickMenuListener(new MeowBottomNavigation.ClickListener() {
+            @Override
+            public void onClickItem(MeowBottomNavigation.Model item) {
+                //display toast
+
+            }
+
+            ;
+        });
+
+        bottomNavigation.setOnReselectListener(new MeowBottomNavigation.ReselectListener() {
+            @Override
+            public void onReselectItem(MeowBottomNavigation.Model item) {
+                //display toast
+
+
+            }
+        });
 
     }
 

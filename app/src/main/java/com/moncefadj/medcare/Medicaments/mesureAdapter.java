@@ -28,6 +28,7 @@ public class mesureAdapter extends RecyclerView.Adapter<mesureAdapter.viewHolder
         ImageButton deletemesure;
         ImageView mesureimg;
 
+
         public viewHolder(@NonNull View itemView) {
             super(itemView);
             nameitm = (TextView) itemView.findViewById(R.id.mesurename);

@@ -77,7 +77,7 @@ public class ajouterMesure extends AppCompatActivity {
                 mesReference =mesuresReference.child(nom);
                 mesReference.setValue( new mesureData(nom,time,valeur) );
                 Toast.makeText(getApplicationContext(), "Ajout réussi" , Toast.LENGTH_LONG ).show();
-                Intent intent = new Intent(ajouterMesure.this, liste_medicaments.class);
+                Intent intent = new Intent(ajouterMesure.this, liste_mesure.class);
                 startActivity(intent);
 
             }

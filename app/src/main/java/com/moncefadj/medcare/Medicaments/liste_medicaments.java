@@ -200,10 +200,9 @@ public class liste_medicaments extends AppCompatActivity {
                         title_liste.setText("");
                     }
                     else if (mesureList.size()==0){
-                        title_liste.setText("ajouter vos mesures");
+                        title_liste.setText("Ajouter vos mesures");
                     }
                     adapter.notifyDataSetChanged();
-                    Toast.makeText(liste_medicaments.this, "'mesures' retreived succefully ", Toast.LENGTH_LONG).show();
 
                 }
             }
@@ -211,8 +210,6 @@ public class liste_medicaments extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(liste_medicaments.this, error.getMessage(), Toast.LENGTH_LONG).show();
-
 
             }
         });
@@ -261,16 +258,12 @@ public class liste_medicaments extends AppCompatActivity {
                         title_liste.setText("ajouter vos medicament");
                     }
                     adapter.notifyDataSetChanged();
-                    Toast.makeText(liste_medicaments.this, "data retreived succefully ", Toast.LENGTH_LONG).show();
                 }
             }
 
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(liste_medicaments.this, error.getMessage(), Toast.LENGTH_LONG).show();
-
-
             }
         });
 

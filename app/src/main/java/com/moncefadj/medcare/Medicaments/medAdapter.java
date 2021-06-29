@@ -101,7 +101,6 @@ medAdapter extends RecyclerView.Adapter<medAdapter.viewHolder> {
                      }
                  });
                  dialog.show();
-                 Toast.makeText(context,"testclick"+String.valueOf(myviewHolder.getAbsoluteAdapterPosition()),Toast.LENGTH_LONG).show();
              }
          });
         return myviewHolder;
@@ -137,10 +136,10 @@ medAdapter extends RecyclerView.Adapter<medAdapter.viewHolder> {
                                         if (task.isSuccessful()){
                                             list.remove(list.get(position));
                                             notifyDataSetChanged();
-                                            Toast.makeText(context , "data deleted succesfully ", Toast.LENGTH_LONG).show();
+                                            Toast.makeText(context , "Médicament supprimé.", Toast.LENGTH_LONG).show();
                                         }
                                         else{
-                                            Toast.makeText(context , "erreur "+task.getException().getMessage() , Toast.LENGTH_LONG).show();
+                                            Toast.makeText(context , "Erreur "+task.getException().getMessage() , Toast.LENGTH_LONG).show();
                                         }
                                     }
                                 });

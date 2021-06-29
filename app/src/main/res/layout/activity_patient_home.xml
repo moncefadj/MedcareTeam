@@ -50,25 +50,26 @@
     <LinearLayout
         android:id="@+id/linear_doctors"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="350dp"
+        android:orientation="vertical"
+        android:layout_weight="1">
 
         <TextView
+            android:id="@+id/generaliste_title"
             android:layout_width="334dp"
             android:layout_height="28dp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
-            android:text="Généralistes"
             android:fontFamily="@font/allerta"
+            android:text="Généralistes"
             android:textColor="@color/blue_app"
             android:textSize="25dp"
-            android:textStyle="bold|italic"
-            android:id="@+id/generaliste_title"/>
+            android:textStyle="bold|italic" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/doctors_recycler"
             android:layout_width="match_parent"
-            android:layout_height="260dp"
+            android:layout_height="360dp"
             android:layout_marginTop="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -78,7 +79,6 @@
     </LinearLayout>
 
     <com.etebarian.meowbottomnavigation.MeowBottomNavigation
-
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

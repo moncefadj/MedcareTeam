@@ -66,10 +66,10 @@ public class ajouterMesure extends AppCompatActivity {
                 Calendar now = Calendar.getInstance();
                 String time = now.get(Calendar.HOUR_OF_DAY)+":"+now.get(Calendar.MINUTE);
                 if (nom.isEmpty()){
-                    nomMesure.setError("le nom est obligatoire");
+                    nomMesure.setError("Le nom est obligatoire");
                 }
                 if (valeur.isEmpty()){
-                    valeur_mes.setError("la valeur est obligatoire ");
+                    valeur_mes.setError("La valeur est obligatoire ");
                     return;
                 }
 

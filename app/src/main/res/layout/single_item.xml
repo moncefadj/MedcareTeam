@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:id="@+id/meditemcard"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
     app:cardCornerRadius="8dp"
-    app:cardElevation="10dp"
+    app:cardElevation="50dp"
+    android:id="@+id/meditemcard"
   >
 
     <LinearLayout
@@ -40,37 +40,41 @@
                     android:layout_width="222dp"
                     android:layout_height="match_parent"
                     android:text="nom de medicament"
-
+                    android:fontFamily="@font/allerta"
                     android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textSize="20sp"/>
 
                 <ImageButton
                     android:id="@+id/deletemed"
-                    android:layout_width="60dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    app:srcCompat="@drawable/close_sign"
-                    tools:ignore="VectorDrawableCompat" />
-
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="right"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/close_sign"
+                    android:backgroundTint="#000000" />
 
             </LinearLayout>
 
             <TextView
                 android:id="@+id/descriptionitem"
                 android:layout_width="match_parent"
-                android:layout_height="34dp"
-                android:text="description"
+                android:fontFamily="@font/allerta"
+                android:layout_height="20dp"
                 android:layout_weight="1"
+                android:text="description"
                 android:textSize="18sp" />
+
+
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="32dp"
+                android:layout_height="23dp"
                 android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/timeitem"
+                    android:fontFamily="@font/allerta"
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -81,6 +85,7 @@
 
                 <TextView
                     android:id="@+id/timeitem2"
+                    android:fontFamily="@font/allerta"
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -91,6 +96,7 @@
 
                 <TextView
                     android:id="@+id/timeitm3"
+                    android:fontFamily="@font/allerta"
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"

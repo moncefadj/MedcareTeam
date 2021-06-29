@@ -22,6 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.moncefadj.medcare.DataClasses.DoctorData;
 import com.moncefadj.medcare.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
 
@@ -30,7 +31,7 @@ public class EditDoctorProfile extends AppCompatActivity {
     TextView name,fullSpecialty,address;
     TextInputLayout nameEdTxt,addressEdTxt,specialtyEdText, phoneEdTxt, descEdTxt,passEdTxt;
     ImageButton backToProfileBtn;
-    ImageView confirmEditsBtn;
+    ImageView confirmEditsBtn,profile;
 
     String uidDoctor;
     DatabaseReference doctorRef;
@@ -50,6 +51,8 @@ public class EditDoctorProfile extends AppCompatActivity {
         phoneEdTxt = findViewById(R.id.edit_phone);
         descEdTxt = findViewById(R.id.edit_desc);
         passEdTxt = findViewById(R.id.edit_password);
+        profile = findViewById(R.id.edit_profile_doc_image);
+
 
         uidDoctor = FirebaseAuth.getInstance().getCurrentUser().getUid();
         doctorRef = FirebaseDatabase.getInstance().getReference().child("Users").child("Doctors").child(uidDoctor);
@@ -135,6 +138,9 @@ public class EditDoctorProfile extends AppCompatActivity {
                 if (snapshot.exists()) {
 
                     DoctorData doctorData = snapshot.getValue(DoctorData.class);
+
+                    String img =doctorData.getProfileImg();
+                    Picasso.get().load(img).into(profile);
 
                     name.setText(doctorData.getName());
                     fullSpecialty.setText(doctorData.getFullSpecialty());

@@ -2,6 +2,7 @@ package com.moncefadj.medcare.HelperClasses;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Icon;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import com.moncefadj.medcare.Doctor.DoctorProfile;
 import com.moncefadj.medcare.Patient.DoctorProfileFromPatientHome;
 import com.moncefadj.medcare.PatientSearch.Search;
 import com.moncefadj.medcare.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -52,7 +54,6 @@ public class adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> imple
         viewHolder.namedoc.setText(doctors.getName());
         viewHolder.specdoc.setText(doctors
                 .getSpecialty());
-
         holder.itemView.setOnClickListener(view -> {
             Intent intent = new Intent(context, DoctorProfileFromPatientHome.class);
             intent.putExtra("Name",doctors.getName());

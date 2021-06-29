@@ -10,9 +10,11 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.moncefadj.medcare.DataClasses.DoctorData;
 import com.moncefadj.medcare.DataClasses.DoctorDataForHomePatient;
 import com.moncefadj.medcare.Patient.DoctorProfileFromPatientHome;
 import com.moncefadj.medcare.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -47,12 +49,14 @@ public class doctorsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
         doctorsViewHolder viewHolder = (doctorsViewHolder) holder;
+
         DoctorDataForHomePatient doctors = DoctorsList.get(position);
         viewHolder.name.setText(doctors.getName());
         viewHolder.spec.setText(doctors.getFullSpecialty());
         viewHolder.adr.setText(doctors.getAddress());
         viewHolder.phone.setText(doctors.getPhone());
         viewHolder.id.setText(doctors.getId());
+
 
 //pour recherche
         holder.itemView.setOnClickListener(view -> {

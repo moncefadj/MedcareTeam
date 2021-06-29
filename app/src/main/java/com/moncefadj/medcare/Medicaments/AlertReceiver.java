@@ -19,7 +19,7 @@ public class AlertReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        createNotification(context , " temps de votre médicament", "vous avez un médicament à prendre .. cliquer ici ");
+        createNotification(context , " Temps de votre médicament", "Vous avez un médicament à prendre ... cliquer ici ");
     }
     public void createNotification(Context context, String title, String msgText)
     {

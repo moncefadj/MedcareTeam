@@ -2,7 +2,7 @@ package com.moncefadj.medcare.DataClasses;
 
 public class PatientData {
 
-    private String name, email,phone,day,month,year,password,id,time,num;
+    private String name, email,phone,day,month,year,password,id,time,profile;
 
 
 
@@ -10,7 +10,7 @@ public class PatientData {
     }
 
 
-    public PatientData(String vNomPatient, String vHeure,String phone,String vId,String num ,String day,String month,String year,String password) {
+    public PatientData(String vNomPatient,String profile, String vHeure,String phone,String vId ,String day,String month,String year,String password) {
         this.name = vNomPatient;
         this.email = vHeure;
         this.phone=phone;
@@ -20,15 +20,17 @@ public class PatientData {
         this.year=year;
         this.password=password;
         this.time = vHeure;
-        this.num=num;
+        this.profile=profile;
+
     }
 
-    public String getNum() {
-        return num;
+
+    public String getProfile() {
+        return profile;
     }
 
-    public void setNum(String num) {
-        this.num = num;
+    public void setProfile(String profile) {
+        this.profile = profile;
     }
 
     public String getName() {

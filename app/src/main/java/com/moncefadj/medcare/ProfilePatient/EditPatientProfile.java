@@ -29,6 +29,7 @@ import com.google.firebase.storage.StorageReference;
 import com.moncefadj.medcare.DataClasses.PatientData;
 import com.moncefadj.medcare.Doctor.EditDoctorProfile;
 import com.moncefadj.medcare.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
 
@@ -43,7 +44,7 @@ public class EditPatientProfile extends AppCompatActivity {
     private TextInputLayout enameinput, emotdepassinput, edayinput, emonthinput, eyearinput, eaddressseinput, enuminput, eemailinput;
 
     private Button mplaybutton;
-    private ImageView back;
+    private ImageView back,add;
     private ImageView imageView;
 
 
@@ -71,14 +72,6 @@ public class EditPatientProfile extends AppCompatActivity {
         eemailinput=(TextInputLayout) findViewById(R.id.k6);
 
 
-       /* mplaybutton.setEnabled(false);
-        mnameinput.addTextChangedListener(loginTextWatcher);
-        mdateinput.addTextChangedListener(loginTextWatcher);
-        maddressseinput.addTextChangedListener(loginTextWatcher);
-        mnuminput.addTextChangedListener(loginTextWatcher);
-        memailinput.addTextChangedListener(loginTextWatcher);
-        mmotdepassinput.addTextChangedListener(loginTextWatcher);*/
-
         back = (ImageView) findViewById(R.id.iback);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,6 +80,7 @@ public class EditPatientProfile extends AppCompatActivity {
             }
         });
 
+        add=(ImageView)findViewById(R.id.a);
 
         ref = FirebaseDatabase.getInstance().getReference().child("Users").child("Patients");
         userr = FirebaseAuth.getInstance().getCurrentUser();
@@ -100,10 +94,12 @@ public class EditPatientProfile extends AppCompatActivity {
                 if (userprofile !=null) {
                     String motdepasse = userprofile.getPassword();
                     String email= userprofile.getEmail();
+                    String img =userprofile.getProfile();
 
 
                     mmotdepassinput.setText(motdepasse);
                     memailinput.setText(email);
+                    Picasso.get().load(img).into(add);
 
                 }
             }
@@ -144,6 +140,7 @@ public class EditPatientProfile extends AppCompatActivity {
                     hashMap.put("phone", numero);
                     hashMap.put("password", motdepasse);
 
+
                     HashMap<String, Object> hashMapp = new HashMap<>();
 
                     hashMapp.put("day", day);
@@ -153,7 +150,7 @@ public class EditPatientProfile extends AppCompatActivity {
                     ref.child(userrID).updateChildren(hashMap).addOnSuccessListener(new OnSuccessListener() {
                         @Override
                         public void onSuccess(Object o) {
-                            Toast.makeText(EditPatientProfile.this, "données modifié", Toast.LENGTH_LONG).show();
+                            Toast.makeText(EditPatientProfile.this, "Informations modifiées", Toast.LENGTH_LONG).show();
                         }
                     });
                     reff.updateChildren(hashMapp);
@@ -163,44 +160,9 @@ public class EditPatientProfile extends AppCompatActivity {
                         eyearinput.setError("Vous avez dépasser la limite");
                     }
                     }
-                }
 
+                }
         });
 
     }
 }
-                 /*   FirebaseUser firebaseUser=FirebaseAuth.getInstance().getCurrentUser();
-                UserProfileChangeRequest request=new UserProfileChangeRequest.Builder().setDisplayName(Name).build();
-                firebaseUser.updateProfile(request).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                      Toast.makeText(EditPatientProfile.this,"good",Toast.LENGTH_LONG).show();
-                    }
-                });*/
-
-   /* private TextWatcher loginTextWatcher =new TextWatcher() {
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-        }
-
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-            mplaybutton.setEnabled(s.toString().length() != 0);
-
-        }
-
-        @Override
-        public void afterTextChanged(Editable s) {
-
-        }
-    };
-
-    public void envoyer (View view){
-
-        Intent intent=new Intent(this, PatientProfile.class);
-        EditText editText=(EditText) findViewById(R.id.inumero);
-        String message = editText.getText().toString();
-        intent.putExtra(EXTRA_MESSAGE,message);
-        startActivity(intent);
-    }*/

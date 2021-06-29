@@ -146,23 +146,23 @@ public class ajouterMed extends AppCompatActivity implements TimePickerDialog.On
         String datefin = dateFin.getText().toString();
         try {
             if (name.isEmpty()) {
-                EnomMed.setError("le nom de medicament est obligatoire !");
+                EnomMed.setError("Le nom du médicament est obligatoire!");
 
             }
             if (descrip.isEmpty()) {
-                Description.setError("veuillez donner une petit description ! ");
+                Description.setError("Veuillez donner une description! ");
 
             }
             if (datedebut.isEmpty()) {
-                dateDebut.setError("la date de debut de prise est obligatoire  !");
+                dateDebut.setError("la date de debut de prise est obligatoire !");
 
             }
             if (datefin.isEmpty()) {
-                dateFin.setError("la fin de prise est obligatoire ! ");
+                dateFin.setError("La date de fin de prise est obligatoire!");
 
             }
             if (time.isEmpty()) {
-                heure.setError("veuillez donner au moins une heure  !");
+                heure.setError("Veuillez donner au moins une heure!");
                 return;
             }
         }
@@ -229,7 +229,7 @@ public class ajouterMed extends AppCompatActivity implements TimePickerDialog.On
         }
 
 
-        ajouter_med.setText("ajouter une autre heure de prise ");
+        ajouter_med.setText("Ajouter une autre heure de prise ");
         ajouter_med.setTextColor(Color.GRAY);
     }
 
@@ -243,7 +243,6 @@ public class ajouterMed extends AppCompatActivity implements TimePickerDialog.On
             c.add(Calendar.DATE, 1);
         }
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(),AlarmManager.INTERVAL_DAY,pendingIntent);
-        Toast.makeText(this,"notification added succesfully !", Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -266,7 +265,7 @@ public class ajouterMed extends AppCompatActivity implements TimePickerDialog.On
             @Override
             public void onDateSet(DatePicker view, int year, int month, int day) {
                 calendar.set(year , month, day);
-                dateDebut.setText(new SimpleDateFormat("dd/MM/yyyy").format(calendar.getTime()));
+                dateDebut.setText(new SimpleDateFormat("dd/mm/yyyy").format(calendar.getTime()));
                 int myear = calendar.get(Calendar.YEAR);
                 int mmonth = calendar.get(Calendar.MONTH);
                 int mday = calendar.get(Calendar.DAY_OF_MONTH);
@@ -288,7 +287,7 @@ public class ajouterMed extends AppCompatActivity implements TimePickerDialog.On
             @Override
             public void onDateSet(DatePicker view, int year, int month, int day) {
                 calendar.set(year , month, day);
-                dateFin.setText(new SimpleDateFormat("dd/MM/yyyy").format(calendar.getTime()));
+                dateFin.setText(new SimpleDateFormat("dd/mm/yyyy").format(calendar.getTime()));
                 int myear = calendar.get(Calendar.YEAR);
                 int mmonth = calendar.get(Calendar.MONTH);
                 int mday = calendar.get(Calendar.DAY_OF_MONTH);

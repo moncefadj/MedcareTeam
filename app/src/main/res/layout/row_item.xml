@@ -18,7 +18,7 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/image_view"
-            android:layout_width="98dp"
+            android:layout_width="match_parent"
             android:layout_height="89dp"
             android:src="@drawable/eye1"
             app:civ_circle_background_color="@color/white" />
@@ -26,12 +26,11 @@
         <TextView
             android:id="@+id/text_view"
             android:layout_width="wrap_content"
-            android:layout_height="36dp"
-            android:paddingTop="8dp"
+            android:layout_height="wrap_content"
             android:text="Généraliste"
+            android:fontFamily="@font/allerta"
             android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textSize="15dp" />
     </LinearLayout>
 
 

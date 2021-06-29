@@ -37,6 +37,7 @@
                 android:background="@drawable/medcin"
                 android:contentDescription="TODO" />
 
+
             <TextView
                 android:id="@+id/nom_medecin"
                 android:layout_width="match_parent"

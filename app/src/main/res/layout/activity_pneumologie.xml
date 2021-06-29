@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Patient.pneumologie">
+    tools:context=".Patient.Pneumologie">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,15 +19,14 @@
         android:gravity="center"
         android:shadowColor="@color/blue_app"
         android:shadowRadius="@android:integer/config_longAnimTime"
-        android:text="OPHTALMOLOGIE"
+        android:text="Pneumologues"
         android:textColor="@color/blue_app"
-        android:textSize="35dp"
-        android:textStyle="italic|bold" />
+        android:textSize="35dp"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/doctors"
             android:layout_width="match_parent"
-            android:layout_height="404dp"
+            android:layout_height="match_parent"
             android:layout_marginTop="5dp"
             android:dividerHeight="10sp" />
 </LinearLayout>

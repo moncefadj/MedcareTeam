@@ -18,7 +18,7 @@ import com.moncefadj.medcare.R;
 
 import java.util.ArrayList;
 
-public class pneumologie extends AppCompatActivity {
+public class Pneumologie extends AppCompatActivity {
    adapter docAdapter;
     DoctorsDatabase docdata;
     RecyclerView doctorsRecycler;

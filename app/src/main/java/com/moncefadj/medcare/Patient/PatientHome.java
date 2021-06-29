@@ -87,6 +87,23 @@ public class PatientHome extends AppCompatActivity {
         boolean enableAnimation;
         //set home fragment initialy selected
         bottomNavigation.show(1, enableAnimation = true);
+        bottomNavigation.setOnClickMenuListener(new MeowBottomNavigation.ClickListener() {
+            @Override
+            public void onClickItem(MeowBottomNavigation.Model item) {
+                //display toast
+
+            }
+
+            ;
+        });
+
+        bottomNavigation.setOnReselectListener(new MeowBottomNavigation.ReselectListener() {
+            @Override
+            public void onReselectItem(MeowBottomNavigation.Model item) {
+                //display toast
+
+            }
+        });
 
         //show doctors
 
@@ -111,8 +128,8 @@ public class PatientHome extends AppCompatActivity {
                 ,R.drawable.lung_ic,R.drawable.tooth};
 
         //creat string array
-        String[] categorieName={"Ophtalmomogie","Cardiologie"
-                ,"Pneumoligie","Chirurgie Dentaire"};
+        String[] categorieName={"Ophtalmologie","Cardiologie"
+                ,"Pneumologie","Chir. dentaire"};
 
         //initilize arraylist
         specialtiesData =new ArrayList<>();

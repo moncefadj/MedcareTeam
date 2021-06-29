@@ -18,8 +18,8 @@
 
         <ImageView
             android:id="@+id/mesureimg"
-            android:layout_width="65dp"
-            android:layout_height="70dp"
+            android:layout_width="83dp"
+            android:layout_height="81dp"
             android:layout_margin="10dp"
             app:srcCompat="@drawable/heartbeat" />
 
@@ -46,11 +46,13 @@
 
                 <ImageButton
                     android:id="@+id/deletemesure"
-                    android:layout_width="60dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    app:srcCompat="@drawable/close_sign"
-                    tools:ignore="VectorDrawableCompat" />
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="right"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/close_sign"
+                    android:backgroundTint="#000000" />
 
 
             </LinearLayout>
@@ -58,13 +60,10 @@
             <TextView
                 android:id="@+id/mesurevaleur"
                 android:layout_width="match_parent"
-                android:layout_height="3dp"
-                android:layout_marginStart="2dp"
+                android:layout_height="9dp"
                 android:layout_weight="1"
                 android:text="valeur"
-                android:textStyle="bold"
-
-                android:textSize="18sp" />
+                android:textSize="24sp" />
 
 
 
@@ -76,7 +75,7 @@
                     android:text="temps"
                     android:textColor="@color/blue_app"
                     android:textSize="18sp"
-                     />
+                    android:textStyle="bold" />
 
 
 

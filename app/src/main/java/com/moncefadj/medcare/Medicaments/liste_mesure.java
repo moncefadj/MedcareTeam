@@ -98,10 +98,9 @@ public class liste_mesure extends AppCompatActivity {
                     if (mesureList.size() != 0) {
                         middle_text.setText("");
                     } else if (mesureList.size() == 0) {
-                        middle_text.setText("ajouter vos mesures");
+                        middle_text.setText("Ajouter vos mesures");
                     }
                     mesAdapter.notifyDataSetChanged();
-                    Toast.makeText(liste_mesure.this, "'mesures' retreived succefully ", Toast.LENGTH_LONG).show();
 
                 }
             }
@@ -109,8 +108,6 @@ public class liste_mesure extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(liste_mesure.this, error.getMessage(), Toast.LENGTH_LONG).show();
-
 
             }
         });
